@@ -51,20 +51,21 @@ namespace GameEngine.Systems
                     }
                 }
             }
-
-            List<KeyboardControllComponent> keyboardUsers = ComponentManager.Instance.getComponentsOfType<KeyboardControllComponent>();
-            List<ActionDirectionComponent> actionDirections = ComponentManager.Instance.getComponentsOfType<ActionDirectionComponent>();
-            if (keyboardUsers == null)
+            Dictionary<int, EntityComponent> _KeyboardUsers = ComponentManager.Instance.getComponentDictionary<KeyboardControllComponent>();
+            Dictionary<int, EntityComponent> _ActionDirection = ComponentManager.Instance.getComponentDictionary<ActionDirectionComponent>();
+            EntityComponent actionComp;
+            if (_KeyboardUsers == null)
             {
                 return;
             }
-            if (keyboardUsers.Count > 0)
+            if (_KeyboardUsers.Keys.Count > 0)
             {
-                foreach (KeyboardControllComponent controlls in keyboardUsers)
+                foreach (KeyboardControllComponent controlls in _KeyboardUsers.Values)
                 {
-                    ActionDirectionComponent actionDir = ComponentManager.Instance.getComponentByID<ActionDirectionComponent>(controlls.EntityId);
-                    if (actionDir != null)
+
+                    if (_ActionDirection.TryGetValue(controlls.EntityId, out actionComp))
                     {
+                        ActionDirectionComponent actionDir = (ActionDirectionComponent)actionComp;
                         handleIsKeypressedReleased(actionDir, controlls);
                         handleIsKeypressed(actionDir, controlls);
                         //handleIsKeypressedReleased(actionDir, controlls);
