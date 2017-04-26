@@ -2,7 +2,7 @@
 
 namespace GameEngine.Components
 {
-    public class ActionDirectionComponent : Component
+    public class ActionDirectionComponent : EntityComponent
     {
         public bool Left { get; set; }
         public bool Right { get; set; }

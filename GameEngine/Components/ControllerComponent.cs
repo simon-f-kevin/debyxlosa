@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Components
 {
-    public class ControllerComponent : Component 
+    public class ControllerComponent : EntityComponent 
     {
         public ControllerComponent(int Id) : base(Id)
         {

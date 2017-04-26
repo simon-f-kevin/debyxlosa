@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Components
 {
-    public class CollisionComponent : Component
+    public class CollisionComponent : EntityComponent
     {
         public List<int> _collisions { get; set; }
         public CollisionComponent(int id) : base(id)

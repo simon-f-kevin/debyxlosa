@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace GameEngine.Components
 {
-    public class RotationComponent : Component
+    public class RotationComponent : EntityComponent
     {
         public float rotation { get; set; }
         public Vector2 orgin { get; set; }

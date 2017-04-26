@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Components
 {
-    public class VelocityComponent : Component
+    public class VelocityComponent : EntityComponent
     {
         public float _velX { get; set; }
         public float _velY  { get; set; }

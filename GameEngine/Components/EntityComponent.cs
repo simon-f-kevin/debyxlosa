@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Components
 {
-    public abstract class Component
+    public abstract class EntityComponent
     {
         private int _entityId;
 
-        public Component(int Id)
+        public EntityComponent(int Id)
         {
             _entityId = Id;
         }

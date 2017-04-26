@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameEngine.Components
 {
-    public class RectangleComponent : Component
+    public class RectangleComponent : EntityComponent
     {
         //public Vector2 _rectangle { get; set; }
         public Rectangle BoundingRectangle { get; set; }

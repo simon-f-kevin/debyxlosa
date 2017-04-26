@@ -22,8 +22,7 @@ namespace Blob
         float updateInterval = 1;
         float fps = 0;
 
-        private MoveSystem _moveSystem;
-        private InputSystem _InputSystem;
+        private SystemManager _SystemManager;
 
         private Entity player, enemy;
         private Texture2D hero;
@@ -52,11 +51,13 @@ namespace Blob
             // TODO: Add your initialization logic here
             hero = Content.Load<Texture2D>("hero1");
             blob = Content.Load<Texture2D>("enemy");
-            _moveSystem = new MoveSystem(this,graphics.GraphicsDevice.Viewport.Width, graphics.GraphicsDevice.Viewport.Height);
-            Components.Add(_moveSystem);
+            _SystemManager = new SystemManager(this);
+            GamePropertyManager.Instance.setGraphics(this.GraphicsDevice);
+            //_moveSystem = new MoveSystem(this,graphics.GraphicsDevice.Viewport.Width, graphics.GraphicsDevice.Viewport.Height);
+            //Components.Add(_moveSystem);
 
-            _InputSystem = new InputSystem(this, true);
-            Components.Add(_InputSystem);
+            //_InputSystem = new InputSystem(this, true);
+            //Components.Add(_InputSystem);
             createEntities();
             base.Initialize();
         }
@@ -69,7 +70,7 @@ namespace Blob
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            
 
 
             // TODO: use this.Content to load your game content here
@@ -111,8 +112,7 @@ namespace Blob
             //}
 
             // TODO: Add your update logic here
-            _InputSystem.Update(gameTime);
-            _moveSystem.Update(gameTime);
+            _SystemManager.Update(gameTime);
             //base.Update(gameTime);
         }
 

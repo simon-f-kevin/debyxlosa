@@ -10,17 +10,16 @@ using Microsoft.Xna.Framework;
 
 namespace GameEngine.Systems
 {
-    public class CollisionSystem
+    public class CollisionSystem : GameComponent
     {
         //private List<PositionComponent> _listOfPositions;
         private List<RectangleComponent> _listOfRectangles;
 
-        public CollisionSystem()
+        public CollisionSystem(Game game) : base(game)
         {
-            
         }
 
-        public void Update()
+        public override void Update(GameTime gameTime)
         {
             CollisionDetection();
             

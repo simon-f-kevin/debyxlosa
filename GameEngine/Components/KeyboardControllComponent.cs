@@ -3,7 +3,7 @@
 
 namespace GameEngine.Components
 {
-    public class KeyboardControllComponent: Component
+    public class KeyboardControllComponent: EntityComponent
     {
         public Keys UpKey { get; set; }
         public Keys DownKey { get; set; }

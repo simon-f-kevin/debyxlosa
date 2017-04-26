@@ -9,15 +9,15 @@ namespace GameEngine.Managers
 {
     public class ComponentManager
     {
-        private Dictionary<Type, Dictionary<int, Component>> _componentsByType;
-        private Dictionary<int, List<Component>> _componentsById;
+        private Dictionary<Type, Dictionary<int, EntityComponent>> _componentsByType;
+        private Dictionary<int, List<EntityComponent>> _componentsById;
 
         private static ComponentManager instance;
 
         private ComponentManager()
         {
-            _componentsByType  = new Dictionary<Type, Dictionary<int, Component>>();
-            _componentsById = new Dictionary<int, List<Component>>();
+            _componentsByType  = new Dictionary<Type, Dictionary<int, EntityComponent>>();
+            _componentsById = new Dictionary<int, List<EntityComponent>>();
         }
 
         public static ComponentManager Instance
@@ -32,32 +32,32 @@ namespace GameEngine.Managers
             }
         }
 
-        public void addComponent(Component component)   //snabbare än --^
+        public void addComponent(EntityComponent component)   //snabbare än --^
         {
 
             //TODO skriver över existerande
             //Skriver till "entiteter av typ"-lista
-            Dictionary<int, Component> temp;
+            Dictionary<int, EntityComponent> temp;
             if (!_componentsByType.TryGetValue(component.GetType(), out temp))
             {
-                temp = new Dictionary<int, Component>();
+                temp = new Dictionary<int, EntityComponent>();
                 _componentsByType[component.GetType()] = temp;
             }
             _componentsByType[component.GetType()][component.EntityId] = component;
             
             // Skriver till "componenter för Entitet"-lista
-            List<Component> list;
+            List<EntityComponent> list;
             if (!_componentsById.TryGetValue(component.EntityId, out list))
             {
-                list = new List<Component>();
+                list = new List<EntityComponent>();
                 _componentsById[component.EntityId] = list;
             }
             _componentsById[component.EntityId].Add(component);
         }
 
-        public List<T> getComponentsOfType<T>() where T : Component
+        public List<T> getComponentsOfType<T>() where T : EntityComponent
         {
-            Dictionary<int, Component> tempDict;
+            Dictionary<int, EntityComponent> tempDict;
             List<T> list = new List<T>();
             if (_componentsByType.TryGetValue(typeof(T), out tempDict))
             {
@@ -71,12 +71,12 @@ namespace GameEngine.Managers
             return null;
         }
 
-        public T getComponentByID<T>(int iD) where T : Component
+        public T getComponentByID<T>(int iD) where T : EntityComponent
         {
-            Dictionary<int, Component> tempDict;
+            Dictionary<int, EntityComponent> tempDict;
             if (_componentsByType.TryGetValue(typeof(T), out tempDict))
             {
-                Component component;
+                EntityComponent component;
                 if (tempDict.TryGetValue(iD, out component))
                 {
                     return (T)component;
@@ -85,17 +85,17 @@ namespace GameEngine.Managers
             return null;
         }
 
-        public void removeComponent<T>(int iD) where T : Component
+        public void removeComponent<T>(int iD) where T : EntityComponent
         {
             //private Dictionary<Type, Dictionary<int, Component>> _componentsByType;
             //private Dictionary<int, List<Component>> _componentsById;
-            Component component;
-            Dictionary<int, Component> tempDict;
+            EntityComponent component;
+            Dictionary<int, EntityComponent> tempDict;
             if (_componentsByType.TryGetValue(typeof(T), out tempDict))
             {
                 if (tempDict.TryGetValue(iD, out component))
                 {
-                    List<Component> tempList;
+                    List<EntityComponent> tempList;
                     if (_componentsById.TryGetValue(iD, out tempList))
                     {
                         tempList.Remove(component);
@@ -103,6 +103,15 @@ namespace GameEngine.Managers
                     }
                 }
             }
+        }
+        public Dictionary<int, EntityComponent> getComponentDictionary<T>() where T : EntityComponent
+        {
+            Dictionary<int, EntityComponent> compDictionary;
+            if (_componentsByType.TryGetValue(typeof(T), out compDictionary))
+            {
+                return compDictionary;
+            }
+            return null;
         }
     }
 }

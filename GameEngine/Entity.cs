@@ -16,11 +16,11 @@ namespace GameEngine
             _entityID = id;
         }
 
-        public void addComponent(Component component)
+        public void addComponent(EntityComponent component)
         {
             ComponentManager.Instance.addComponent(component);
         }
-        public void removeComponent(Component component)
+        public void removeComponent(EntityComponent component)
         {
             //ComponentManager.Instance.removeComponent<(component, component.EntityId);
         }

@@ -19,52 +19,58 @@ namespace GameEngine.Systems
         private List<VelocityComponent> _velocities;
 
 
-        public MoveSystem(Game game, int screenWidth, int screenHight) : base(game)
+        public MoveSystem(Game game) : base(game)
         {
-            this._ScreenHight = screenHight;
-            this._ScreenWitdh = screenWidth;
+            this._ScreenHight = GamePropertyManager.Instance.getGraphics().Viewport.Height;
+            this._ScreenWitdh = GamePropertyManager.Instance.getGraphics().Viewport.Width;
         }
 
         public override void Update(GameTime _gameTime)
         {
-            _velocities = ComponentManager.Instance.getComponentsOfType<VelocityComponent>();
+            Dictionary<int, EntityComponent> _VelocityDict = ComponentManager.Instance.getComponentDictionary<VelocityComponent>();
+            Dictionary<int, EntityComponent> _PositionDict = ComponentManager.Instance.getComponentDictionary<PositionComponent>();
+            Dictionary<int, EntityComponent> _ActionDirectionDict = ComponentManager.Instance.getComponentDictionary<ActionDirectionComponent>();
+            EntityComponent actionComp;
+            EntityComponent posComp;
             //använd _gameTime
             var dT = (float)_gameTime.ElapsedGameTime.TotalSeconds;
             if (_velocities != null)
             {
-                foreach (VelocityComponent vel in _velocities)
+                foreach (VelocityComponent vel in _VelocityDict.Values)
                 {
-                    PositionComponent pos = ComponentManager.Instance.getComponentByID<PositionComponent>(vel.EntityId);
-                    ActionDirectionComponent actiondir = ComponentManager.Instance.getComponentByID<ActionDirectionComponent>(vel.EntityId);                   
-                    if (actiondir != null)
+                    if (_PositionDict.TryGetValue(vel.EntityId, out posComp))
                     {
-                        RotationComponent rotation = ComponentManager.Instance.getComponentByID<RotationComponent>(vel.EntityId);
-                        if (actiondir.Left)
+                        PositionComponent pos = (PositionComponent)posComp;
+                        if (_ActionDirectionDict.TryGetValue(vel.EntityId, out actionComp))
                         {
-                            rotation.rotation -= 5.0f * dT;
-                            actiondir.Left = false;
-                        }
-                        if (actiondir.Right)
-                        {
-                            rotation.rotation += 5.0f * dT;
-                            actiondir.Right = false;
-                        }
-                        if (actiondir.Up)
-                        {
+                            ActionDirectionComponent actiondir = (ActionDirectionComponent)actionComp;
+                            RotationComponent rotation = ComponentManager.Instance.getComponentByID<RotationComponent>(vel.EntityId);
+                            if (actiondir.Left)
+                            {
+                                rotation.rotation -= 5.0f * dT;
+                                actiondir.Left = false;
+                            }
+                            if (actiondir.Right)
+                            {
+                                rotation.rotation += 5.0f * dT;
+                                actiondir.Right = false;
+                            }
+                            if (actiondir.Up)
+                            {
 
-                            vel._velX += (float)Math.Cos(rotation.rotation - 90f) * acceleration;
-                            vel._velY += (float)Math.Sin(rotation.rotation - 90f) * acceleration;
-                            //actiondir.Up = false;
-                        }
-                        else if (vel._velX != 0 || vel._velY != 0)
-                        {
-                            float i = vel._velX;
-                            float j = vel._velY;
+                                vel._velX += (float)Math.Cos(rotation.rotation - 90f) * acceleration;
+                                vel._velY += (float)Math.Sin(rotation.rotation - 90f) * acceleration;
+                                //actiondir.Up = false;
+                            }
+                            else if (vel._velX != 0 || vel._velY != 0)
+                            {
+                                float i = vel._velX;
+                                float j = vel._velY;
 
-                            vel._velX = i -= friction * i;
-                            vel._velY = j -= friction * j;
+                                vel._velX = i -= friction * i;
+                                vel._velY = j -= friction * j;
+                            }
                         }
-                    }
                         //Förflyttning
                         pos.X += (vel._velX * dT);
                         pos.Y += (vel._velY * dT);
@@ -90,6 +96,7 @@ namespace GameEngine.Systems
                         {
                             vel._velY *= -1;
                         }
+                    }
                 }
             }         
         }
