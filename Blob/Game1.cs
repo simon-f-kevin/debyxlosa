@@ -69,11 +69,11 @@ namespace Blob
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            MediaPlayerManager.Instance.addSong(Content.Load<Song>(@"Music\disco"));
-            MediaPlayerManager.Instance.addSong(Content.Load<Song>(@"Music\game"));
-            MediaPlayerManager.Instance.addSong(Content.Load<Song>(@"Music\gameboy"));
-            MediaPlayerManager.Instance.addSong(Content.Load<Song>(@"Music\cloud"));
-            MediaPlayerManager.Instance.Start();
+            //MediaPlayerManager.Instance.addSong(Content.Load<Song>(@"Music\disco"));
+            //MediaPlayerManager.Instance.addSong(Content.Load<Song>(@"Music\game"));
+            //MediaPlayerManager.Instance.addSong(Content.Load<Song>(@"Music\gameboy"));
+            //MediaPlayerManager.Instance.addSong(Content.Load<Song>(@"Music\cloud"));
+            //MediaPlayerManager.Instance.Start();
 
 
             // TODO: use this.Content to load your game content here
