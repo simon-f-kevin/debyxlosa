@@ -41,5 +41,21 @@ namespace GameEngine.Managers
             //Game.Components.Add(_SoundSystem);
             //base.Initialize();
         }
+        public override void Update(GameTime gameTime)
+        {
+            //_FrameCounter.Update(gameTime);
+            //_TestSystem.Update(gameTime);
+            _InputSystem.Update(gameTime);
+            _MoveSystem.Update(gameTime);
+            //_CollisionSystem.Update(gameTime);
+            //_SoundSystem.Update(gameTime);            
+            //base.Update(gameTime);
+        }
+        public override void Draw(GameTime gameTime)
+        {
+            //GraphicsDevice.Clear(Color.CornflowerBlue);
+            //_TextureRender.Draw(gameTime);
+            //base.Draw(gameTime);
+        }
     }
 }

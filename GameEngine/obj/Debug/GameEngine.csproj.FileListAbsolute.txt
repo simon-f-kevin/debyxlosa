@@ -37,6 +37,5 @@ C:\Users\Hameo\Source\Repos\debyxlosa\GameEngine\bin\Debug\SharpDX.Direct3D11.xm
 C:\Users\Hameo\Source\Repos\debyxlosa\GameEngine\bin\Debug\SharpDX.Direct2D1.xml
 C:\Users\Hameo\Source\Repos\debyxlosa\GameEngine\bin\Debug\SharpDX.XInput.xml
 C:\Users\Hameo\Source\Repos\debyxlosa\GameEngine\bin\Debug\SharpDX.MediaFoundation.xml
-C:\Users\Hameo\Source\Repos\debyxlosa\GameEngine\obj\Debug\GameEngine.csprojResolveAssemblyReference.cache
 C:\Users\Hameo\Source\Repos\debyxlosa\GameEngine\obj\Debug\GameEngine.dll
 C:\Users\Hameo\Source\Repos\debyxlosa\GameEngine\obj\Debug\GameEngine.pdb

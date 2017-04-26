@@ -59,6 +59,7 @@
     <Compile Include="Managers\EntityManager.cs" />
     <Compile Include="Managers\GamePropertyManager.cs" />
     <Compile Include="Managers\InputManager.cs" />
+    <Compile Include="Managers\MediaPlayerManager.cs" />
     <Compile Include="Managers\SystemManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Systems\CollisionSystem.cs" />

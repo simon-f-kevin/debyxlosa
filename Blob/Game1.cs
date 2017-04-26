@@ -6,6 +6,7 @@ using GameEngine.Systems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 
 namespace Blob
 {
@@ -51,10 +52,13 @@ namespace Blob
             // TODO: Add your initialization logic here
             hero = Content.Load<Texture2D>("hero1");
             blob = Content.Load<Texture2D>("enemy");
-            _SystemManager = new SystemManager(this);
+            
             GamePropertyManager.Instance.setGraphics(this.GraphicsDevice);
             //_moveSystem = new MoveSystem(this,graphics.GraphicsDevice.Viewport.Width, graphics.GraphicsDevice.Viewport.Height);
             //Components.Add(_moveSystem);
+
+            _SystemManager = new SystemManager(this);
+            Components.Add(_SystemManager);
 
             //_InputSystem = new InputSystem(this, true);
             //Components.Add(_InputSystem);
@@ -70,7 +74,11 @@ namespace Blob
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            
+            MediaPlayerManager.Instance.addSong(Content.Load<Song>(@"Music\disco"));
+            MediaPlayerManager.Instance.addSong(Content.Load<Song>(@"Music\game"));
+            MediaPlayerManager.Instance.addSong(Content.Load<Song>(@"Music\gameboy"));
+            MediaPlayerManager.Instance.addSong(Content.Load<Song>(@"Music\cloud"));
+            MediaPlayerManager.Instance.Start();
 
 
             // TODO: use this.Content to load your game content here

@@ -37,3 +37,27 @@
 /processorParam:TextureFormat=Color
 /build:hero1.png
 
+#begin Music/Cloud.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/Cloud.mp3
+
+#begin Music/Disco.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/Disco.mp3
+
+#begin Music/Game.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/Game.mp3
+
+#begin Music/Gameboy.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/Gameboy.mp3
+

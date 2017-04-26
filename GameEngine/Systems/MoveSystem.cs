@@ -34,7 +34,7 @@ namespace GameEngine.Systems
             EntityComponent posComp;
             //använd _gameTime
             var dT = (float)_gameTime.ElapsedGameTime.TotalSeconds;
-            if (_velocities != null)
+            if (_VelocityDict != null)
             {
                 foreach (VelocityComponent vel in _VelocityDict.Values)
                 {
