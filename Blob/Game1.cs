@@ -18,11 +18,6 @@ namespace Blob
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        float frameCount = 0;
-        float timeSinceLastUpdate = 0;
-        float updateInterval = 1;
-        float fps = 0;
-
         private SystemManager _SystemManager;
 
         private Entity player, enemy;
@@ -74,11 +69,11 @@ namespace Blob
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            //MediaPlayerManager.Instance.addSong(Content.Load<Song>(@"Music\disco"));
-            //MediaPlayerManager.Instance.addSong(Content.Load<Song>(@"Music\game"));
-            //MediaPlayerManager.Instance.addSong(Content.Load<Song>(@"Music\gameboy"));
-            //MediaPlayerManager.Instance.addSong(Content.Load<Song>(@"Music\cloud"));
-            //MediaPlayerManager.Instance.Start();
+            MediaPlayerManager.Instance.addSong(Content.Load<Song>(@"Music\disco"));
+            MediaPlayerManager.Instance.addSong(Content.Load<Song>(@"Music\game"));
+            MediaPlayerManager.Instance.addSong(Content.Load<Song>(@"Music\gameboy"));
+            MediaPlayerManager.Instance.addSong(Content.Load<Song>(@"Music\cloud"));
+            MediaPlayerManager.Instance.Start();
 
 
             // TODO: use this.Content to load your game content here
@@ -102,17 +97,7 @@ namespace Blob
         protected override void Update(GameTime gameTime)
         {
             //Hjälp för debugging
-            frameCount++;
-
-            float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            timeSinceLastUpdate += elapsed;
-            if (timeSinceLastUpdate > updateInterval)
-            {
-                fps = frameCount / timeSinceLastUpdate;
-                Window.Title = "FPS: " + fps.ToString();
-                frameCount = 0;
-                timeSinceLastUpdate -= updateInterval;
-            }
+            
 
             //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             //{
@@ -142,7 +127,7 @@ namespace Blob
             spriteBatch.Draw(hero, new Vector2(p.X, p.Y), null, Color.White, rotation.rotation, rotation.orgin, 1f, SpriteEffects.None, 0);
             spriteBatch.Draw(blob, new Vector2(q.X, q.Y), null, Color.White, 0, new Vector2(), 1, SpriteEffects.None, 0);
             spriteBatch.End();
-           
+
 
             base.Draw(gameTime);
         }

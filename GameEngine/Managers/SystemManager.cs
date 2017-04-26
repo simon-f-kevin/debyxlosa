@@ -53,6 +53,7 @@ namespace GameEngine.Managers
         }
         public override void Draw(GameTime gameTime)
         {
+            _FrameCounter.Draw(gameTime);
             //GraphicsDevice.Clear(Color.CornflowerBlue);
             //_TextureRender.Draw(gameTime);
             //base.Draw(gameTime);
