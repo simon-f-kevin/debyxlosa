@@ -47,8 +47,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Game1.cs" />
+    <Compile Include="Managers\EntityManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourcesProviders\GameProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -58,8 +60,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\hero1.png" />
-    <Content Include="Content\enemy.png" />
+    <Content Include="Content\player.png" />
+    <Content Include="Content\dictator.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>

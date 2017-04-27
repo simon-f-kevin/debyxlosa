@@ -1,4 +1,7 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
+using Blob.Managers;
+using Blob.ResourcesProviders;
 using GameEngine;
 using GameEngine.Components;
 using GameEngine.Managers;
@@ -19,8 +22,7 @@ namespace Blob
         SpriteBatch spriteBatch;
 
         private SystemManager _SystemManager;
-
-        private Entity player, enemy;
+        private EntityManager _entityManager;
         private Texture2D hero;
         private Texture2D blob;
 
@@ -45,18 +47,24 @@ namespace Blob
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            hero = Content.Load<Texture2D>("hero1");
-            blob = Content.Load<Texture2D>("enemy");
+            hero = Content.Load<Texture2D>("player");
+            blob = Content.Load<Texture2D>("dictator");
             
             GamePropertyManager.Instance.setGraphics(this.GraphicsDevice);
             //_moveSystem = new MoveSystem(this,graphics.GraphicsDevice.Viewport.Width, graphics.GraphicsDevice.Viewport.Height);
             //Components.Add(_moveSystem);
 
             _SystemManager = new SystemManager(this);
+            //Borde ta bort Component.Add(). Systemet anropas manuellt i Update
             Components.Add(_SystemManager);
+
+            //Create a singleton holding the Game-instance instead of sending
+            //it as a parameter to appropriate managers.
+            GameProvider.getInstance().Game = this;
 
             //_InputSystem = new InputSystem(this, true);
             //Components.Add(_InputSystem);
+            _entityManager = new EntityManager();
             createEntities();
             base.Initialize();
         }
@@ -118,14 +126,23 @@ namespace Blob
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            var p = (PositionComponent)ComponentManager.Instance.getComponentByID<PositionComponent>(player._entityID);
-            var q = (PositionComponent)ComponentManager.Instance.getComponentByID<PositionComponent>(enemy._entityID);
-            var rotation = (RotationComponent)ComponentManager.Instance.getComponentByID<RotationComponent>(player._entityID);
-            Rectangle rectangle = new Rectangle(new Point((int)p.X, (int)p.Y), new Point(hero.Width, hero.Height));
-
+            //var p = (PositionComponent)ComponentManager.Instance.getComponentByID<PositionComponent>(0);
+            //var q = (PositionComponent)ComponentManager.Instance.getComponentByID<PositionComponent>(1);
+            //var rotation = (RotationComponent)ComponentManager.Instance.getComponentByID<RotationComponent>(0);
+            //Rectangle rectangle = new Rectangle(new Point((int)p.X, (int)p.Y), new Point(hero.Width, hero.Height));
+            List<TextureComponent> textures = ComponentManager.Instance.getComponentsOfType<TextureComponent>();
+            int i = 0;
+            
             spriteBatch.Begin();
-            spriteBatch.Draw(hero, new Vector2(p.X, p.Y), null, Color.White, rotation.rotation, rotation.orgin, 1f, SpriteEffects.None, 0);
-            spriteBatch.Draw(blob, new Vector2(q.X, q.Y), null, Color.White, 0, new Vector2(), 1, SpriteEffects.None, 0);
+            foreach (TextureComponent texture in textures)
+            {
+                PositionComponent entityPosition =
+                    ComponentManager.Instance.getComponentByID<PositionComponent>(texture.EntityId);
+                RotationComponent entityRotation =
+                    ComponentManager.Instance.getComponentByID<RotationComponent>(texture.EntityId);
+                spriteBatch.Draw(texture.Sprite, new Vector2(entityPosition.X, entityPosition.Y), null, Color.White, entityRotation.rotation, entityRotation.orgin, 1f, SpriteEffects.None, i++);
+            }
+
             spriteBatch.End();
 
 
@@ -145,23 +162,44 @@ namespace Blob
             //player1.addComponent(new RenderComponent(humanSprite));
             //Player
  
-            player = EntityManager.Instance.createUniqueId();
-            player.addComponent(new PositionComponent(player._entityID , GraphicsDevice.Viewport.Width/2, GraphicsDevice.Viewport.Height/2));
-            player.addComponent(new ControllerComponent(player._entityID)); //TODO lägg till mappning av tangenter för styrning
-            player.addComponent(new RotationComponent(player._entityID, 0, hero.Width, hero.Height));
-            player.addComponent(new VelocityComponent(player._entityID, 0, 0));
-            KeyboardControllComponent controll = new KeyboardControllComponent(player._entityID);
-            controll.LeftKey = Keys.Left;
-            controll.UpKey = Keys.Up;
-            controll.DownKey = Keys.Down;
-            controll.RightKey = Keys.Right;
-            player.addComponent(controll);
-            player.addComponent(new ActionDirectionComponent(player._entityID));
+            //player = EntityManager.Instance.createUniqueId();
+            //player.addComponent(new PositionComponent(player._entityID , GraphicsDevice.Viewport.Width/2, GraphicsDevice.Viewport.Height/2));
+            //player.addComponent(new ControllerComponent(player._entityID)); //TODO lägg till mappning av tangenter för styrning
+            //player.addComponent(new RotationComponent(player._entityID, 0, hero.Width, hero.Height));
+            //player.addComponent(new VelocityComponent(player._entityID, 0, 0));
+            //KeyboardControllComponent controll = new KeyboardControllComponent(player._entityID);
+            //controll.LeftKey = Keys.Left;
+            //controll.UpKey = Keys.Up;
+            //controll.DownKey = Keys.Down;
+            //controll.RightKey = Keys.Right;
+            //player.addComponent(controll);
+            //player.addComponent(new ActionDirectionComponent(player._entityID));
 
-            //Enemy
-            enemy = EntityManager.Instance.createUniqueId();
-            enemy.addComponent(new VelocityComponent(enemy._entityID, 200, 300));  //Ställ vinkel och hastighet med hjälp av x och y = smart
-            enemy.addComponent(new PositionComponent(enemy._entityID, 200, 200));  //Startposition x och y
+            int entityId = EntityManager.createEntity("player");
+            KeyboardControllComponent keySettings =
+                ComponentManager.Instance.getComponentByID<KeyboardControllComponent>(entityId);
+            keySettings.LeftKey = Keys.Left;
+            keySettings.UpKey = Keys.Up;
+            keySettings.DownKey = Keys.Down;
+            keySettings.RightKey = Keys.Right;
+            EntityManager.createEntity("dictator");
+            entityId = EntityManager.createEntity("dictator");
+            PositionComponent dictatorPosition = ComponentManager.Instance.getComponentByID<PositionComponent>(entityId);
+            dictatorPosition.X = 350;
+            dictatorPosition.Y = 200;
+            VelocityComponent velocity = ComponentManager.Instance.getComponentByID<VelocityComponent>(entityId);
+            velocity._velX = 150;
+            velocity._velY = 50;
+            for (int i = 0; i < 1000; i++)
+            {
+                EntityManager.createEntity("dictator");
+            }
+
+
+            ////Enemy
+            //enemy = EntityManager.Instance.createUniqueId();
+            //enemy.addComponent(new VelocityComponent(enemy._entityID, 200, 300));  //Ställ vinkel och hastighet med hjälp av x och y = smart
+            //enemy.addComponent(new PositionComponent(enemy._entityID, 200, 200));  //Startposition x och y
 
         }
     }

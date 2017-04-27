@@ -19,6 +19,7 @@ namespace GameEngine.Components
         public int EntityId
         {
             get { return _entityId; }
+            set { _entityId = value; }
         }
     }
 }

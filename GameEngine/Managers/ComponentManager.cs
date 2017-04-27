@@ -12,12 +12,18 @@ namespace GameEngine.Managers
         private Dictionary<Type, Dictionary<int, EntityComponent>> _componentsByType;
         private Dictionary<int, List<EntityComponent>> _componentsById;
 
+        /*Handling of entity-id:s*/
+        private static int _idCount;
+        private Queue<int> _freeIds;
+        private const int _expandSize = 1000;
+
         private static ComponentManager instance;
 
         private ComponentManager()
         {
             _componentsByType  = new Dictionary<Type, Dictionary<int, EntityComponent>>();
             _componentsById = new Dictionary<int, List<EntityComponent>>();
+            _freeIds = new Queue<int>();
         }
 
         public static ComponentManager Instance
@@ -30,6 +36,11 @@ namespace GameEngine.Managers
                 }
                 return instance;
             }
+        }
+
+        public int newId()
+        {
+            return getEntityId();
         }
 
         public void addComponent(EntityComponent component)   //snabbare än --^
@@ -112,6 +123,22 @@ namespace GameEngine.Managers
                 return compDictionary;
             }
             return null;
+        }
+
+        private int getEntityId()
+        {
+            if (_freeIds.Count == 0)
+                expandIdQueue();
+            return _freeIds.Dequeue();
+        }
+
+        private void expandIdQueue()
+        {
+            for (int i = _idCount; i < _idCount + _expandSize; i++)
+            {
+                _freeIds.Enqueue(i);
+            }
+            _idCount += _expandSize;
         }
     }
 }
