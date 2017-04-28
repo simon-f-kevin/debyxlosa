@@ -30,8 +30,10 @@ namespace GameEngine.Systems
             Dictionary<int, EntityComponent> _VelocityDict = ComponentManager.Instance.getComponentDictionary<VelocityComponent>();
             Dictionary<int, EntityComponent> _PositionDict = ComponentManager.Instance.getComponentDictionary<PositionComponent>();
             Dictionary<int, EntityComponent> _ActionDirectionDict = ComponentManager.Instance.getComponentDictionary<ActionDirectionComponent>();
+            Dictionary<int, EntityComponent> _BarComponent = ComponentManager.Instance.getComponentDictionary<BarComponent>();
             EntityComponent actionComp;
             EntityComponent posComp;
+            EntityComponent barComp ;
             //använd _gameTime
             var dT = (float)_gameTime.ElapsedGameTime.TotalSeconds;
             if (_VelocityDict != null)
@@ -70,6 +72,32 @@ namespace GameEngine.Systems
                                 vel.VelX = i -= friction * i;
                                 vel.VelY = j -= friction * j;
                             }
+
+                            if (_BarComponent.TryGetValue(vel.EntityId, out barComp))
+                            {
+                                BarComponent barComponent = (BarComponent)barComp;
+                                if (barComponent.bar >= 1f)
+                                {
+                                    if (actiondir.Special)
+                                    {
+                                        barComponent.bar = 0.0f;
+                                        barComponent.seconds = 0.0f;
+                                        vel.VelX *= 2f;
+                                        vel.VelY *= 2f;
+                                    }
+
+                                }
+                                if(barComponent.bar < 1f)
+                                {
+                                    barComponent.seconds += (float)_gameTime.ElapsedGameTime.TotalSeconds;
+                                    barComponent.bar = barComponent.seconds / barComponent.span;
+                                    if(barComponent.bar > 1f)
+                                    {
+                                        barComponent.bar = 1f;
+                                    }
+                                }
+
+                            }                            
                         }
                         //Förflyttning
                         pos.X += (vel.VelX * dT);

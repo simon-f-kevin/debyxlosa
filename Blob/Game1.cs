@@ -26,6 +26,7 @@ namespace Blob
         private EntityManager _entityManager;
         private Texture2D hero;
         private Texture2D blob;
+        private Texture2D ball;
 
         public Game1()
         {
@@ -50,6 +51,7 @@ namespace Blob
             // TODO: Add your initialization logic here
             hero = Content.Load<Texture2D>("player");
             blob = Content.Load<Texture2D>("dictator");
+            ball = Content.Load<Texture2D>("football");
             
             GamePropertyManager.Instance.setGraphics(this.GraphicsDevice);
             //_moveSystem = new MoveSystem(this,graphics.GraphicsDevice.Viewport.Width, graphics.GraphicsDevice.Viewport.Height);
@@ -141,8 +143,11 @@ namespace Blob
                     ComponentManager.Instance.getComponentByID<PositionComponent>(texture.EntityId);
                 RotationComponent entityRotation =
                     ComponentManager.Instance.getComponentByID<RotationComponent>(texture.EntityId);
-                spriteBatch.Draw(texture.Sprite, new Vector2(entityPosition.X, entityPosition.Y), null, Color.White, entityRotation.Rotation, entityRotation.Orgin, 1f, SpriteEffects.None, i++);
+                Rectangle rect = new Rectangle((int)entityPosition.X, (int)entityPosition.Y, 100, 100);
+                spriteBatch.Draw(texture.Sprite, destinationRectangle:rect, color: Color.White, rotation: entityRotation.Rotation, origin: entityRotation.Orgin);
+                
             }
+
 
             spriteBatch.End();
 
@@ -178,13 +183,12 @@ namespace Blob
 
             EntityManager.createPlayer(new Vector2(200, 200), new Vector2(0, 0),
                 new KeyMappings(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.Space));
+            EntityManager.createPlayer(new Vector2(200, 200), new Vector2(0, 0),
+                new KeyMappings(Keys.W, Keys.S, Keys.A, Keys.D, Keys.Space));
 
             EntityManager.createDictator(new Vector2(600, 200), new Vector2(1000, 100));
-            EntityManager.createDictator(new Vector2(600, 200), new Vector2(100, 100));
-            EntityManager.createDictator(new Vector2(600, 200), new Vector2(-200, 400));
-            EntityManager.createDictator(new Vector2(600, 200), new Vector2(300, 10));
-            EntityManager.createDictator(new Vector2(600, 200), new Vector2(10, 300));
-            EntityManager.createDictator(new Vector2(600, 200), new Vector2(0, 0));
+
+            EntityManager.createAlliance(new Vector2(500, 100), new Vector2(400, 300));
             
             //PositionComponent dictatorPosition = ComponentManager.Instance.getComponentByID<PositionComponent>(entityId);
             //dictatorPosition.X = 350;

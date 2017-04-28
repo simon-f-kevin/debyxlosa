@@ -48,6 +48,10 @@ namespace Blob.Managers
             ActionDirectionComponent adComp =
                 ComponentManager.Instance.getNewComponent<ActionDirectionComponent>(id);
             ComponentManager.Instance.addComponent(adComp);
+            BarComponent barComp = ComponentManager.Instance.getNewComponent<BarComponent>(id);
+            barComp.bar = 1f;
+            barComp.span = 5.0f;
+            ComponentManager.Instance.addComponent(barComp);
 
             return id;
         }
@@ -71,7 +75,27 @@ namespace Blob.Managers
             rCompDictator.Orgin = new Vector2(dictatorSprite.Width/2, dictatorSprite.Height/2);
             rCompDictator.Rotation = 0;
             ComponentManager.Instance.addComponent(rCompDictator);
-
+            return id;
+        }
+        public static int createAlliance(Vector2 position, Vector2 velocity)
+        {
+            int id = ComponentManager.Instance.newId();
+            Texture2D dictatorSprite = GameProvider.getInstance().Game.Content.Load<Texture2D>("football");
+            VelocityComponent vCompDictator = ComponentManager.Instance.getNewComponent<VelocityComponent>(id);
+            vCompDictator.VelY = velocity.Y;
+            vCompDictator.VelX = velocity.X;
+            ComponentManager.Instance.addComponent(vCompDictator);
+            PositionComponent posCompDictator = ComponentManager.Instance.getNewComponent<PositionComponent>(id);
+            posCompDictator.Y = position.Y;
+            posCompDictator.X = position.X;
+            ComponentManager.Instance.addComponent(posCompDictator);
+            TextureComponent tCompDictator = ComponentManager.Instance.getNewComponent<TextureComponent>(id);
+            tCompDictator.setValue(dictatorSprite);
+            ComponentManager.Instance.addComponent(tCompDictator);
+            RotationComponent rCompDictator = ComponentManager.Instance.getNewComponent<RotationComponent>(id);
+            rCompDictator.Orgin = new Vector2(dictatorSprite.Width / 2, dictatorSprite.Height / 2);
+            rCompDictator.Rotation = 0;
+            ComponentManager.Instance.addComponent(rCompDictator);
             return id;
         }
     }
