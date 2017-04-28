@@ -8,6 +8,7 @@ namespace GameEngine.Components
         public bool Right { get; set; }
         public bool Up { get; set; }
         public bool Down { get; set; }
+        public bool Special { get; set; }
 
         public ActionDirectionComponent()
         {

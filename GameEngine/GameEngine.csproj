@@ -46,10 +46,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\ActionDirectionComponent.cs" />
+    <Compile Include="Components\BarComponent.cs" />
     <Compile Include="Components\CollisionComponent.cs" />
     <Compile Include="Components\EntityComponent.cs" />
     <Compile Include="Components\ControllerComponent.cs" />
+    <Compile Include="Components\ExplosionComponent.cs" />
     <Compile Include="Components\KeyboardControlComponent.cs" />
+    <Compile Include="Components\MergeComponent.cs" />
     <Compile Include="Components\PositionComponent.cs" />
     <Compile Include="Components\RectangleComponent.cs" />
     <Compile Include="Components\RotationComponent.cs" />

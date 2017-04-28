@@ -67,7 +67,7 @@ namespace GameEngine.Systems
                     {
                         ActionDirectionComponent actionDir = (ActionDirectionComponent)actionComp;
                         handleIsKeypressedReleased(actionDir, controlls);
-                        handleIsKeypressed(actionDir, controlls);
+                        handleIsKeypressed(actionDir, controlls);                       
                         //handleIsKeypressedReleased(actionDir, controls);
                         //handleIsHoldingKeyDown(actionDir, controls);
                     }
@@ -91,6 +91,10 @@ namespace GameEngine.Systems
             if (keyboard.isKeyReleased(controls.DownKey))
             {                
                 actionDir.Down = false;
+            }
+            if (keyboard.isKeyReleased(controls.SpecialKey))
+            {
+                actionDir.Special = false;
             }
         }
         private void handleIsKeypressed(ActionDirectionComponent actionDir, KeyboardControlComponent controls)
@@ -119,6 +123,10 @@ namespace GameEngine.Systems
                 actionDir.Down = true;
                 actionDir.Up = false;
 
+            }
+            if (keyboard.IsKeyDown(controls.SpecialKey))
+            {
+                actionDir.Special = true;
             }
         }
 
