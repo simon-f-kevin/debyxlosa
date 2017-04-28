@@ -118,3 +118,5 @@ C:\Users\Simon\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\Music\G
 C:\Users\Simon\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\Music\Game.xnb
 C:\Users\Simon\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\Music\Gameboy.wma
 C:\Users\Simon\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\Music\Gameboy.xnb
+C:\Users\Johan\Desktop\Systemarkitekturutbildningen\Termin 4\Speldesign\de byxlosa\projekt\Blob\bin\Windows\x86\Debug\Content\circle.xnb
+C:\Users\Johan\Desktop\Systemarkitekturutbildningen\Termin 4\Speldesign\de byxlosa\projekt\Blob\bin\Windows\x86\Debug\Content\rectangle.xnb

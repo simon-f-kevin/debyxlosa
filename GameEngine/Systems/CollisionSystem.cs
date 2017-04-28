@@ -10,44 +10,151 @@ using Microsoft.Xna.Framework;
 
 namespace GameEngine.Systems
 {
-    public class CollisionSystem : GameComponent
+    public class CollisionSystem
     {
-        //private List<PositionComponent> _listOfPositions;
+        private List<PositionComponent> _listOfPositions;
         private List<RectangleComponent> _listOfRectangles;
+        private List<CollisionComponent> _listOfCollisions;
 
-        public CollisionSystem(Game game) : base(game)
+        private bool _collisionDetected;
+
+        public CollisionSystem()
         {
+            _collisionDetected = false;
         }
 
-        public override void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
+            _listOfRectangles = ComponentManager.Instance.getComponentsOfType<RectangleComponent>();
+            _listOfCollisions = ComponentManager.Instance.getComponentsOfType<CollisionComponent>();
+            _listOfPositions = ComponentManager.Instance.getComponentsOfType<PositionComponent>();
+            PositionUpdate();
             CollisionDetection();
-            
+            if (_collisionDetected)
+                CollisionHandler();
+
         }
 
 
         private void CollisionDetection()
         {
-            _listOfRectangles = ComponentManager.Instance.getComponentsOfType<RectangleComponent>();
             foreach (var rectangle in _listOfRectangles)
             {
-                RectangleComponent rectComp = rectangle;
-                foreach (var rectangle1 in _listOfRectangles)
+                CollisionComponent cc =
+                    _listOfCollisions.SingleOrDefault(e => e.EntityId == rectangle.EntityId);
+
+                foreach (var anotherRectangle in _listOfRectangles)
                 {
-                    RectangleComponent rectComp1 = rectangle1;
-                    if (rectangle.EntityId != rectangle1.EntityId && rectComp.BoundingRectangle.Intersects(rectComp1.BoundingRectangle))
+                    if (rectangle.EntityId != anotherRectangle.EntityId &&
+                       rectangle.BoundingRectangle.Intersects(anotherRectangle.BoundingRectangle))
                     {
-                        var tempComp = ComponentManager.Instance.getComponentByID<CollisionComponent>(rectangle.EntityId);
-                        tempComp._collisions.Add(rectComp1.EntityId);
-                        var tempComp1 = ComponentManager.Instance.getComponentByID<PositionComponent>(tempComp.EntityId);
-                        //get the position of the collision
-                        //move the player away from position of intersection
+                        PositionUpdateSpheres();
+
+                        //Räkna ut distans med Pythagoras sats
+                        //                        double distance = Math.Sqrt(
+                        //                            ((rectangle.BoundingRectangle.X - anotherRectangle.BoundingRectangle.X)
+                        //                             * (rectangle.BoundingRectangle.X - anotherRectangle.BoundingRectangle.X))
+                        //                            + ((rectangle.BoundingRectangle.Y - anotherRectangle.BoundingRectangle.Y)
+                        //                               * (rectangle.BoundingRectangle.Y - anotherRectangle.BoundingRectangle.Y)));
+
+                        var rect1 = rectangle.BoundingSphere.Center;
+                        var rect2 = anotherRectangle.BoundingSphere.Center;
+
+                        double distance2 = Math.Sqrt(
+                            ((rect1.X - rect2.X)
+                             * (rect1.X - rect2.X))
+                            + ((rect1.Y - rect2.Y)
+                               * (rect1.Y - rect2.Y)));
+
+                        if (distance2 < ((rectangle.BoundingSphere.Radius) + (anotherRectangle.BoundingSphere.Radius)))
+                        {
+                            cc.Collisions.Add(anotherRectangle.EntityId);
+                            _collisionDetected = true;
+                        }
                     }
-
                 }
-
             }
         }
-       
+
+        private void PositionUpdate()
+        {
+            foreach (var rectangle in _listOfRectangles)
+            {
+                PositionComponent pos =
+                    _listOfPositions.SingleOrDefault(e => e.EntityId == rectangle.EntityId);
+                Rectangle BoundingRectangle = rectangle.BoundingRectangle;
+                BoundingRectangle.X = (int)pos.X;
+                BoundingRectangle.Y = (int)pos.Y;
+                rectangle.BoundingRectangle = BoundingRectangle;
+            }
+        }
+
+        private void PositionUpdateSpheres()
+        {
+            foreach (var rectangle in _listOfRectangles)
+            {
+                PositionComponent pos =
+                    ComponentManager.Instance.getComponentByID<PositionComponent>(rectangle.EntityId);
+                RotationComponent rot =
+                    ComponentManager.Instance.getComponentByID<RotationComponent>(rectangle.EntityId);
+
+                var radius = rectangle.BoundingSphere.Radius;
+                BoundingSphere BoundingSphere = rectangle.BoundingSphere;
+                BoundingSphere.Center.X = rectangle.BoundingRectangle.Center.X;
+                BoundingSphere.Center.Y = rectangle.BoundingRectangle.Center.Y;
+                //new Vector3(pos.X + (float)Math.Cos(rot.Rotation) * radius,
+                //    pos.Y + (float)Math.Sin(rot.Rotation) * radius, 0);
+                //BoundingSphere.Center = new Vector3(rectangle.BoundingRectangle.X + radius, rectangle.BoundingRectangle.Y + radius, 0);
+                rectangle.BoundingSphere = BoundingSphere;
+            }
+        }
+
+        // Skall nog flyttas ut i game
+        private void CollisionHandler()
+        {
+            foreach (CollisionComponent component in _listOfCollisions)
+            {
+                if (component.Collisions.Count > 0)
+                {
+                    for (int i = 0; i < component.Collisions.Count; i++)
+                    {
+                        int id = component.Collisions[i];
+
+                        //GÖR DET DU SKALL GÖRA VID KOLLISION//
+                        if (id > component.EntityId)
+                            BouncingBalls(id, component);
+
+                    }
+                    component.Collisions.Clear();
+                }
+            }
+            _collisionDetected = false;
+        }
+
+        // Skall nog flyttas ut i game och fysik
+        public void BouncingBalls(int id, CollisionComponent component)
+        {
+            BoundingSphere s1 = ComponentManager.Instance.getComponentByID<RectangleComponent>(id).BoundingSphere;
+            BoundingSphere s2 = ComponentManager.Instance.getComponentByID<RectangleComponent>(component.EntityId).BoundingSphere;
+            VelocityComponent v1 = ComponentManager.Instance.getComponentByID<VelocityComponent>(id);
+            VelocityComponent v2 = ComponentManager.Instance.getComponentByID<VelocityComponent>(component.EntityId);
+
+            //Ändra riktning och hastighet
+            //jag räknar radien som massan för entiteterna
+            float velX1 = (v1.VelX * (s1.Radius - s2.Radius) + (2 * s2.Radius * v2.VelX)) / (s1.Radius + s2.Radius);
+            float velY1 = (v1.VelY * (s1.Radius - s2.Radius) + (2 * s2.Radius * v2.VelY)) / (s1.Radius + s2.Radius);
+            float velX2 = (v2.VelX * (s2.Radius - s1.Radius) + (2 * s1.Radius * v1.VelX)) / (s1.Radius + s2.Radius);
+            float velY2 = (v2.VelY * (s2.Radius - s1.Radius) + (2 * s1.Radius * v1.VelY)) / (s1.Radius + s2.Radius);
+
+            //Kollisionspunkt
+            //var cpX = ((r1.X * (r2.Width / 2)) + (r2.X * (r1.Width / 2))) / (r1.Width / 2 + r2.Width / 2);
+            //var cpY = ((r1.Y * (r2.Width / 2)) + (r2.Y * (r1.Width / 2))) / (r1.Width / 2 + r2.Width / 2);
+
+            v1.VelX = velX1;
+            v1.VelY = velY1;
+            v2.VelX = velX2;
+            v2.VelY = velY2;
+
+        }
     }
 }

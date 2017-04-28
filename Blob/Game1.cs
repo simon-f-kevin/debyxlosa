@@ -26,6 +26,8 @@ namespace Blob
         private EntityManager _entityManager;
         private Texture2D hero;
         private Texture2D blob;
+        private Texture2D circle;
+        private Texture2D rectangle;
 
         public Game1()
         {
@@ -83,7 +85,8 @@ namespace Blob
             //MediaPlayerManager.Instance.addSong(Content.Load<Song>(@"Music\gameboy"));
             //MediaPlayerManager.Instance.addSong(Content.Load<Song>(@"Music\cloud"));
             //MediaPlayerManager.Instance.Start();
-
+            circle = Content.Load<Texture2D>("circle");
+            rectangle = Content.Load<Texture2D>("rectangle");
 
             // TODO: use this.Content to load your game content here
 
@@ -141,67 +144,23 @@ namespace Blob
                     ComponentManager.Instance.getComponentByID<PositionComponent>(texture.EntityId);
                 RotationComponent entityRotation =
                     ComponentManager.Instance.getComponentByID<RotationComponent>(texture.EntityId);
-                spriteBatch.Draw(texture.Sprite, new Vector2(entityPosition.X, entityPosition.Y), null, Color.White, entityRotation.Rotation, entityRotation.Orgin, 1f, SpriteEffects.None, 0f);
+                RectangleComponent rc = ComponentManager.Instance.getComponentByID<RectangleComponent>(texture.EntityId);
+                spriteBatch.Draw(texture.Sprite, new Vector2(rc.BoundingRectangle.X, rc.BoundingRectangle.Y), null, Color.White, entityRotation.Rotation, entityRotation.Orgin, 1f, SpriteEffects.None, 0f);
+                spriteBatch.Draw(rectangle, rc.BoundingRectangle, Color.White);
             }
 
             spriteBatch.End();
-
 
             base.Draw(gameTime);
         }
 
         void createEntities()
         {
-            //EM = EntityManager.Instance;
-            //Sprite humanSprite = new Sprite("hero1");
-            //humanSprite.X = 100;
-            //humanSprite.Y = 100;
-
-            
-
-            //player1 = EM.createUniqueId();
-            //player1.addComponent(new RenderComponent(humanSprite));
-            //Player
- 
-            //player = EntityManager.Instance.createUniqueId();
-            //player.addComponent(new PositionComponent(player._entityID , GraphicsDevice.Viewport.Width/2, GraphicsDevice.Viewport.Height/2));
-            //player.addComponent(new ControllerComponent(player._entityID)); //TODO lägg till mappning av tangenter för styrning
-            //player.addComponent(new RotationComponent(player._entityID, 0, hero.Width, hero.Height));
-            //player.addComponent(new VelocityComponent(player._entityID, 0, 0));
-            //KeyboardControlComponent controll = new KeyboardControlComponent(player._entityID);
-            //controll.LeftKey = Keys.Left;
-            //controll.UpKey = Keys.Up;
-            //controll.DownKey = Keys.Down;
-            //controll.RightKey = Keys.Right;
-            //player.addComponent(controll);
-            //player.addComponent(new ActionDirectionComponent(player._entityID));
-
             EntityManager.createPlayer(new Vector2(200, 200), new Vector2(0, 0),
                 new KeyMappings(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.Space));
 
-            EntityManager.createDictator(new Vector2(600, 200), new Vector2(1000, 100));
-            EntityManager.createDictator(new Vector2(600, 200), new Vector2(100, 100));
-            EntityManager.createDictator(new Vector2(600, 200), new Vector2(-200, 400));
-            EntityManager.createDictator(new Vector2(600, 200), new Vector2(300, 10));
-            EntityManager.createDictator(new Vector2(600, 200), new Vector2(10, 300));
-            EntityManager.createDictator(new Vector2(600, 200), new Vector2(0, 0));
-            
-            //PositionComponent dictatorPosition = ComponentManager.Instance.getComponentByID<PositionComponent>(entityId);
-            //dictatorPosition.X = 350;
-            //dictatorPosition.Y = 200;
-            //VelocityComponent velocity = ComponentManager.Instance.getComponentByID<VelocityComponent>(entityId);
-            //velocity.VelX = 150;
-            //velocity.VelY = 50;
-            //for (int i = 0; i < 1000; i++)
-            //{
-            //    EntityManager.createEntity("dictator");
-            //}
-
-
-            ////Enemy
-            //enemy = EntityManager.Instance.createUniqueId();
-            //enemy.addComponent(new VelocityComponent(enemy._entityID, 200, 300));  //Ställ vinkel och hastighet med hjälp av x och y = smart
-            //enemy.addComponent(new PositionComponent(enemy._entityID, 200, 200));  //Startposition x och y
+            EntityManager.createDictator(new Vector2(600, 20), new Vector2(50, -50));
+            EntityManager.createDictator(new Vector2(800, 200), new Vector2(50, 50));
 
         }
     }

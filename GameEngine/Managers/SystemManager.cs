@@ -31,8 +31,7 @@ namespace GameEngine.Managers
             _MoveSystem = new MoveSystem(this.Game);
             Game.Components.Add(_MoveSystem);
 
-            _CollisionSystem = new CollisionSystem(this.Game);
-            Game.Components.Add(_CollisionSystem);
+            _CollisionSystem = new CollisionSystem();
 
             //_TextureRender = new TextureRenderer(this.Game);
             //Game.Components.Add(_TextureRender);
@@ -47,7 +46,7 @@ namespace GameEngine.Managers
             //_TestSystem.Update(gameTime);
             _InputSystem.Update(gameTime);
             _MoveSystem.Update(gameTime);
-            //_CollisionSystem.Update(gameTime);
+            _CollisionSystem.Update(gameTime);
             //_SoundSystem.Update(gameTime);            
             //base.Update(gameTime);
         }
