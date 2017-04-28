@@ -16,8 +16,6 @@ namespace Blob.Managers
             return ComponentManager.Instance.newId();
         }
 
-     
-
         public static int createPlayer(Vector2 position, Vector2 velocity, KeyMappings keys)
         {
             int id = ComponentManager.Instance.newId();
