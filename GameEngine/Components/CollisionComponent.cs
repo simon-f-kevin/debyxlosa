@@ -9,6 +9,11 @@ namespace GameEngine.Components
     public class CollisionComponent : EntityComponent
     {
         public List<int> _collisions { get; set; }
+
+        public CollisionComponent()
+        {
+            _collisions = new List<int>();
+        }
         public CollisionComponent(int id) : base(id)
         {
             _collisions = new List<int>();

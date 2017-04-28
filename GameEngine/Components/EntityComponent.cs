@@ -10,7 +10,7 @@ namespace GameEngine.Components
     public abstract class EntityComponent
     {
         private int _entityId;
-
+        public EntityComponent() { }
         public EntityComponent(int Id)
         {
             _entityId = Id;

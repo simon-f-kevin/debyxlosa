@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +13,7 @@ namespace GameEngine.Managers
     {
         private Dictionary<Type, Dictionary<int, EntityComponent>> _componentsByType;
         private Dictionary<int, List<EntityComponent>> _componentsById;
+        private Dictionary<Type,Queue<EntityComponent>> _reusableComponents;
 
         /*Handling of entity-id:s*/
         private static int _idCount;
@@ -23,6 +26,7 @@ namespace GameEngine.Managers
         {
             _componentsByType  = new Dictionary<Type, Dictionary<int, EntityComponent>>();
             _componentsById = new Dictionary<int, List<EntityComponent>>();
+            _reusableComponents = new Dictionary<Type, Queue<EntityComponent>>();
             _freeIds = new Queue<int>();
         }
 
@@ -41,6 +45,23 @@ namespace GameEngine.Managers
         public int newId()
         {
             return getEntityId();
+        }
+
+        public T getNewComponent<T>(int id) where T: EntityComponent, new()
+        {
+            Queue<EntityComponent> queue;
+            if (_reusableComponents.TryGetValue(typeof(T), out queue))
+            {
+                if (queue.Count > 0)
+                {
+                   T component = (T)queue.Dequeue();
+                    component.EntityId = id;
+                    return (component);
+                }
+            }
+            T tResult = new T();
+            tResult.EntityId = id;
+            return tResult;
         }
 
         public void addComponent(EntityComponent component)   //snabbare än --^
@@ -111,10 +132,18 @@ namespace GameEngine.Managers
                     {
                         tempList.Remove(component);
                         tempDict.Remove(iD);
+                        Queue<EntityComponent> reusableTempList;
+                        if (!_reusableComponents.TryGetValue(component.GetType(), out reusableTempList))
+                        {
+                            reusableTempList = new Queue<EntityComponent>();
+                            _reusableComponents[component.GetType()] = reusableTempList;
+                        }
+                        reusableTempList.Enqueue(component);
                     }
                 }
             }
         }
+
         public Dictionary<int, EntityComponent> getComponentDictionary<T>() where T : EntityComponent
         {
             Dictionary<int, EntityComponent> compDictionary;

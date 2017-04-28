@@ -8,6 +8,7 @@ namespace GameEngine.Components
 {
     public class ControllerComponent : EntityComponent 
     {
+        public ControllerComponent() { }
         public ControllerComponent(int Id) : base(Id)
         {
             
