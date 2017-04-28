@@ -53,10 +53,9 @@
     <Compile Include="Components\PositionComponent.cs" />
     <Compile Include="Components\RectangleComponent.cs" />
     <Compile Include="Components\RotationComponent.cs" />
+    <Compile Include="Components\TextureComponent.cs" />
     <Compile Include="Components\VelocityComponent.cs" />
-    <Compile Include="Entity.cs" />
     <Compile Include="Managers\ComponentManager.cs" />
-    <Compile Include="Managers\EntityManager.cs" />
     <Compile Include="Managers\GamePropertyManager.cs" />
     <Compile Include="Managers\InputManager.cs" />
     <Compile Include="Managers\MediaPlayerManager.cs" />

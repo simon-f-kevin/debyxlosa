@@ -9,6 +9,7 @@ namespace GameEngine.Components
         public Keys DownKey { get; set; }
         public Keys LeftKey { get; set; }
         public Keys RightKey { get; set; }
+        public KeyboardControllComponent() { }
         public KeyboardControllComponent(int compID):base(compID)
         {
 

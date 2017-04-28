@@ -12,6 +12,8 @@ namespace GameEngine.Components
     {
         //public Vector2 _rectangle { get; set; }
         public Rectangle BoundingRectangle { get; set; }
+        public RectangleComponent() { }
+        public RectangleComponent(int id) : base(id) { }
 
         public RectangleComponent(int id, Rectangle bounds) : base(id)
         {

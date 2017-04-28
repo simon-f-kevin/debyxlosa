@@ -11,6 +11,11 @@ namespace GameEngine.Components
         public float _velX { get; set; }
         public float _velY  { get; set; }
 
+        public VelocityComponent() { }
+        public VelocityComponent(int id) : base(id)
+        {
+            
+        } 
         public VelocityComponent(int Id, float x, float y) : base(Id)
         {
             _velX = x;

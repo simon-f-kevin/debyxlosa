@@ -10,6 +10,8 @@ namespace GameEngine.Components
     {
         public float X { get; set; }
         public float Y { get; set; }
+        public PositionComponent() { }
+        public PositionComponent(int id) : base(id) { }
 
         public PositionComponent(int Id, float x, float y) : base(Id)
         {

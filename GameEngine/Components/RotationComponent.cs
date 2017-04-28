@@ -11,6 +11,8 @@ namespace GameEngine.Components
     {
         public float rotation { get; set; }
         public Vector2 orgin { get; set; }
+        public RotationComponent() { }
+        public RotationComponent(int id) : base(id) { }
         public RotationComponent(int Id, float rotation, float x, float y) : base(Id)
         {
             this.rotation = rotation;
