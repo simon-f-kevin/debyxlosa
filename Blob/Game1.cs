@@ -132,7 +132,7 @@ namespace Blob
             //var rotation = (RotationComponent)ComponentManager.Instance.getComponentByID<RotationComponent>(0);
             //Rectangle rectangle = new Rectangle(new Point((int)p.X, (int)p.Y), new Point(hero.Width, hero.Height));
             List<TextureComponent> textures = ComponentManager.Instance.getComponentsOfType<TextureComponent>();
-            int i = 0;
+            
             
             spriteBatch.Begin();
             foreach (TextureComponent texture in textures)
@@ -141,7 +141,7 @@ namespace Blob
                     ComponentManager.Instance.getComponentByID<PositionComponent>(texture.EntityId);
                 RotationComponent entityRotation =
                     ComponentManager.Instance.getComponentByID<RotationComponent>(texture.EntityId);
-                spriteBatch.Draw(texture.Sprite, new Vector2(entityPosition.X, entityPosition.Y), null, Color.White, entityRotation.Rotation, entityRotation.Orgin, 1f, SpriteEffects.None, i++);
+                spriteBatch.Draw(texture.Sprite, new Vector2(entityPosition.X, entityPosition.Y), null, Color.White, entityRotation.Rotation, entityRotation.Orgin, 1f, SpriteEffects.None, 0);
             }
 
             spriteBatch.End();
@@ -182,9 +182,7 @@ namespace Blob
             EntityManager.createDictator(new Vector2(600, 200), new Vector2(1000, 100));
             EntityManager.createDictator(new Vector2(600, 200), new Vector2(100, 100));
             EntityManager.createDictator(new Vector2(600, 200), new Vector2(-200, 400));
-            EntityManager.createDictator(new Vector2(600, 200), new Vector2(300, 10));
-            EntityManager.createDictator(new Vector2(600, 200), new Vector2(10, 300));
-            EntityManager.createDictator(new Vector2(600, 200), new Vector2(0, 0));
+            
             
             //PositionComponent dictatorPosition = ComponentManager.Instance.getComponentByID<PositionComponent>(entityId);
             //dictatorPosition.X = 350;
