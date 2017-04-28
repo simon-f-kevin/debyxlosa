@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Game1.cs" />
     <Compile Include="Managers\EntityManager.cs" />
+    <Compile Include="Models\KeyMappings.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourcesProviders\GameProvider.cs" />

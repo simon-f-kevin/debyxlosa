@@ -8,8 +8,8 @@ namespace GameEngine.Components
 {
     public class VelocityComponent : EntityComponent
     {
-        public float _velX { get; set; }
-        public float _velY  { get; set; }
+        public float VelX { get; set; }
+        public float VelY  { get; set; }
 
         public VelocityComponent() { }
         public VelocityComponent(int id) : base(id)
@@ -18,8 +18,14 @@ namespace GameEngine.Components
         } 
         public VelocityComponent(int Id, float x, float y) : base(Id)
         {
-            _velX = x;
-            _velY = y;
+            VelX = x;
+            VelY = y;
+        }
+
+        public void setValues(float x, float y)
+        {
+            VelX = x;
+            VelY = y;
         }
     }
 }

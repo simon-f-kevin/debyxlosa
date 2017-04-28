@@ -51,7 +51,7 @@ namespace GameEngine.Systems
                     }
                 }
             }
-            Dictionary<int, EntityComponent> _KeyboardUsers = ComponentManager.Instance.getComponentDictionary<KeyboardControllComponent>();
+            Dictionary<int, EntityComponent> _KeyboardUsers = ComponentManager.Instance.getComponentDictionary<KeyboardControlComponent>();
             Dictionary<int, EntityComponent> _ActionDirection = ComponentManager.Instance.getComponentDictionary<ActionDirectionComponent>();
             EntityComponent actionComp;
             if (_KeyboardUsers == null)
@@ -60,7 +60,7 @@ namespace GameEngine.Systems
             }
             if (_KeyboardUsers.Keys.Count > 0)
             {
-                foreach (KeyboardControllComponent controlls in _KeyboardUsers.Values)
+                foreach (KeyboardControlComponent controlls in _KeyboardUsers.Values)
                 {
 
                     if (_ActionDirection.TryGetValue(controlls.EntityId, out actionComp))
@@ -68,52 +68,52 @@ namespace GameEngine.Systems
                         ActionDirectionComponent actionDir = (ActionDirectionComponent)actionComp;
                         handleIsKeypressedReleased(actionDir, controlls);
                         handleIsKeypressed(actionDir, controlls);
-                        //handleIsKeypressedReleased(actionDir, controlls);
-                        //handleIsHoldingKeyDown(actionDir, controlls);
+                        //handleIsKeypressedReleased(actionDir, controls);
+                        //handleIsHoldingKeyDown(actionDir, controls);
                     }
                 }
             }          
         }
-        private void handleIsKeypressedReleased(ActionDirectionComponent actionDir, KeyboardControllComponent controlls)
+        private void handleIsKeypressedReleased(ActionDirectionComponent actionDir, KeyboardControlComponent controls)
         {
-            if (keyboard.isKeyReleased(controlls.RightKey))
+            if (keyboard.isKeyReleased(controls.RightKey))
             {
                 actionDir.Right = false;               
             }
-            if (keyboard.isKeyReleased(controlls.LeftKey))
+            if (keyboard.isKeyReleased(controls.LeftKey))
             {               
                 actionDir.Left = false;             
             }
-            if (keyboard.isKeyReleased(controlls.UpKey))
+            if (keyboard.isKeyReleased(controls.UpKey))
             {
                 actionDir.Up = false;
             }
-            if (keyboard.isKeyReleased(controlls.DownKey))
+            if (keyboard.isKeyReleased(controls.DownKey))
             {                
                 actionDir.Down = false;
             }
         }
-        private void handleIsKeypressed(ActionDirectionComponent actionDir, KeyboardControllComponent controlls)
+        private void handleIsKeypressed(ActionDirectionComponent actionDir, KeyboardControlComponent controls)
         {
-            if (keyboard.IsKeyDown(controlls.RightKey))
+            if (keyboard.IsKeyDown(controls.RightKey))
             {
                 actionDir.Right = true;
                 actionDir.Left = false;
 
             }
-            if (keyboard.IsKeyDown(controlls.LeftKey))
+            if (keyboard.IsKeyDown(controls.LeftKey))
             {
                 actionDir.Left = true;
                 actionDir.Right = false;
 
             }
-            if (keyboard.IsKeyDown(controlls.UpKey))
+            if (keyboard.IsKeyDown(controls.UpKey))
             {
                 actionDir.Up = true; 
                 actionDir.Down = false;
 
             }
-            if (keyboard.IsKeyDown(controlls.DownKey))
+            if (keyboard.IsKeyDown(controls.DownKey))
             {
 
                 actionDir.Down = true;
@@ -122,33 +122,33 @@ namespace GameEngine.Systems
             }
         }
 
-        private void handleIsHoldingKeyDown(ActionDirectionComponent actionDir, KeyboardControllComponent controlls)
+        private void handleIsHoldingKeyDown(ActionDirectionComponent actionDir, KeyboardControlComponent controls)
         {
-            if (keyboard.IsHoldingKeyDown(controlls.DownKey))
+            if (keyboard.IsHoldingKeyDown(controls.DownKey))
             {
                 actionDir.Down = true;
                 actionDir.Up = false;
 
             }
-            if (keyboard.IsHoldingKeyDown(controlls.UpKey))
+            if (keyboard.IsHoldingKeyDown(controls.UpKey))
             {
                 actionDir.Up = true;
                 actionDir.Down = false;
 
             }
-            if (keyboard.IsHoldingKeyDown(controlls.LeftKey))
+            if (keyboard.IsHoldingKeyDown(controls.LeftKey))
             {
                 actionDir.Left = true;
                 actionDir.Right = false;
 
             }
-            if (keyboard.IsHoldingKeyDown(controlls.RightKey))
+            if (keyboard.IsHoldingKeyDown(controls.RightKey))
             {
                 actionDir.Right = true;
                 actionDir.Left = false;
 
             }
-            if(keyboard.IsHoldingKeyDown(controlls.RightKey) && keyboard.IsHoldingKeyDown(controlls.LeftKey))
+            if(keyboard.IsHoldingKeyDown(controls.RightKey) && keyboard.IsHoldingKeyDown(controls.LeftKey))
             {
                 actionDir.Right = false;
                 actionDir.Left = false;

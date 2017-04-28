@@ -49,7 +49,7 @@
     <Compile Include="Components\CollisionComponent.cs" />
     <Compile Include="Components\EntityComponent.cs" />
     <Compile Include="Components\ControllerComponent.cs" />
-    <Compile Include="Components\KeyboardControllComponent.cs" />
+    <Compile Include="Components\KeyboardControlComponent.cs" />
     <Compile Include="Components\PositionComponent.cs" />
     <Compile Include="Components\RectangleComponent.cs" />
     <Compile Include="Components\RotationComponent.cs" />

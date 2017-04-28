@@ -10,13 +10,29 @@ namespace GameEngine.Components
     {
         public float X { get; set; }
         public float Y { get; set; }
-        public PositionComponent() { }
-        public PositionComponent(int id) : base(id) { }
+
+        public PositionComponent()
+        {
+            X = 0;
+            Y = 0;
+        }
+
+        public PositionComponent(int id) : base(id)
+        {
+            X = 0;
+            Y = 0;
+        }
 
         public PositionComponent(int Id, float x, float y) : base(Id)
         {
             this.X = x;
             this.Y = y;
+        }
+
+        public void setValues(float x, float y)
+        {
+            X = x;
+            Y = y;
         }
     }
 }

@@ -48,17 +48,17 @@ using Microsoft.Xna.Framework.Input;
 //                }
 //                if (im.KeyDown(Keys.Up))
 //                {
-//                    vel._velX += (float)Math.Cos(rotation.rotation) * acceleration;
-//                    vel._velY += (float)Math.Sin(rotation.rotation) * acceleration;
+//                    vel.VelX += (float)Math.Cos(rotation.rotation) * acceleration;
+//                    vel.VelY += (float)Math.Sin(rotation.rotation) * acceleration;
 //                }
 //                //bromsar ner spelaren
-//                else if (vel._velX != 0 || vel._velY != 0)
+//                else if (vel.VelX != 0 || vel.VelY != 0)
 //                {
-//                    float i = vel._velX;
-//                    float j = vel._velY;
+//                    float i = vel.VelX;
+//                    float j = vel.VelY;
 
-//                    vel._velX = i -= friction * i;
-//                    vel._velY = j -= friction * j;
+//                    vel.VelX = i -= friction * i;
+//                    vel.VelY = j -= friction * j;
 //                }
             
 

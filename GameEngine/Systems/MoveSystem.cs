@@ -47,33 +47,33 @@ namespace GameEngine.Systems
                             RotationComponent rotation = ComponentManager.Instance.getComponentByID<RotationComponent>(vel.EntityId);
                             if (actiondir.Left)
                             {
-                                rotation.rotation -= 5.0f * dT;
+                                rotation.Rotation -= 5.0f * dT;
                                 actiondir.Left = false;
                             }
                             if (actiondir.Right)
                             {
-                                rotation.rotation += 5.0f * dT;
+                                rotation.Rotation += 5.0f * dT;
                                 actiondir.Right = false;
                             }
                             if (actiondir.Up)
                             {
 
-                                vel._velX += (float)Math.Cos(rotation.rotation - 90f) * acceleration;
-                                vel._velY += (float)Math.Sin(rotation.rotation - 90f) * acceleration;
+                                vel.VelX += (float)Math.Cos(rotation.Rotation - 1.5f) * acceleration;
+                                vel.VelY += (float)Math.Sin(rotation.Rotation - 1.5f) * acceleration;
                                 //actiondir.Up = false;
                             }
-                            else if (vel._velX != 0 || vel._velY != 0)
+                            else if (vel.VelX != 0 || vel.VelY != 0)
                             {
-                                float i = vel._velX;
-                                float j = vel._velY;
+                                float i = vel.VelX;
+                                float j = vel.VelY;
 
-                                vel._velX = i -= friction * i;
-                                vel._velY = j -= friction * j;
+                                vel.VelX = i -= friction * i;
+                                vel.VelY = j -= friction * j;
                             }
                         }
                         //Förflyttning
-                        pos.X += (vel._velX * dT);
-                        pos.Y += (vel._velY * dT);
+                        pos.X += (vel.VelX * dT);
+                        pos.Y += (vel.VelY * dT);
 
 
                         //Håll Entitet innanför fönsterkanter
@@ -89,12 +89,12 @@ namespace GameEngine.Systems
                         //Om kollision med kant byt vinkel
                         if (pos.X >= _ScreenWitdh || pos.X <= 0)
                         {
-                            vel._velX *= -1;
+                            vel.VelX *= -1;
                         }
 
                         if (pos.Y >= _ScreenHight || pos.Y <= 0)
                         {
-                            vel._velY *= -1;
+                            vel.VelY *= -1;
                         }
                     }
                 }

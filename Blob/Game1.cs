@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net;
 using Blob.Managers;
+using Blob.Models;
 using Blob.ResourcesProviders;
 using GameEngine;
 using GameEngine.Components;
@@ -140,7 +141,7 @@ namespace Blob
                     ComponentManager.Instance.getComponentByID<PositionComponent>(texture.EntityId);
                 RotationComponent entityRotation =
                     ComponentManager.Instance.getComponentByID<RotationComponent>(texture.EntityId);
-                spriteBatch.Draw(texture.Sprite, new Vector2(entityPosition.X, entityPosition.Y), null, Color.White, entityRotation.rotation, entityRotation.orgin, 1f, SpriteEffects.None, i++);
+                spriteBatch.Draw(texture.Sprite, new Vector2(entityPosition.X, entityPosition.Y), null, Color.White, entityRotation.Rotation, entityRotation.Orgin, 1f, SpriteEffects.None, i++);
             }
 
             spriteBatch.End();
@@ -167,7 +168,7 @@ namespace Blob
             //player.addComponent(new ControllerComponent(player._entityID)); //TODO lägg till mappning av tangenter för styrning
             //player.addComponent(new RotationComponent(player._entityID, 0, hero.Width, hero.Height));
             //player.addComponent(new VelocityComponent(player._entityID, 0, 0));
-            //KeyboardControllComponent controll = new KeyboardControllComponent(player._entityID);
+            //KeyboardControlComponent controll = new KeyboardControlComponent(player._entityID);
             //controll.LeftKey = Keys.Left;
             //controll.UpKey = Keys.Up;
             //controll.DownKey = Keys.Down;
@@ -175,25 +176,26 @@ namespace Blob
             //player.addComponent(controll);
             //player.addComponent(new ActionDirectionComponent(player._entityID));
 
-            int entityId = EntityManager.createEntity("player");
-            KeyboardControllComponent keySettings =
-                ComponentManager.Instance.getComponentByID<KeyboardControllComponent>(entityId);
-            keySettings.LeftKey = Keys.Left;
-            keySettings.UpKey = Keys.Up;
-            keySettings.DownKey = Keys.Down;
-            keySettings.RightKey = Keys.Right;
-            EntityManager.createEntity("dictator");
-            entityId = EntityManager.createEntity("dictator");
-            PositionComponent dictatorPosition = ComponentManager.Instance.getComponentByID<PositionComponent>(entityId);
-            dictatorPosition.X = 350;
-            dictatorPosition.Y = 200;
-            VelocityComponent velocity = ComponentManager.Instance.getComponentByID<VelocityComponent>(entityId);
-            velocity._velX = 150;
-            velocity._velY = 50;
-            for (int i = 0; i < 1000; i++)
-            {
-                EntityManager.createEntity("dictator");
-            }
+            EntityManager.createPlayer(new Vector2(200, 200), new Vector2(0, 0),
+                new KeyMappings(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.Space));
+
+            EntityManager.createDictator(new Vector2(600, 200), new Vector2(1000, 100));
+            EntityManager.createDictator(new Vector2(600, 200), new Vector2(100, 100));
+            EntityManager.createDictator(new Vector2(600, 200), new Vector2(-200, 400));
+            EntityManager.createDictator(new Vector2(600, 200), new Vector2(300, 10));
+            EntityManager.createDictator(new Vector2(600, 200), new Vector2(10, 300));
+            EntityManager.createDictator(new Vector2(600, 200), new Vector2(0, 0));
+            
+            //PositionComponent dictatorPosition = ComponentManager.Instance.getComponentByID<PositionComponent>(entityId);
+            //dictatorPosition.X = 350;
+            //dictatorPosition.Y = 200;
+            //VelocityComponent velocity = ComponentManager.Instance.getComponentByID<VelocityComponent>(entityId);
+            //velocity.VelX = 150;
+            //velocity.VelY = 50;
+            //for (int i = 0; i < 1000; i++)
+            //{
+            //    EntityManager.createEntity("dictator");
+            //}
 
 
             ////Enemy
