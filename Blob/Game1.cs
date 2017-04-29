@@ -28,6 +28,7 @@ namespace Blob
         private Texture2D blob;
         private Texture2D circle;
         private Texture2D rectangle;
+        private Texture2D terrorist;
 
         public Game1()
         {
@@ -52,7 +53,7 @@ namespace Blob
             // TODO: Add your initialization logic here
             hero = Content.Load<Texture2D>("player");
             blob = Content.Load<Texture2D>("dictator");
-            
+            terrorist = Content.Load<Texture2D>("terrorist");
             GamePropertyManager.Instance.setGraphics(this.GraphicsDevice);
             //_moveSystem = new MoveSystem(this,graphics.GraphicsDevice.Viewport.Width, graphics.GraphicsDevice.Viewport.Height);
             //Components.Add(_moveSystem);
@@ -87,6 +88,7 @@ namespace Blob
             //MediaPlayerManager.Instance.Start();
             circle = Content.Load<Texture2D>("circle");
             rectangle = Content.Load<Texture2D>("rectangle");
+            
 
             // TODO: use this.Content to load your game content here
 
@@ -130,6 +132,7 @@ namespace Blob
             GraphicsDevice.Clear(Color.CornflowerBlue);
             _SystemManager.Draw(gameTime);
             base.Draw(gameTime);
+            
         }
 
         void createEntities()
@@ -137,9 +140,10 @@ namespace Blob
             EntityManager.createPlayer(new Vector2(200, 200), new Vector2(0, 0),
                 new KeyMappings(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.Space));
 
-            EntityManager.createDictator(new Vector2(600, 20), new Vector2(50, -50));
-            EntityManager.createDictator(new Vector2(800, 200), new Vector2(50, 50));
+            EntityManager.createDictator(new Vector2(600, 20), new Vector2(200, -200));
+            EntityManager.createDictator(new Vector2(800, 200), new Vector2(200, 200));
 
+            EntityManager.createTerrorist(new Vector2(500, 500), new Vector2(300, 300));
         }
     }
 }

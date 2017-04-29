@@ -64,6 +64,7 @@
   <ItemGroup>
     <Content Include="Content\player.png" />
     <Content Include="Content\dictator.png" />
+    <Content Include="Content\terrorist.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>

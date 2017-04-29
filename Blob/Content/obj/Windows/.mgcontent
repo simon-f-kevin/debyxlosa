@@ -4,14 +4,15 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Hameo/Source/Repos/debyxlosa/Blob/Content/Music/Cloud.mp3</File>
-    <File>C:/Users/Hameo/Source/Repos/debyxlosa/Blob/Content/Music/Disco.mp3</File>
-    <File>C:/Users/Hameo/Source/Repos/debyxlosa/Blob/Content/Music/Game.mp3</File>
-    <File>C:/Users/Hameo/Source/Repos/debyxlosa/Blob/Content/Music/Gameboy.mp3</File>
-    <File>C:/Users/Hameo/Source/Repos/debyxlosa/Blob/Content/dictator.png</File>
-    <File>C:/Users/Hameo/Source/Repos/debyxlosa/Blob/Content/player.png</File>
-    <File>C:/Users/Hameo/Source/Repos/debyxlosa/Blob/Content/circle.png</File>
-    <File>C:/Users/Hameo/Source/Repos/debyxlosa/Blob/Content/rectangle.png</File>
-    <File>C:/Users/Hameo/Source/Repos/debyxlosa/Blob/Content/football.png</File>
+    <File>C:/Users/tratt/Source/Repos/debyxlosa/Blob/Content/Music/Cloud.mp3</File>
+    <File>C:/Users/tratt/Source/Repos/debyxlosa/Blob/Content/Music/Disco.mp3</File>
+    <File>C:/Users/tratt/Source/Repos/debyxlosa/Blob/Content/Music/Game.mp3</File>
+    <File>C:/Users/tratt/Source/Repos/debyxlosa/Blob/Content/Music/Gameboy.mp3</File>
+    <File>C:/Users/tratt/Source/Repos/debyxlosa/Blob/Content/dictator.png</File>
+    <File>C:/Users/tratt/Source/Repos/debyxlosa/Blob/Content/player.png</File>
+    <File>C:/Users/tratt/Source/Repos/debyxlosa/Blob/Content/circle.png</File>
+    <File>C:/Users/tratt/Source/Repos/debyxlosa/Blob/Content/rectangle.png</File>
+    <File>C:/Users/tratt/Source/Repos/debyxlosa/Blob/Content/football.png</File>
+    <File>C:/Users/tratt/Source/Repos/debyxlosa/Blob/Content/terrorist.png</File>
   </SourceFiles>
 </SourceFileCollection>

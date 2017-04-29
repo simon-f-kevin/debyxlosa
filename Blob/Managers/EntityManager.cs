@@ -63,21 +63,33 @@ namespace Blob.Managers
         {
             int id = ComponentManager.Instance.newId();
             Texture2D dictatorSprite = GameProvider.getInstance().Game.Content.Load<Texture2D>("dictator");
+
             VelocityComponent vCompDictator = ComponentManager.Instance.getNewComponent<VelocityComponent>(id);
             vCompDictator.VelY = velocity.Y;
             vCompDictator.VelX = velocity.X;
             ComponentManager.Instance.addComponent(vCompDictator);
+
             PositionComponent posCompDictator = ComponentManager.Instance.getNewComponent<PositionComponent>(id);
             posCompDictator.Y = position.Y;
             posCompDictator.X = position.X;
             ComponentManager.Instance.addComponent(posCompDictator);
+
             TextureComponent tCompDictator = ComponentManager.Instance.getNewComponent<TextureComponent>(id);
             tCompDictator.setValue(dictatorSprite);
             ComponentManager.Instance.addComponent(tCompDictator);
+
             RotationComponent rCompDictator = ComponentManager.Instance.getNewComponent<RotationComponent>(id);
             rCompDictator.Orgin = new Vector2(dictatorSprite.Width/2, dictatorSprite.Height/2);
             rCompDictator.Rotation = 0;
             ComponentManager.Instance.addComponent(rCompDictator);
+
+            RectangleComponent rec = ComponentManager.Instance.getNewComponent<RectangleComponent>(id);
+            rec.BoundingRectangle = new Rectangle((int)position.X - dictatorSprite.Width / 2, (int)position.Y - dictatorSprite.Height / 2, dictatorSprite.Width, dictatorSprite.Height);
+            rec.BoundingSphere = new BoundingSphere(new Vector3(rec.BoundingRectangle.Center.X, rec.BoundingRectangle.Center.Y, 0), dictatorSprite.Width / 2);
+            ComponentManager.Instance.addComponent(rec);
+
+            ComponentManager.Instance.addComponent(ComponentManager.Instance.getNewComponent<CollisionComponent>(id));
+
             return id;
         }
         public static int createAlliance(Vector2 position, Vector2 velocity)
@@ -104,6 +116,41 @@ namespace Blob.Managers
             rec.BoundingSphere = new BoundingSphere(new Vector3(rec.BoundingRectangle.Center.X, rec.BoundingRectangle.Center.Y, 0), dictatorSprite.Width / 2);
             ComponentManager.Instance.addComponent(rec);
             ComponentManager.Instance.addComponent(ComponentManager.Instance.getNewComponent<CollisionComponent>(id));
+            return id;
+        }
+        public static int createTerrorist(Vector2 position, Vector2 velocity)
+        {
+            int id = ComponentManager.Instance.newId();
+            Texture2D terroristSprite = GameProvider.getInstance().Game.Content.Load<Texture2D>("terrorist");
+
+            VelocityComponent vCompTerror = ComponentManager.Instance.getNewComponent<VelocityComponent>(id);
+            vCompTerror.VelY = 0;
+            vCompTerror.VelX = 0;
+            ComponentManager.Instance.addComponent(vCompTerror);
+
+            PositionComponent posCompTerror = ComponentManager.Instance.getNewComponent<PositionComponent>(id);
+            posCompTerror.Y = position.Y;
+            posCompTerror.X = position.X;
+            ComponentManager.Instance.addComponent(posCompTerror);
+
+            TextureComponent tCompDTerror = ComponentManager.Instance.getNewComponent<TextureComponent>(id);
+            tCompDTerror.setValue(terroristSprite);
+            ComponentManager.Instance.addComponent(tCompDTerror);
+
+            RotationComponent rCompTerror = ComponentManager.Instance.getNewComponent<RotationComponent>(id);
+            rCompTerror.Orgin = new Vector2(terroristSprite.Width / 2, terroristSprite.Height / 2);
+            rCompTerror.Rotation = 0;
+            ComponentManager.Instance.addComponent(rCompTerror);
+
+            RectangleComponent rec = ComponentManager.Instance.getNewComponent<RectangleComponent>(id);
+            rec.BoundingRectangle = new Rectangle((int)position.X - terroristSprite.Width / 2, (int)position.Y - terroristSprite.Height / 2, terroristSprite.Width, terroristSprite.Height);
+            rec.BoundingSphere = new BoundingSphere(new Vector3(rec.BoundingRectangle.Center.X, rec.BoundingRectangle.Center.Y, 0), terroristSprite.Width / 2);
+            ComponentManager.Instance.addComponent(rec);
+
+            ComponentManager.Instance.addComponent(ComponentManager.Instance.getNewComponent<CollisionComponent>(id));
+
+            ComponentManager.Instance.addComponent(ComponentManager.Instance.getNewComponent<AIComponent>(id));
+
             return id;
         }
     }

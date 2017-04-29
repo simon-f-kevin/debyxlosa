@@ -14,6 +14,7 @@ namespace GameEngine.Managers
         private InputSystem _InputSystem;
         private MoveSystem _MoveSystem;
         private FrameCounter _FrameCounter;
+        private AISystem _AISystem;
         private TextureRenderSystem _TextureRender;
         private Game game;
         public SystemManager(Game game) 
@@ -36,6 +37,8 @@ namespace GameEngine.Managers
             _CollisionSystem = new CollisionSystem();
 
             _TextureRender = new TextureRenderSystem(this.game);
+            
+            _AISystem = new AISystem(this.game);
             //Game.Components.Add(_TextureRender);
 
             //_SoundSystem = new SoundSystem(this.Game);
@@ -49,6 +52,7 @@ namespace GameEngine.Managers
             _InputSystem.Update(gameTime);
             _MoveSystem.Update(gameTime);
             _CollisionSystem.Update(gameTime);
+            _AISystem.Update(gameTime);
             //_SoundSystem.Update(gameTime);            
             //base.Update(gameTime);
         }

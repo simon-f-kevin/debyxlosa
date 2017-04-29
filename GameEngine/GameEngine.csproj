@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\ActionDirectionComponent.cs" />
+    <Compile Include="Components\AIComponent.cs" />
     <Compile Include="Components\BarComponent.cs" />
     <Compile Include="Components\CollisionComponent.cs" />
     <Compile Include="Components\EntityComponent.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Managers\MediaPlayerManager.cs" />
     <Compile Include="Managers\SystemManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Systems\AISystem.cs" />
     <Compile Include="Systems\CollisionSystem.cs" />
     <Compile Include="Systems\ControllerSystem.cs" />
     <Compile Include="Systems\FrameCounter.cs" />

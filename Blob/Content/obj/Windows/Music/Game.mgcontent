@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Hameo/Source/Repos/debyxlosa/Blob/Content/Music/Game.mp3</SourceFile>
-  <SourceTime>2017-04-29T14:24:56.0972624+02:00</SourceTime>
-  <DestFile>C:/Users/Hameo/Source/Repos/debyxlosa/Blob/Content/bin/Windows/Music/Game.xnb</DestFile>
-  <DestTime>2017-04-29T14:30:25.9792004+02:00</DestTime>
+  <SourceFile>C:/Users/tratt/Source/Repos/debyxlosa/Blob/Content/Music/Game.mp3</SourceFile>
+  <SourceTime>2017-04-29T16:54:34.5209785+02:00</SourceTime>
+  <DestFile>C:/Users/tratt/Source/Repos/debyxlosa/Blob/Content/bin/Windows/Music/Game.xnb</DestFile>
+  <DestTime>2017-04-29T16:54:51.9819772+02:00</DestTime>
   <Importer>Mp3Importer</Importer>
-  <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
+  <ImporterTime>2017-04-10T08:23:56+02:00</ImporterTime>
   <Processor>SongProcessor</Processor>
-  <ProcessorTime>2017-03-01T16:05:36+01:00</ProcessorTime>
+  <ProcessorTime>2017-04-10T08:23:56+02:00</ProcessorTime>
   <Parameters>
     <Key>Quality</Key>
     <Value>Best</Value>
@@ -15,6 +15,6 @@
   <Dependencies />
   <BuildAsset />
   <BuildOutput>
-    <string>C:/Users/Hameo/Source/Repos/debyxlosa/Blob/Content/bin/Windows/Music/Game.wma</string>
+    <string>C:/Users/tratt/Source/Repos/debyxlosa/Blob/Content/bin/Windows/Music/Game.wma</string>
   </BuildOutput>
 </PipelineBuildEvent>
