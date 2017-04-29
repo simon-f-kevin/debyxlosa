@@ -13,11 +13,9 @@ namespace GameEngine.Systems
         private Game game;
         private List<AIComponent> terrorists;
         private List<KeyboardControlComponent> players;
+        private const float speed = 0.00005f;
 
-        public Ray ray;
 
-
-        
         public AISystem(Game game)
         {
             this.game = game;
@@ -28,29 +26,25 @@ namespace GameEngine.Systems
             terrorists = ComponentManager.Instance.getComponentsOfType<AIComponent>();
             players = ComponentManager.Instance.getComponentsOfType<KeyboardControlComponent>();
 
-            RayCalculation(players, terrorists);
+            AICalc(players, terrorists);
             
         }
-        private void RayCalculation(List<KeyboardControlComponent> player, List<AIComponent> terrorists)
+        private void AICalc(List<KeyboardControlComponent> player, List<AIComponent> terrorists)
         {
-            var playerPos = (PositionComponent)ComponentManager.Instance.getComponentByID<PositionComponent>(player[0].EntityId);
-            var terroristPos = (PositionComponent)ComponentManager.Instance.getComponentByID<PositionComponent>(terrorists[0].EntityId);
-            var dist = Vector2.Distance(new Vector2(playerPos.X, playerPos.Y), new Vector2(terroristPos.X, terroristPos.Y));
-            var ray = new Ray(new Vector3(terroristPos.X, terroristPos.Y, 0),
-                new Vector3(terroristPos.X - playerPos.X, terroristPos.Y - playerPos.Y, 0));
-            
-            VelocityComponent vCompTerror = ComponentManager.Instance.getNewComponent<VelocityComponent>(terrorists[0].EntityId);
-            vCompTerror.VelY = -ray.Direction.Y;
-            vCompTerror.VelX = -ray.Direction.X;
-            
-            if (dist < 150)
-            {
-                vCompTerror.VelY = 0;
-                vCompTerror.VelX = 0;
-            }
-            ComponentManager.Instance.addComponent(vCompTerror);
+            var playerPos = ComponentManager.Instance.getComponentByID<PositionComponent>(player[0].EntityId);
+            var terroristPos = ComponentManager.Instance.getComponentByID<PositionComponent>(terrorists[0].EntityId);
 
-            System.Diagnostics.Debug.WriteLine(dist);
+            var dist = Vector2.Distance(new Vector2(playerPos.X, playerPos.Y), new Vector2(terroristPos.X, terroristPos.Y));
+            var dir = new Vector2(terroristPos.X, terroristPos.Y) - (new Vector2(playerPos.X, playerPos.Y));
+            
+
+            VelocityComponent vCompTerror = ComponentManager.Instance.getComponentByID<VelocityComponent>(terrorists[0].EntityId);
+            if (dist > 150)
+            {
+                vCompTerror.VelY += MathHelper.Clamp(-dir.Y , -1, 1);
+                vCompTerror.VelX += MathHelper.Clamp(-dir.X, -1, 1);
+            }
+            System.Diagnostics.Debug.WriteLine(vCompTerror.VelX);
         }
     }
 }
