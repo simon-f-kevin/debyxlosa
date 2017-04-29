@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Johan/Desktop/Systemarkitekturutbildningen/Termin 4/Speldesign/de byxlosa/projekt/Blob/Content/Music/Disco.mp3</SourceFile>
-  <SourceTime>2017-04-27T17:22:37.9523635+02:00</SourceTime>
-  <DestFile>C:/Users/Johan/Desktop/Systemarkitekturutbildningen/Termin 4/Speldesign/de byxlosa/projekt/Blob/Content/bin/Windows/Music/Disco.xnb</DestFile>
-  <DestTime>2017-04-28T11:33:34.7493093+02:00</DestTime>
+  <SourceFile>C:/Users/Hameo/Source/Repos/debyxlosa/Blob/Content/Music/Disco.mp3</SourceFile>
+  <SourceTime>2017-04-29T14:24:56.0611664+02:00</SourceTime>
+  <DestFile>C:/Users/Hameo/Source/Repos/debyxlosa/Blob/Content/bin/Windows/Music/Disco.xnb</DestFile>
+  <DestTime>2017-04-29T14:30:25.1402017+02:00</DestTime>
   <Importer>Mp3Importer</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>SongProcessor</Processor>
@@ -15,6 +15,6 @@
   <Dependencies />
   <BuildAsset />
   <BuildOutput>
-    <string>C:/Users/Johan/Desktop/Systemarkitekturutbildningen/Termin 4/Speldesign/de byxlosa/projekt/Blob/Content/bin/Windows/Music/Disco.wma</string>
+    <string>C:/Users/Hameo/Source/Repos/debyxlosa/Blob/Content/bin/Windows/Music/Disco.wma</string>
   </BuildOutput>
 </PipelineBuildEvent>

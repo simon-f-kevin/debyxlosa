@@ -47,8 +47,6 @@ C:\Users\Simon\Source\Repos\debyxlosa\Blob\obj\x86\Debug\Blob.pdb
 C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Blob.exe.config
 C:\Users\Hameo\Source\Repos\debyxlosa\Blob\obj\x86\Debug\Blob.exe
 C:\Users\Hameo\Source\Repos\debyxlosa\Blob\obj\x86\Debug\Blob.pdb
-C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\enemy.xnb
-C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\hero1.xnb
 C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\Music\Cloud.wma
 C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\Music\Cloud.xnb
 C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\Music\Disco.wma
@@ -71,14 +69,6 @@ C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\SharpDX.XInput.
 C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\SharpDX.Direct3D9.dll
 C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\GameEngine.pdb
 C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\MonoGame.Framework.xml
-C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\SharpDX.MediaFoundation.xml
-C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\SharpDX.xml
-C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\SharpDX.XAudio2.xml
-C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\SharpDX.DXGI.xml
-C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\SharpDX.Direct3D11.xml
-C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
-C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\SharpDX.XInput.xml
-C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
 C:\Users\Hameo\Source\Repos\debyxlosa\Blob\obj\x86\Debug\Blob Wars.csprojResolveAssemblyReference.cache
 C:\Users\Johan\Desktop\Systemarkitekturutbildningen\Termin 4\Speldesign\de byxlosa\projekt\Blob\bin\Windows\x86\Debug\Content\dictator.xnb
 C:\Users\Johan\Desktop\Systemarkitekturutbildningen\Termin 4\Speldesign\de byxlosa\projekt\Blob\bin\Windows\x86\Debug\Content\player.xnb
@@ -120,3 +110,8 @@ C:\Users\Simon\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\Music\G
 C:\Users\Simon\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\Music\Gameboy.xnb
 C:\Users\Johan\Desktop\Systemarkitekturutbildningen\Termin 4\Speldesign\de byxlosa\projekt\Blob\bin\Windows\x86\Debug\Content\circle.xnb
 C:\Users\Johan\Desktop\Systemarkitekturutbildningen\Termin 4\Speldesign\de byxlosa\projekt\Blob\bin\Windows\x86\Debug\Content\rectangle.xnb
+C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\circle.xnb
+C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\dictator.xnb
+C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\football.xnb
+C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\player.xnb
+C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\rectangle.xnb

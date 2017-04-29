@@ -58,8 +58,8 @@ namespace Blob
             //Components.Add(_moveSystem);
 
             _SystemManager = new SystemManager(this);
-            //Borde ta bort Component.Add(). Systemet anropas manuellt i Update
-            Components.Add(_SystemManager);
+            _SystemManager.Initialize();
+            //Borde ta bort Component.Add(). Systemet anropas manuellt i Update            
 
             //Create a singleton holding the Game-instance instead of sending
             //it as a parameter to appropriate managers.
@@ -118,7 +118,7 @@ namespace Blob
 
             // TODO: Add your update logic here
             _SystemManager.Update(gameTime);
-            //base.Update(gameTime);
+            base.Update(gameTime);
         }
 
         /// <summary>
@@ -128,29 +128,7 @@ namespace Blob
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
-            //var p = (PositionComponent)ComponentManager.Instance.getComponentByID<PositionComponent>(0);
-            //var q = (PositionComponent)ComponentManager.Instance.getComponentByID<PositionComponent>(1);
-            //var rotation = (RotationComponent)ComponentManager.Instance.getComponentByID<RotationComponent>(0);
-            //Rectangle rectangle = new Rectangle(new Point((int)p.X, (int)p.Y), new Point(hero.Width, hero.Height));
-            List<TextureComponent> textures = ComponentManager.Instance.getComponentsOfType<TextureComponent>();
-            
-            
-            spriteBatch.Begin();
-            foreach (TextureComponent texture in textures)
-            {
-                PositionComponent entityPosition =
-                    ComponentManager.Instance.getComponentByID<PositionComponent>(texture.EntityId);
-                RotationComponent entityRotation =
-                    ComponentManager.Instance.getComponentByID<RotationComponent>(texture.EntityId);
-                RectangleComponent rc = ComponentManager.Instance.getComponentByID<RectangleComponent>(texture.EntityId);
-                spriteBatch.Draw(texture.Sprite, new Vector2(rc.BoundingRectangle.X, rc.BoundingRectangle.Y), null, Color.White, entityRotation.Rotation, entityRotation.Orgin, 1f, SpriteEffects.None, 0f);
-                spriteBatch.Draw(rectangle, rc.BoundingRectangle, Color.White);
-            }
-
-            spriteBatch.End();
-
+            _SystemManager.Draw(gameTime);
             base.Draw(gameTime);
         }
 

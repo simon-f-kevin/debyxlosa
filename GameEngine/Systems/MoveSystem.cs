@@ -10,22 +10,22 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameEngine.Systems
 {
-    public class MoveSystem: GameComponent
+    public class MoveSystem
     {
         private int _ScreenWitdh { get; }
         private int _ScreenHight { get; }
         private const float acceleration = 1.0f;
         private float friction = 0.0005f;
-        private List<VelocityComponent> _velocities;
 
 
-        public MoveSystem(Game game) : base(game)
+        public MoveSystem()
         {
+
             this._ScreenHight = GamePropertyManager.Instance.getGraphics().Viewport.Height;
             this._ScreenWitdh = GamePropertyManager.Instance.getGraphics().Viewport.Width;
         }
 
-        public override void Update(GameTime _gameTime)
+        public void Update(GameTime _gameTime)
         {
             Dictionary<int, EntityComponent> _VelocityDict = ComponentManager.Instance.getComponentDictionary<VelocityComponent>();
             Dictionary<int, EntityComponent> _PositionDict = ComponentManager.Instance.getComponentDictionary<PositionComponent>();
