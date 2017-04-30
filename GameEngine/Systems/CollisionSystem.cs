@@ -15,6 +15,8 @@ namespace GameEngine.Systems
         private List<PositionComponent> _listOfPositions;
         private List<RectangleComponent> _listOfRectangles;
         private List<CollisionComponent> _listOfCollisions;
+        private Dictionary<int, EntityComponent> _velocities;
+        private GameTime _gameTime;
 
         private bool _collisionDetected;
 
@@ -28,6 +30,8 @@ namespace GameEngine.Systems
             _listOfRectangles = ComponentManager.Instance.getComponentsOfType<RectangleComponent>();
             _listOfCollisions = ComponentManager.Instance.getComponentsOfType<CollisionComponent>();
             _listOfPositions = ComponentManager.Instance.getComponentsOfType<PositionComponent>();
+            _velocities = ComponentManager.Instance.getComponentDictionary<VelocityComponent>();
+            _gameTime = gameTime;
             PositionUpdate();
             CollisionDetection();
             if (_collisionDetected)
@@ -76,6 +80,10 @@ namespace GameEngine.Systems
             }
         }
 
+        /*When collision is detected prevent overlapping entities by moving entites back one step.
+         Both position and boundingrectangle is modified*/
+
+
         private void PositionUpdate()
         {
             foreach (var rectangle in _listOfRectangles)
@@ -83,8 +91,8 @@ namespace GameEngine.Systems
                 PositionComponent pos =
                     _listOfPositions.SingleOrDefault(e => e.EntityId == rectangle.EntityId);
                 Rectangle BoundingRectangle = rectangle.BoundingRectangle;
-                BoundingRectangle.X = (int)pos.X;
-                BoundingRectangle.Y = (int)pos.Y;
+                BoundingRectangle.X = (int) pos.X;
+                BoundingRectangle.Y = (int) pos.Y;
                 rectangle.BoundingRectangle = BoundingRectangle;
             }
         }
@@ -122,7 +130,10 @@ namespace GameEngine.Systems
 
                         //GÖR DET DU SKALL GÖRA VID KOLLISION//
                         if (id > component.EntityId)
+                        {
                             BouncingBalls(id, component);
+                        }
+                            
 
                     }
                     component.Collisions.Clear();

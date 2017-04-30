@@ -52,7 +52,7 @@ namespace Blob.Managers
             ComponentManager.Instance.addComponent(barComp);
 
             RectangleComponent rec = ComponentManager.Instance.getNewComponent<RectangleComponent>(id);
-            rec.BoundingRectangle = new Rectangle((int)position.X-heroSprite.Width/2, (int)position.Y-heroSprite.Height/2, heroSprite.Width,heroSprite.Height);
+            rec.BoundingRectangle = new Rectangle((int)position.X, (int)position.Y, heroSprite.Width,heroSprite.Height);
             rec.BoundingSphere = new BoundingSphere(new Vector3(rec.BoundingRectangle.Center.X, rec.BoundingRectangle.Center.Y, 0), heroSprite.Width/2);
             ComponentManager.Instance.addComponent(rec);
             ComponentManager.Instance.addComponent(ComponentManager.Instance.getNewComponent<CollisionComponent>(id));
@@ -78,6 +78,11 @@ namespace Blob.Managers
             rCompDictator.Orgin = new Vector2(dictatorSprite.Width/2, dictatorSprite.Height/2);
             rCompDictator.Rotation = 0;
             ComponentManager.Instance.addComponent(rCompDictator);
+            RectangleComponent rec = ComponentManager.Instance.getNewComponent<RectangleComponent>(id);
+            rec.BoundingRectangle = new Rectangle((int)position.X, (int)position.Y, dictatorSprite.Width, dictatorSprite.Height);
+            rec.BoundingSphere = new BoundingSphere(new Vector3(rec.BoundingRectangle.Center.X, rec.BoundingRectangle.Center.Y, 0), dictatorSprite.Width / 2);
+            ComponentManager.Instance.addComponent(rec);
+            ComponentManager.Instance.addComponent(ComponentManager.Instance.getNewComponent<CollisionComponent>(id));
             return id;
         }
         public static int createAlliance(Vector2 position, Vector2 velocity)
@@ -100,7 +105,7 @@ namespace Blob.Managers
             rCompDictator.Rotation = 0;
             ComponentManager.Instance.addComponent(rCompDictator);
             RectangleComponent rec = ComponentManager.Instance.getNewComponent<RectangleComponent>(id);
-            rec.BoundingRectangle = new Rectangle((int)position.X-dictatorSprite.Width/2, (int)position.Y-dictatorSprite.Height/2, dictatorSprite.Width, dictatorSprite.Height);
+            rec.BoundingRectangle = new Rectangle((int)position.X, (int)position.Y, dictatorSprite.Width, dictatorSprite.Height);
             rec.BoundingSphere = new BoundingSphere(new Vector3(rec.BoundingRectangle.Center.X, rec.BoundingRectangle.Center.Y, 0), dictatorSprite.Width / 2);
             ComponentManager.Instance.addComponent(rec);
             ComponentManager.Instance.addComponent(ComponentManager.Instance.getNewComponent<CollisionComponent>(id));

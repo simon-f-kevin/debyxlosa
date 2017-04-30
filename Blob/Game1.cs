@@ -130,10 +130,6 @@ namespace Blob
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            //var p = (PositionComponent)ComponentManager.Instance.getComponentByID<PositionComponent>(0);
-            //var q = (PositionComponent)ComponentManager.Instance.getComponentByID<PositionComponent>(1);
-            //var rotation = (RotationComponent)ComponentManager.Instance.getComponentByID<RotationComponent>(0);
-            //Rectangle rectangle = new Rectangle(new Point((int)p.X, (int)p.Y), new Point(hero.Width, hero.Height));
             List<TextureComponent> textures = ComponentManager.Instance.getComponentsOfType<TextureComponent>();
             
             
@@ -145,8 +141,10 @@ namespace Blob
                 RotationComponent entityRotation =
                     ComponentManager.Instance.getComponentByID<RotationComponent>(texture.EntityId);
                 RectangleComponent rc = ComponentManager.Instance.getComponentByID<RectangleComponent>(texture.EntityId);
-                spriteBatch.Draw(texture.Sprite, new Vector2(rc.BoundingRectangle.X, rc.BoundingRectangle.Y), null, Color.White, entityRotation.Rotation, entityRotation.Orgin, 1f, SpriteEffects.None, 0f);
-                spriteBatch.Draw(rectangle, rc.BoundingRectangle, Color.White);
+                spriteBatch.Draw(texture.Sprite, new Vector2(rc.BoundingRectangle.X+texture.Sprite.Width/2, rc.BoundingRectangle.Y+texture.Sprite.Height/2), null, Color.White, entityRotation.Rotation, entityRotation.Orgin, 1f, SpriteEffects.None, 0f);
+
+                //spriteBatch.Draw(rectangle, rc.BoundingRectangle, null, Color.White);
+                //spriteBatch.Draw(circle, rc.BoundingRectangle, null, Color.White);
             }
 
             spriteBatch.End();
@@ -159,8 +157,10 @@ namespace Blob
             EntityManager.createPlayer(new Vector2(200, 200), new Vector2(0, 0),
                 new KeyMappings(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.Space));
 
-            EntityManager.createDictator(new Vector2(600, 20), new Vector2(50, -50));
-            EntityManager.createDictator(new Vector2(800, 200), new Vector2(50, 50));
+            EntityManager.createDictator(new Vector2(50, 50), new Vector2(50, 50));
+            EntityManager.createDictator(new Vector2(750, 50), new Vector2(-50, 50));
+            EntityManager.createDictator(new Vector2(50, 550), new Vector2(50, -50));
+            EntityManager.createDictator(new Vector2(750, 550), new Vector2(-50, -50));
 
         }
     }

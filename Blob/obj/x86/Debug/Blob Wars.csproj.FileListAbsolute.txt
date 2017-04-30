@@ -80,8 +80,21 @@ C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\SharpDX.Direct2
 C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\SharpDX.XInput.xml
 C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
 C:\Users\Hameo\Source\Repos\debyxlosa\Blob\obj\x86\Debug\Blob Wars.csprojResolveAssemblyReference.cache
+C:\Users\Simon\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\dictator.xnb
+C:\Users\Simon\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\player.xnb
+C:\Users\Simon\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\Music\Cloud.wma
+C:\Users\Simon\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\Music\Cloud.xnb
+C:\Users\Simon\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\Music\Disco.wma
+C:\Users\Simon\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\Music\Disco.xnb
+C:\Users\Simon\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\Music\Game.wma
+C:\Users\Simon\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\Music\Game.xnb
+C:\Users\Simon\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\Music\Gameboy.wma
+C:\Users\Simon\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\Music\Gameboy.xnb
+C:\Users\Johan\Desktop\Systemarkitekturutbildningen\Termin 4\Speldesign\de byxlosa\projekt\Blob\bin\Windows\x86\Debug\Content\circle.xnb
 C:\Users\Johan\Desktop\Systemarkitekturutbildningen\Termin 4\Speldesign\de byxlosa\projekt\Blob\bin\Windows\x86\Debug\Content\dictator.xnb
+C:\Users\Johan\Desktop\Systemarkitekturutbildningen\Termin 4\Speldesign\de byxlosa\projekt\Blob\bin\Windows\x86\Debug\Content\football.xnb
 C:\Users\Johan\Desktop\Systemarkitekturutbildningen\Termin 4\Speldesign\de byxlosa\projekt\Blob\bin\Windows\x86\Debug\Content\player.xnb
+C:\Users\Johan\Desktop\Systemarkitekturutbildningen\Termin 4\Speldesign\de byxlosa\projekt\Blob\bin\Windows\x86\Debug\Content\rectangle.xnb
 C:\Users\Johan\Desktop\Systemarkitekturutbildningen\Termin 4\Speldesign\de byxlosa\projekt\Blob\bin\Windows\x86\Debug\Content\Music\Cloud.wma
 C:\Users\Johan\Desktop\Systemarkitekturutbildningen\Termin 4\Speldesign\de byxlosa\projekt\Blob\bin\Windows\x86\Debug\Content\Music\Cloud.xnb
 C:\Users\Johan\Desktop\Systemarkitekturutbildningen\Termin 4\Speldesign\de byxlosa\projekt\Blob\bin\Windows\x86\Debug\Content\Music\Disco.wma
@@ -108,15 +121,3 @@ C:\Users\Johan\Desktop\Systemarkitekturutbildningen\Termin 4\Speldesign\de byxlo
 C:\Users\Johan\Desktop\Systemarkitekturutbildningen\Termin 4\Speldesign\de byxlosa\projekt\Blob\obj\x86\Debug\Blob Wars.csprojResolveAssemblyReference.cache
 C:\Users\Johan\Desktop\Systemarkitekturutbildningen\Termin 4\Speldesign\de byxlosa\projekt\Blob\obj\x86\Debug\Blob.exe
 C:\Users\Johan\Desktop\Systemarkitekturutbildningen\Termin 4\Speldesign\de byxlosa\projekt\Blob\obj\x86\Debug\Blob.pdb
-C:\Users\Simon\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\dictator.xnb
-C:\Users\Simon\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\player.xnb
-C:\Users\Simon\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\Music\Cloud.wma
-C:\Users\Simon\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\Music\Cloud.xnb
-C:\Users\Simon\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\Music\Disco.wma
-C:\Users\Simon\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\Music\Disco.xnb
-C:\Users\Simon\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\Music\Game.wma
-C:\Users\Simon\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\Music\Game.xnb
-C:\Users\Simon\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\Music\Gameboy.wma
-C:\Users\Simon\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\Music\Gameboy.xnb
-C:\Users\Johan\Desktop\Systemarkitekturutbildningen\Termin 4\Speldesign\de byxlosa\projekt\Blob\bin\Windows\x86\Debug\Content\circle.xnb
-C:\Users\Johan\Desktop\Systemarkitekturutbildningen\Termin 4\Speldesign\de byxlosa\projekt\Blob\bin\Windows\x86\Debug\Content\rectangle.xnb
