@@ -8,8 +8,11 @@ namespace GameEngine.Components
 {
     public class ExplosionComponent : EntityComponent
     {
-        public int id { get; set; }
         public ExplosionComponent()
+        {
+
+        }
+        public ExplosionComponent(int id): base(id)
         {
 
         }

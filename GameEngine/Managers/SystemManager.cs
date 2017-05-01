@@ -17,6 +17,7 @@ namespace GameEngine.Managers
         private AISystem _AISystem;
         private TextureRenderSystem _TextureRender;
         private Game game;
+        private AnimationSystem _AnimationSystem;
         public SystemManager(Game game) 
         {
             this.game = game;
@@ -39,6 +40,7 @@ namespace GameEngine.Managers
             _TextureRender = new TextureRenderSystem(this.game);
             
             _AISystem = new AISystem(this.game);
+            _AnimationSystem = new AnimationSystem(this.game);
             //Game.Components.Add(_TextureRender);
 
             //_SoundSystem = new SoundSystem(this.Game);
@@ -53,6 +55,7 @@ namespace GameEngine.Managers
             _MoveSystem.Update(gameTime);
             _CollisionSystem.Update(gameTime);
             _AISystem.Update(gameTime);
+            _AnimationSystem.Update(gameTime);
             //_SoundSystem.Update(gameTime);            
             //base.Update(gameTime);
         }
@@ -61,6 +64,7 @@ namespace GameEngine.Managers
             //GraphicsDevice.Clear(Color.CornflowerBlue);
             _FrameCounter.Update(gameTime);
             _TextureRender.Draw(gameTime);
+            _AnimationSystem.Draw(gameTime);
             //base.Draw(gameTime);
         }
     }

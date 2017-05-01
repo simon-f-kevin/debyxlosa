@@ -147,3 +147,6 @@ C:\Users\tratt\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\GameEngine.pdb
 C:\Users\tratt\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\MonoGame.Framework.xml
 C:\Users\tratt\Source\Repos\debyxlosa\Blob\obj\x86\Debug\Blob Wars.csprojResolveAssemblyReference.cache
 C:\Users\tratt\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\terrorist.xnb
+C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\terrorist.xnb
+C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\Animation\shipanimated.xnb
+C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\Animation\SmileyWalk.xnb

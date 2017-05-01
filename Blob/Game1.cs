@@ -29,6 +29,7 @@ namespace Blob
         private Texture2D circle;
         private Texture2D rectangle;
         private Texture2D terrorist;
+        private Texture2D smileyWalk;
 
         public Game1()
         {
@@ -39,6 +40,7 @@ namespace Blob
             graphics.PreferredBackBufferHeight = 800;
             graphics.PreferredBackBufferWidth = 1200;
             Content.RootDirectory = "Content";
+
             
         }
 
@@ -51,9 +53,7 @@ namespace Blob
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            hero = Content.Load<Texture2D>("player");
-            blob = Content.Load<Texture2D>("dictator");
-            terrorist = Content.Load<Texture2D>("terrorist");
+            
             GamePropertyManager.Instance.setGraphics(this.GraphicsDevice);
             //_moveSystem = new MoveSystem(this,graphics.GraphicsDevice.Viewport.Width, graphics.GraphicsDevice.Viewport.Height);
             //Components.Add(_moveSystem);
@@ -69,7 +69,6 @@ namespace Blob
             //_InputSystem = new InputSystem(this, true);
             //Components.Add(_InputSystem);
             _entityManager = new EntityManager();
-            createEntities();
             base.Initialize();
         }
 
@@ -85,6 +84,12 @@ namespace Blob
             //MediaPlayerManager.Instance.addSong(Content.Load<Song>(@"Music\game"));
             //MediaPlayerManager.Instance.addSong(Content.Load<Song>(@"Music\gameboy"));
             //MediaPlayerManager.Instance.addSong(Content.Load<Song>(@"Music\cloud"));
+            EntityManager.addTexture("player", Content.Load<Texture2D>("player"));
+            EntityManager.addTexture("dictator", Content.Load<Texture2D>("dictator"));
+            EntityManager.addTexture("terrorist", Content.Load<Texture2D>("terrorist"));
+            EntityManager.addTexture("smileyWalk", Content.Load<Texture2D>(@"Animation\smileywalk"));
+
+            createEntities();
             //MediaPlayerManager.Instance.Start();
             circle = Content.Load<Texture2D>("circle");
             rectangle = Content.Load<Texture2D>("rectangle");
@@ -144,6 +149,7 @@ namespace Blob
             EntityManager.createDictator(new Vector2(800, 200), new Vector2(200, 200));
 
             EntityManager.createTerrorist(new Vector2(500, 500), new Vector2(300, 300));
+            EntityManager.createAnimatedDictator(new Vector2(100, 200), new Vector2(300, 300));
         }
     }
 }

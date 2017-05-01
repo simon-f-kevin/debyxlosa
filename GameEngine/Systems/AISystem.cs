@@ -25,8 +25,10 @@ namespace GameEngine.Systems
         {
             terrorists = ComponentManager.Instance.getComponentsOfType<AIComponent>();
             players = ComponentManager.Instance.getComponentsOfType<KeyboardControlComponent>();
-
-            AICalc(players, terrorists);
+            if (terrorists != null && players != null)
+            {
+                AICalc(players, terrorists);
+            }
             
         }
         private void AICalc(List<KeyboardControlComponent> player, List<AIComponent> terrorists)
@@ -44,7 +46,7 @@ namespace GameEngine.Systems
                 vCompTerror.VelY += MathHelper.Clamp(-dir.Y , -1, 1);
                 vCompTerror.VelX += MathHelper.Clamp(-dir.X, -1, 1);
             }
-            System.Diagnostics.Debug.WriteLine(vCompTerror.VelX);
+            //System.Diagnostics.Debug.WriteLine(vCompTerror.VelX);
         }
     }
 }

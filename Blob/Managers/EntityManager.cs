@@ -11,15 +11,29 @@ namespace Blob.Managers
 {
     public class EntityManager
     {
+        private static Dictionary<string, Texture2D> _TextureDict;
         public static int createEntity()
         {
             return ComponentManager.Instance.newId();
         }
+        public static void addTexture(string name, Texture2D texture)
+        {
+            if(_TextureDict == null)
+            {
+                _TextureDict = new Dictionary<string, Texture2D>();
+            }
+            _TextureDict.Add(name, texture);
+        }
 
         public static int createPlayer(Vector2 position, Vector2 velocity, KeyMappings keys)
         {
-            int id = ComponentManager.Instance.newId();
-            Texture2D heroSprite = GameProvider.getInstance().Game.Content.Load<Texture2D>("player");
+            Texture2D heroSprite;
+            if (!_TextureDict.TryGetValue("player", out heroSprite))
+            {
+                return -1;// if error
+            };
+            int id = ComponentManager.Instance.newId();           
+            //Texture2D heroSprite = GameProvider.getInstance().Game.Content.Load<Texture2D>("player");
             PositionComponent posComp = ComponentManager.Instance.getNewComponent<PositionComponent>(id);
             posComp.Y = position.Y;
             posComp.X = position.X;
@@ -61,8 +75,13 @@ namespace Blob.Managers
 
         public static int createDictator(Vector2 position, Vector2 velocity)
         {
+            Texture2D dictatorSprite;
+            if (!_TextureDict.TryGetValue("dictator", out dictatorSprite))
+            {
+                return -1; // if error
+            };
             int id = ComponentManager.Instance.newId();
-            Texture2D dictatorSprite = GameProvider.getInstance().Game.Content.Load<Texture2D>("dictator");
+            //Texture2D dictatorSprite = GameProvider.getInstance().Game.Content.Load<Texture2D>("dictator");
 
             VelocityComponent vCompDictator = ComponentManager.Instance.getNewComponent<VelocityComponent>(id);
             vCompDictator.VelY = velocity.Y;
@@ -94,8 +113,13 @@ namespace Blob.Managers
         }
         public static int createAlliance(Vector2 position, Vector2 velocity)
         {
+            Texture2D dictatorSprite;
+            if (!_TextureDict.TryGetValue("football", out dictatorSprite))
+            {
+                return -1;// if error
+            };
             int id = ComponentManager.Instance.newId();
-            Texture2D dictatorSprite = GameProvider.getInstance().Game.Content.Load<Texture2D>("football");
+            //Texture2D dictatorSprite = GameProvider.getInstance().Game.Content.Load<Texture2D>("football");
             VelocityComponent vCompDictator = ComponentManager.Instance.getNewComponent<VelocityComponent>(id);
             vCompDictator.VelY = velocity.Y;
             vCompDictator.VelX = velocity.X;
@@ -120,8 +144,13 @@ namespace Blob.Managers
         }
         public static int createTerrorist(Vector2 position, Vector2 velocity)
         {
+            Texture2D terroristSprite;
+            if (!_TextureDict.TryGetValue("terrorist", out terroristSprite))
+            {
+                return -1;// if error
+            };
             int id = ComponentManager.Instance.newId();
-            Texture2D terroristSprite = GameProvider.getInstance().Game.Content.Load<Texture2D>("terrorist");
+            //Texture2D terroristSprite = GameProvider.getInstance().Game.Content.Load<Texture2D>("terrorist");
 
             VelocityComponent vCompTerror = ComponentManager.Instance.getNewComponent<VelocityComponent>(id);
             vCompTerror.VelY = 0;
@@ -150,6 +179,47 @@ namespace Blob.Managers
             ComponentManager.Instance.addComponent(ComponentManager.Instance.getNewComponent<CollisionComponent>(id));
 
             ComponentManager.Instance.addComponent(ComponentManager.Instance.getNewComponent<AIComponent>(id));
+
+            return id;
+        }
+
+        public static int createAnimatedDictator(Vector2 position, Vector2 velocity)
+        {
+            Texture2D dictatorSprite;
+            if (!_TextureDict.TryGetValue("smileyWalk", out dictatorSprite))
+            {
+                return -1; // if error
+            };
+            int id = ComponentManager.Instance.newId();
+            //Texture2D dictatorSprite = GameProvider.getInstance().Game.Content.Load<Texture2D>("dictator");
+
+            VelocityComponent vCompDictator = ComponentManager.Instance.getNewComponent<VelocityComponent>(id);
+            vCompDictator.VelY = velocity.Y;
+            vCompDictator.VelX = velocity.X;
+            ComponentManager.Instance.addComponent(vCompDictator);
+
+            PositionComponent posCompDictator = ComponentManager.Instance.getNewComponent<PositionComponent>(id);
+            posCompDictator.Y = position.Y;
+            posCompDictator.X = position.X;
+            ComponentManager.Instance.addComponent(posCompDictator);
+         
+            RotationComponent rCompDictator = ComponentManager.Instance.getNewComponent<RotationComponent>(id);
+            rCompDictator.Orgin = new Vector2(dictatorSprite.Width / 2, dictatorSprite.Height / 2);
+            rCompDictator.Rotation = 0;
+            ComponentManager.Instance.addComponent(rCompDictator);
+
+            RectangleComponent rec = ComponentManager.Instance.getNewComponent<RectangleComponent>(id);
+            rec.BoundingRectangle = new Rectangle((int)position.X - dictatorSprite.Width / 2, (int)position.Y - dictatorSprite.Height / 2, dictatorSprite.Width, dictatorSprite.Height);
+            rec.BoundingSphere = new BoundingSphere(new Vector3(rec.BoundingRectangle.Center.X, rec.BoundingRectangle.Center.Y, 0), dictatorSprite.Width / 2);
+            ComponentManager.Instance.addComponent(rec);
+
+            ComponentManager.Instance.addComponent(ComponentManager.Instance.getNewComponent<CollisionComponent>(id));
+            AnimationComponent animationComp = ComponentManager.Instance.getNewComponent<AnimationComponent>(id);
+            animationComp.Texture = dictatorSprite;
+            animationComp.Rows = 4;
+            animationComp.Columns = 4;
+            animationComp.totalFrames = animationComp.Rows * animationComp.Columns;
+            ComponentManager.Instance.addComponent(animationComp);
 
             return id;
         }

@@ -121,3 +121,4 @@ C:\Users\tratt\Source\Repos\debyxlosa\GameEngine\bin\Debug\SharpDX.MediaFoundati
 C:\Users\tratt\Source\Repos\debyxlosa\GameEngine\obj\Debug\GameEngine.csprojResolveAssemblyReference.cache
 C:\Users\tratt\Source\Repos\debyxlosa\GameEngine\obj\Debug\GameEngine.dll
 C:\Users\tratt\Source\Repos\debyxlosa\GameEngine\obj\Debug\GameEngine.pdb
+C:\Users\Hameo\Source\Repos\debyxlosa\GameEngine\obj\Debug\GameEngine.csprojResolveAssemblyReference.cache

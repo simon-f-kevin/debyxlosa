@@ -36,7 +36,7 @@ namespace GameEngine.Systems
             EntityComponent barComp ;
             //använd _gameTime
             var dT = (float)_gameTime.ElapsedGameTime.TotalSeconds;
-            if (_VelocityDict != null)
+            if (_VelocityDict != null && _PositionDict !=null && _ActionDirectionDict !=null && _BarComponent != null)
             {
                 foreach (VelocityComponent vel in _VelocityDict.Values)
                 {
