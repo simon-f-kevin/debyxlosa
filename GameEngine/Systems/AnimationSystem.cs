@@ -45,7 +45,7 @@ namespace GameEngine.Systems
                         int row = (int)((float)animation.currentFrame / (float)animation.Columns);
                         int column = animation.currentFrame % animation.Columns;
                         animation.sourceRectangle = new Rectangle(width * column, height * row, width, height);
-                        rectangle.BoundingRectangle = new Rectangle(rectangle.BoundingRectangle.X, rectangle.BoundingRectangle.Y, width, height);
+                        rectangle.BoundingRectangle = new Rectangle(rectangle.BoundingRectangle.X, rectangle.BoundingRectangle.Y, width *2, height*2);
                         animation.destinationRectangle = rectangle.BoundingRectangle;
                     }
                 }

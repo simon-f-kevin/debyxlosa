@@ -87,7 +87,7 @@ namespace Blob
             EntityManager.addTexture("player", Content.Load<Texture2D>("player"));
             EntityManager.addTexture("dictator", Content.Load<Texture2D>("dictator"));
             EntityManager.addTexture("terrorist", Content.Load<Texture2D>("terrorist"));
-            EntityManager.addTexture("smileyWalk", Content.Load<Texture2D>(@"Animation\smileywalk"));
+            EntityManager.addTexture("smileyWalk", Content.Load<Texture2D>(@"Animation\boom"));
 
             createEntities();
             //MediaPlayerManager.Instance.Start();

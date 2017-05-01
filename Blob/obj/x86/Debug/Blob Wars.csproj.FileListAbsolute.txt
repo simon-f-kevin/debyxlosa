@@ -150,3 +150,4 @@ C:\Users\tratt\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\terrori
 C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\terrorist.xnb
 C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\Animation\shipanimated.xnb
 C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\Animation\SmileyWalk.xnb
+C:\Users\Hameo\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\Animation\boom.xnb

@@ -217,7 +217,7 @@ namespace Blob.Managers
             AnimationComponent animationComp = ComponentManager.Instance.getNewComponent<AnimationComponent>(id);
             animationComp.Texture = dictatorSprite;
             animationComp.Rows = 4;
-            animationComp.Columns = 4;
+            animationComp.Columns = 6;
             animationComp.totalFrames = animationComp.Rows * animationComp.Columns;
             ComponentManager.Instance.addComponent(animationComp);
 
