@@ -76,6 +76,7 @@
     <Compile Include="Systems\MoveSystem.cs" />
     <Compile Include="Systems\TextureRenderSystem.cs" />
     <Compile Include="Util\CollisionSystemsMediator.cs" />
+    <Compile Include="Util\GameState.cs" />
     <Compile Include="Util\ISystemsMediator.cs" />
     <Compile Include="Util\MediatorMessage.cs" />
   </ItemGroup>
