@@ -2,11 +2,13 @@
 using System.Net;
 using Blob.Managers;
 using Blob.Models;
+using Blob.Models.CollisionHandler;
 using Blob.ResourcesProviders;
 using GameEngine;
 using GameEngine.Components;
 using GameEngine.Managers;
 using GameEngine.Systems;
+using GameEngine.Util;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -28,6 +30,12 @@ namespace Blob
         private Texture2D blob;
         private Texture2D circle;
         private Texture2D rectangle;
+
+        //debugging attributes
+        float frameCount = 0;
+        float timeSinceLastUpdate = 0;
+        float updateInterval = 1;
+        float fps = 0;
 
         public Game1()
         {
@@ -57,9 +65,8 @@ namespace Blob
             //_moveSystem = new MoveSystem(this,graphics.GraphicsDevice.Viewport.Width, graphics.GraphicsDevice.Viewport.Height);
             //Components.Add(_moveSystem);
 
-            _SystemManager = new SystemManager(this);
+            _SystemManager = new SystemManager(this, GameCollisionHandler.CollisionHandler, spriteBatch);
             //Borde ta bort Component.Add(). Systemet anropas manuellt i Update
-            Components.Add(_SystemManager);
 
             //Create a singleton holding the Game-instance instead of sending
             //it as a parameter to appropriate managers.
@@ -129,6 +136,17 @@ namespace Blob
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            frameCount++;
+
+            float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            timeSinceLastUpdate += elapsed;
+            if (timeSinceLastUpdate > updateInterval)
+            {
+                fps = frameCount / timeSinceLastUpdate;
+                this.Window.Title = "FPS: " + fps.ToString();
+                frameCount = 0;
+                timeSinceLastUpdate -= updateInterval;
+            }
             // TODO: Add your drawing code here
             List<TextureComponent> textures = ComponentManager.Instance.getComponentsOfType<TextureComponent>();
             
@@ -141,11 +159,13 @@ namespace Blob
                 RotationComponent entityRotation =
                     ComponentManager.Instance.getComponentByID<RotationComponent>(texture.EntityId);
                 RectangleComponent rc = ComponentManager.Instance.getComponentByID<RectangleComponent>(texture.EntityId);
-                spriteBatch.Draw(texture.Sprite, new Vector2(rc.BoundingRectangle.X+texture.Sprite.Width/2, rc.BoundingRectangle.Y+texture.Sprite.Height/2), null, Color.White, entityRotation.Rotation, entityRotation.Orgin, 1f, SpriteEffects.None, 0f);
+                spriteBatch.Draw(texture.Sprite, new Vector2(rc.BoundingRectangle.X + texture.Sprite.Width / 2, rc.BoundingRectangle.Y + texture.Sprite.Height / 2), null, Color.White, entityRotation.Rotation, entityRotation.Orgin, 1f, SpriteEffects.None, 0f);
+                //spriteBatch.Draw(texture.Sprite, new Vector2(entityPosition.X, entityPosition.Y), null, Color.White, entityRotation.Rotation, entityRotation.Orgin, 1f, SpriteEffects.None, 0f);
 
                 //spriteBatch.Draw(rectangle, rc.BoundingRectangle, null, Color.White);
                 //spriteBatch.Draw(circle, rc.BoundingRectangle, null, Color.White);
             }
+            _SystemManager.Draw(gameTime,spriteBatch);
 
             spriteBatch.End();
 

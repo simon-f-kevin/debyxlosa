@@ -7,16 +7,18 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Systems
 {
-    public class FrameCounter : DrawableGameComponent
+    public class FrameCounter
     {
         float frameCount = 0;
         float timeSinceLastUpdate = 0;
         float updateInterval = 1;
         float fps = 0;
-        public FrameCounter(Game game) : base(game)
+        private Game _game;
+        public FrameCounter(Game game)
         {
+            _game = game;
         }
-        public override void Draw(GameTime gameTime)
+        public void Draw(GameTime gameTime)
         {
             frameCount++;
 
@@ -25,10 +27,12 @@ namespace GameEngine.Systems
             if (timeSinceLastUpdate > updateInterval)
             {
                 fps = frameCount / timeSinceLastUpdate;
-                Game.Window.Title = "FPS: " + fps.ToString();
+                _game.Window.Title = "FPS: " + fps.ToString();
                 frameCount = 0;
                 timeSinceLastUpdate -= updateInterval;
             }
+
+
             //base.Draw(gameTime);
         }
     }

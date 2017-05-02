@@ -55,7 +55,9 @@ namespace Blob.Managers
             rec.BoundingRectangle = new Rectangle((int)position.X, (int)position.Y, heroSprite.Width,heroSprite.Height);
             rec.BoundingSphere = new BoundingSphere(new Vector3(rec.BoundingRectangle.Center.X, rec.BoundingRectangle.Center.Y, 0), heroSprite.Width/2);
             ComponentManager.Instance.addComponent(rec);
-            ComponentManager.Instance.addComponent(ComponentManager.Instance.getNewComponent<CollisionComponent>(id));
+            CollisionComponent cp = ComponentManager.Instance.getNewComponent<CollisionComponent>(id);
+            cp.CollisionType = 0;
+            ComponentManager.Instance.addComponent(cp);
             return id;
         }
 
@@ -82,7 +84,9 @@ namespace Blob.Managers
             rec.BoundingRectangle = new Rectangle((int)position.X, (int)position.Y, dictatorSprite.Width, dictatorSprite.Height);
             rec.BoundingSphere = new BoundingSphere(new Vector3(rec.BoundingRectangle.Center.X, rec.BoundingRectangle.Center.Y, 0), dictatorSprite.Width / 2);
             ComponentManager.Instance.addComponent(rec);
-            ComponentManager.Instance.addComponent(ComponentManager.Instance.getNewComponent<CollisionComponent>(id));
+            CollisionComponent cp = ComponentManager.Instance.getNewComponent<CollisionComponent>(id);
+            cp.CollisionType = 1;
+            ComponentManager.Instance.addComponent(cp);
             return id;
         }
         public static int createAlliance(Vector2 position, Vector2 velocity)
@@ -111,5 +115,44 @@ namespace Blob.Managers
             ComponentManager.Instance.addComponent(ComponentManager.Instance.getNewComponent<CollisionComponent>(id));
             return id;
         }
+
+        public static int createAnimation(Vector2 position, string spriteSheet, Point frameSize, Point sheetSize,
+            int millisecondsPerFrame)
+        {
+            int id = ComponentManager.Instance.newId();
+            Texture2D animation = GameProvider.getInstance().Game.Content.Load<Texture2D>(spriteSheet);
+
+            PositionComponent pos = ComponentManager.Instance.getNewComponent<PositionComponent>(id);
+            pos.Y = position.Y;
+            pos.X = position.X;
+            ComponentManager.Instance.addComponent(pos);
+            AnimationComponent ac = ComponentManager.Instance.getNewComponent<AnimationComponent>(id);
+            ac.setValues(animation, frameSize, sheetSize, millisecondsPerFrame);
+            ComponentManager.Instance.addComponent(ac);
+
+            return id;
+        }
     }
 }
+/*
+ timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
+            if (timeSinceLastFrame > millisecondsPerFrame)
+            {
+                timeSinceLastFrame -= millisecondsPerFrame;
+                ++currentFrame.X;
+                if (currentFrame.X >= sheetSize.X)
+                {
+                    currentFrame.X = 0;
+                    ++currentFrame.Y;
+                    if (currentFrame.Y >= sheetSize.Y)
+                        currentFrame.Y = 0;
+                }
+                ++currentFrameRun.X;
+                if (currentFrameRun.X >= sheetSizeRun.X)
+                {
+                    currentFrameRun.X = 0;
+                    ++currentFrameRun.Y;
+                    if (currentFrameRun.Y >= sheetSizeRun.Y)
+                        currentFrameRun.Y = 0;
+                }
+            }*/

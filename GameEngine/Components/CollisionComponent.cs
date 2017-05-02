@@ -8,15 +8,16 @@ namespace GameEngine.Components
 {
     public class CollisionComponent : EntityComponent
     {
-        public List<int> Collisions { get; set; }
+        public int CollisionType { get; set; }
 
         public CollisionComponent()
         {
-            Collisions = new List<int>();
+            CollisionType = 0;
         }
+
         public CollisionComponent(int id) : base(id)
         {
-            Collisions = new List<int>();
+            CollisionType = 0;
         }
     }
 }

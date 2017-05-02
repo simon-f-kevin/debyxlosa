@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Johan/Desktop/Systemarkitekturutbildningen/Termin 4/Speldesign/de byxlosa/projekt/Blob/Content/player.png</SourceFile>
-  <SourceTime>2017-04-26T19:22:35+02:00</SourceTime>
-  <DestFile>C:/Users/Johan/Desktop/Systemarkitekturutbildningen/Termin 4/Speldesign/de byxlosa/projekt/Blob/Content/bin/Windows/player.xnb</DestFile>
-  <DestTime>2017-04-30T14:27:04.5334383+02:00</DestTime>
+  <SourceFile>C:/Users/Johan/Desktop/Systemarkitekturutbildningen/Termin 4/Speldesign/de byxlosa/projekt/Blob/Content/puff.png</SourceFile>
+  <SourceTime>2017-05-01T21:12:20+02:00</SourceTime>
+  <DestFile>C:/Users/Johan/Desktop/Systemarkitekturutbildningen/Termin 4/Speldesign/de byxlosa/projekt/Blob/Content/bin/Windows/puff.xnb</DestFile>
+  <DestTime>2017-05-01T21:36:57.7423721+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

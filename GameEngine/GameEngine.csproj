@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\ActionDirectionComponent.cs" />
+    <Compile Include="Components\AnimationComponent.cs" />
     <Compile Include="Components\BarComponent.cs" />
     <Compile Include="Components\CollisionComponent.cs" />
     <Compile Include="Components\EntityComponent.cs" />
@@ -64,14 +65,19 @@
     <Compile Include="Managers\MediaPlayerManager.cs" />
     <Compile Include="Managers\SystemManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Systems\CollisionSystem.cs" />
+    <Compile Include="Systems\AnimationSystem.cs" />
+    <Compile Include="Systems\CollisionDetectionSystem.cs" />
+    <Compile Include="Systems\CollisionHandlingSystem.cs" />
     <Compile Include="Systems\ControllerSystem.cs" />
     <Compile Include="Systems\FrameCounter.cs" />
+    <Compile Include="Systems\IDrawableSystem.cs" />
     <Compile Include="Systems\InputSystem.cs" />
     <Compile Include="Systems\ISystem.cs" />
     <Compile Include="Systems\MoveSystem.cs" />
-    <Compile Include="Systems\System.cs" />
     <Compile Include="Systems\TextureRenderSystem.cs" />
+    <Compile Include="Util\CollisionSystemsMediator.cs" />
+    <Compile Include="Util\ISystemsMediator.cs" />
+    <Compile Include="Util\MediatorMessage.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
