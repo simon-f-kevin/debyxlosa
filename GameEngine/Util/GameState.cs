@@ -3,9 +3,9 @@
     public enum GameState
     {
         MainMenu,
+        Paused, 
         Gameplay,
-        Paused,
-        SplashScreen,
-        Gameover
+        GameOver,
+        SplashScreen
     }
 }
