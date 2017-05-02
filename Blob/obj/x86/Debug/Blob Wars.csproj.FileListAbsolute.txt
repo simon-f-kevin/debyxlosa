@@ -108,3 +108,5 @@ C:\Users\Felix\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\MonoGame.Framew
 C:\Users\Felix\Source\Repos\debyxlosa\Blob\obj\x86\Debug\Blob Wars.csprojResolveAssemblyReference.cache
 C:\Users\Felix\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\Alliance.xnb
 C:\Users\Felix\Source\Repos\debyxlosa\Blob\bin\Windows\x86\Debug\Content\Explosion.xnb
+C:\Users\Johan\Desktop\Systemarkitekturutbildningen\Termin 4\Speldesign\de byxlosa\projekt\Blob\bin\Windows\x86\Debug\Content\Alliance.xnb
+C:\Users\Johan\Desktop\Systemarkitekturutbildningen\Termin 4\Speldesign\de byxlosa\projekt\Blob\bin\Windows\x86\Debug\Content\Explosion.xnb
