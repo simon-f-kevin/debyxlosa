@@ -4,10 +4,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GameEngine.Util.Observer;
 
 namespace GameEngine.Components
 {
-    public abstract class EntityComponent
+    public abstract class EntityComponent : SystemObservable
     {
         private int _entityId;
         public EntityComponent() { }

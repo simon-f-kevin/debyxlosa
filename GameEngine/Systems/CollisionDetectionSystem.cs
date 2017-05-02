@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GameEngine.Components;
 using GameEngine.Managers;
-using GameEngine.Util;
+using GameEngine.Util.Mediator;
 using Microsoft.Xna.Framework;
 
 namespace GameEngine.Systems

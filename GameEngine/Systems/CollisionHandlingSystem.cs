@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using GameEngine.Components;
 using GameEngine.Managers;
-using GameEngine.Util;
+using GameEngine.Util.Mediator;
 using Microsoft.Xna.Framework;
 
 namespace GameEngine.Systems

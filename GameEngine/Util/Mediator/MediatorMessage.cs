@@ -1,4 +1,4 @@
-﻿namespace GameEngine.Util
+﻿namespace GameEngine.Util.Mediator
 {
     public struct MediatorMessage
     {

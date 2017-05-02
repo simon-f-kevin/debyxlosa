@@ -14,10 +14,10 @@ namespace GameEngine.Systems
 
         public void Update(GameTime gameTime)
         {
-            Dictionary<int, EntityComponent> _animations = ComponentManager.Instance.getComponentDictionary<AnimationComponent>();
+            List<AnimationComponent> _animations = ComponentManager.Instance.getComponentsOfType<AnimationComponent>();
             if (_animations != null)
             {
-                foreach (AnimationComponent animation in _animations.Values)
+                foreach (AnimationComponent animation in _animations)
                 {
                     animation.TimeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
                     if (animation.TimeSinceLastFrame > animation.MillisecondsPerFrame)
@@ -30,7 +30,10 @@ namespace GameEngine.Systems
                             curreFrame.X = 0;
                             ++curreFrame.Y;
                             if (curreFrame.Y >= animation.SheetSize.Y)
+                            {
                                 curreFrame.Y = 0;
+                                animation.notify(animation.EntityId, animation.AnimationEffect);
+                            }
                         }
                         animation.CurrentFrame = curreFrame;
                     }
@@ -43,6 +46,7 @@ namespace GameEngine.Systems
         {
             Dictionary<int, EntityComponent> _positions = ComponentManager.Instance.getComponentDictionary<PositionComponent>();
             Dictionary<int, EntityComponent> _animations = ComponentManager.Instance.getComponentDictionary<AnimationComponent>();
+            Dictionary<int, EntityComponent> _scales = ComponentManager.Instance.getComponentDictionary<ScaleComponent>();
             EntityComponent posComponent;
             if (_animations != null)
             {
@@ -51,9 +55,11 @@ namespace GameEngine.Systems
                     if (_positions.TryGetValue(animation.EntityId, out posComponent))
                     {
                         PositionComponent pos = (PositionComponent)posComponent;
+                        ScaleComponent scale = (ScaleComponent)_scales[animation.EntityId];
                         spriteBatch.Draw(animation.SpriteSheet, new Vector2(pos.X, pos.Y),
                             new Rectangle(animation.CurrentFrame.X * animation.FrameSize.X, animation.CurrentFrame.Y * animation.FrameSize.Y,
-                            animation.FrameSize.X, animation.FrameSize.Y), Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
+                            animation.FrameSize.X, animation.FrameSize.Y), Color.White, 0, Vector2.Zero,scale.scale, SpriteEffects.None, 0);
+                        //if(fullRun){notify all observers)
                     }
                 }
             }

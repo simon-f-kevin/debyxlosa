@@ -7,17 +7,47 @@ using GameEngine.Components;
 using GameEngine.Managers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using GameEngine.Util.Observer;
+using Blob.Models.CollisionHandler;
 
 namespace Blob.Managers
 {
-    public class EntityManager
+    public class EntityManager : ISystemObserver
     {
         private static Dictionary<string, Texture2D> _TextureDict;
-        public static int createEntity()
+        private static EntityManager entityManager;
+        public static EntityManager getInstance()
+        {
+            if (entityManager == null)
+            {
+                entityManager = new EntityManager();
+            }
+            return entityManager;
+        }
+        private EntityManager()
+        {
+            _TextureDict = new Dictionary<string, Texture2D>();
+        }
+        public int createEntity()
         {
             return ComponentManager.Instance.newId();
         }
-        public static void addTexture(string name, Texture2D texture)
+        public void update(int id, int animationEffect)
+        {
+            switch (animationEffect)
+            {
+                case 0:
+                    removeEntity(id);
+                    break;
+                case 1:
+                    removeEntity(id);
+                    break;
+
+
+            }
+            
+        }
+        public void addTexture(string name, Texture2D texture)
         {
             if(_TextureDict == null)
             {
@@ -26,7 +56,7 @@ namespace Blob.Managers
             _TextureDict.Add(name, texture);
         }
 
-        public static int createPlayer(Vector2 position, Vector2 velocity, KeyMappings keys)
+        public int createPlayer(Vector2 position, Vector2 velocity, KeyMappings keys)
         {
             Texture2D heroSprite;
             if (!_TextureDict.TryGetValue("player", out heroSprite))
@@ -76,7 +106,7 @@ namespace Blob.Managers
             return id;
         }
 
-        public static int createDictator(Vector2 position, Vector2 velocity)
+        public int createDictator(Vector2 position, Vector2 velocity)
         {
             Texture2D dictatorSprite;
             if (!_TextureDict.TryGetValue("dictator", out dictatorSprite))
@@ -113,10 +143,10 @@ namespace Blob.Managers
             ComponentManager.Instance.addComponent(cp);
             return id;
         }
-        public static int createAlliance(Vector2 position, Vector2 velocity)
+        public int createAlliance(Vector2 position, Vector2 velocity)
         {
             Texture2D dictatorSprite;
-            if (!_TextureDict.TryGetValue("football", out dictatorSprite))
+            if (!_TextureDict.TryGetValue("alliance", out dictatorSprite))
             {
                 return -1;// if error
             };
@@ -141,7 +171,10 @@ namespace Blob.Managers
             rec.BoundingRectangle = new Rectangle((int)position.X, (int)position.Y, dictatorSprite.Width, dictatorSprite.Height);
             rec.BoundingSphere = new BoundingSphere(new Vector3(rec.BoundingRectangle.Center.X, rec.BoundingRectangle.Center.Y, 0), dictatorSprite.Width / 2);
             ComponentManager.Instance.addComponent(rec);
-            ComponentManager.Instance.addComponent(ComponentManager.Instance.getNewComponent<CollisionComponent>(id));
+            CollisionComponent collisionComponent = ComponentManager.Instance.getNewComponent<CollisionComponent>(id);
+            collisionComponent.CollisionType = (int)CollisionTypes.War;
+            ComponentManager.Instance.addComponent(collisionComponent);
+
             return id;
         }
 
@@ -227,8 +260,8 @@ namespace Blob.Managers
         //    return id;
         //}
 
-        public static int createAnimation(Vector2 position, string spriteSheet, Point frameSize, Point sheetSize,
-            int millisecondsPerFrame)
+        public int createAnimation(Vector2 position, string spriteSheet, Point frameSize, Point sheetSize,
+            int millisecondsPerFrame, int animationEffect, float scale)
         {
             int id = ComponentManager.Instance.newId();
             Texture2D animation = GameProvider.getInstance().Game.Content.Load<Texture2D>(spriteSheet);
@@ -238,13 +271,17 @@ namespace Blob.Managers
             pos.X = position.X;
             ComponentManager.Instance.addComponent(pos);
             AnimationComponent ac = ComponentManager.Instance.getNewComponent<AnimationComponent>(id);
-            ac.setValues(animation, frameSize, sheetSize, millisecondsPerFrame);
+            ac.setValues(animation, frameSize, sheetSize, millisecondsPerFrame, animationEffect);
+            ac.addListener(this);
             ComponentManager.Instance.addComponent(ac);
+            ScaleComponent scalecomp = ComponentManager.Instance.getNewComponent<ScaleComponent>(id);
+            scalecomp.scale = scale;
+            ComponentManager.Instance.addComponent(scalecomp);
 
             return id;
         }
 
-        public static void removeEntity(int entityId)
+        public void removeEntity(int entityId)
         {
             ComponentManager.Instance.removeEntity(entityId);
         }

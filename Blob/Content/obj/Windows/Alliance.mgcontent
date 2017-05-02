@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Felix/Source/Repos/debyxlosa/Blob/Content/rectangle.png</SourceFile>
-  <SourceTime>2017-04-29T20:24:16.3847178+02:00</SourceTime>
-  <DestFile>C:/Users/Felix/Source/Repos/debyxlosa/Blob/Content/bin/Windows/rectangle.xnb</DestFile>
-  <DestTime>2017-05-02T13:16:13.3389171+02:00</DestTime>
+  <SourceFile>C:/Users/Felix/Source/Repos/debyxlosa/Blob/Content/Alliance.png</SourceFile>
+  <SourceTime>2017-05-02T13:52:25.1968878+02:00</SourceTime>
+  <DestFile>C:/Users/Felix/Source/Repos/debyxlosa/Blob/Content/bin/Windows/Alliance.xnb</DestFile>
+  <DestTime>2017-05-02T13:53:00.1004962+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

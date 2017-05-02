@@ -71,7 +71,6 @@ namespace Blob
 
             //_InputSystem = new InputSystem(this, true);
             //Components.Add(_InputSystem);
-            _entityManager = new EntityManager();
             base.Initialize();
         }
 
@@ -87,11 +86,12 @@ namespace Blob
             //MediaPlayerManager.Instance.addSong(Content.Load<Song>(@"Music\game"));
             //MediaPlayerManager.Instance.addSong(Content.Load<Song>(@"Music\gameboy"));
             //MediaPlayerManager.Instance.addSong(Content.Load<Song>(@"Music\cloud"));
-            EntityManager.addTexture("player", Content.Load<Texture2D>("player"));
-            EntityManager.addTexture("dictator", Content.Load<Texture2D>("dictator"));
-            EntityManager.addTexture("terrorist", Content.Load<Texture2D>("terrorist"));
-            EntityManager.addTexture("smileyWalk", Content.Load<Texture2D>(@"Animation\boom"));
-            EntityManager.addTexture("rectangle", Content.Load<Texture2D>(@"Animation\boom"));
+            EntityManager.getInstance().addTexture("player", Content.Load<Texture2D>("player"));
+            EntityManager.getInstance().addTexture("dictator", Content.Load<Texture2D>("dictator"));
+            EntityManager.getInstance().addTexture("terrorist", Content.Load<Texture2D>("terrorist"));
+            EntityManager.getInstance().addTexture("explosion", Content.Load<Texture2D>("Explosion"));
+            EntityManager.getInstance().addTexture("smileyWalk", Content.Load<Texture2D>(@"Animation\boom"));
+            EntityManager.getInstance().addTexture("alliance", Content.Load<Texture2D>("alliance"));
             rectangle = Content.Load<Texture2D>("rectangle");
             createEntities();
             //MediaPlayerManager.Instance.Start();
@@ -156,11 +156,13 @@ namespace Blob
 
         void createEntities()
         {
-            EntityManager.createPlayer(new Vector2(200, 200), new Vector2(0, 0),
+            EntityManager.getInstance().createPlayer(new Vector2(200, 200), new Vector2(0, 0),
                 new KeyMappings(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.Space));
 
-            EntityManager.createDictator(new Vector2(600, 20), new Vector2(200, -200));
-            EntityManager.createDictator(new Vector2(800, 200), new Vector2(200, 200));
+            EntityManager.getInstance().createDictator(new Vector2(50, 50), new Vector2(200, 200));
+            EntityManager.getInstance().createDictator(new Vector2(750, 50), new Vector2(-200, 200));
+            EntityManager.getInstance().createDictator(new Vector2(50, 750), new Vector2(200, -200));
+            EntityManager.getInstance().createDictator(new Vector2(750, 750), new Vector2(-200, -200));
 
             //EntityManager.createTerrorist(new Vector2(500, 500), new Vector2(300, 300));
             //EntityManager.createAnimatedDictator(new Vector2(100, 200), new Vector2(300, 300));

@@ -57,6 +57,7 @@
     <Compile Include="Components\PositionComponent.cs" />
     <Compile Include="Components\RectangleComponent.cs" />
     <Compile Include="Components\RotationComponent.cs" />
+    <Compile Include="Components\ScaleComponent.cs" />
     <Compile Include="Components\TextureComponent.cs" />
     <Compile Include="Components\VelocityComponent.cs" />
     <Compile Include="Managers\ComponentManager.cs" />
@@ -75,10 +76,11 @@
     <Compile Include="Systems\ISystem.cs" />
     <Compile Include="Systems\MoveSystem.cs" />
     <Compile Include="Systems\TextureRenderSystem.cs" />
-    <Compile Include="Util\CollisionSystemsMediator.cs" />
-    <Compile Include="Util\GameState.cs" />
-    <Compile Include="Util\ISystemsMediator.cs" />
-    <Compile Include="Util\MediatorMessage.cs" />
+    <Compile Include="Util\Mediator\CollisionSystemsMediator.cs" />
+    <Compile Include="Util\Mediator\ISystemsMediator.cs" />
+    <Compile Include="Util\Mediator\MediatorMessage.cs" />
+    <Compile Include="Util\Observer\SystemObservable.cs" />
+    <Compile Include="Util\Observer\ISystemObserver.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

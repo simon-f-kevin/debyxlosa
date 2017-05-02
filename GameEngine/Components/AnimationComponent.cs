@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using GameEngine.Util.Observer;
 
 namespace GameEngine.Components
 {
@@ -11,6 +12,7 @@ namespace GameEngine.Components
         public Point SheetSize { get; set; }
         public int TimeSinceLastFrame { get; set; }
         public int MillisecondsPerFrame { get; set; }
+        public int AnimationEffect { get; set; }
 
         public AnimationComponent()
         {
@@ -18,12 +20,13 @@ namespace GameEngine.Components
             CurrentFrame = new Point(0,0);
         }
 
-        public void setValues(Texture2D spriteSheet, Point frameSize, Point sheetSize, int millisecondsPerFrame)
+        public void setValues(Texture2D spriteSheet, Point frameSize, Point sheetSize, int millisecondsPerFrame, int animationEffect)
         {
             SpriteSheet = spriteSheet;
             FrameSize = frameSize;
             SheetSize = sheetSize;
             MillisecondsPerFrame = millisecondsPerFrame;
+            AnimationEffect = animationEffect;
         }
     }
 }
