@@ -13,6 +13,7 @@ namespace Blob.Models
         private Keys _startButton = Keys.Space;
         
         private string gameName = "Blob Wars";
+        private string message = "Press Space to play";
 
         private SpriteBatch spriteBatch;
 
@@ -34,7 +35,8 @@ namespace Blob.Models
             Viewport viewport = graphicsDevice.Viewport;
             Vector2 stringLen = font.MeasureString(gameName);
             spriteBatch.Begin();
-            spriteBatch.DrawString(font, gameName, new Vector2((viewport.Width - stringLen.X)/2, 10), Color.CornflowerBlue);
+            spriteBatch.DrawString(font, gameName, new Vector2((viewport.Width - stringLen.X)/2, 300), Color.CornflowerBlue);
+            spriteBatch.DrawString(font, message, new Vector2((viewport.Width - stringLen.X)/2, 350), Color.CornflowerBlue);
             spriteBatch.End();
         }
     }
