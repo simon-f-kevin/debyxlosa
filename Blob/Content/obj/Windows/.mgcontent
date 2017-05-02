@@ -4,17 +4,17 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Felix/Source/Repos/debyxlosa/Blob/Content/Music/Cloud.mp3</File>
-    <File>C:/Users/Felix/Source/Repos/debyxlosa/Blob/Content/Music/Disco.mp3</File>
-    <File>C:/Users/Felix/Source/Repos/debyxlosa/Blob/Content/Music/Game.mp3</File>
-    <File>C:/Users/Felix/Source/Repos/debyxlosa/Blob/Content/Music/Gameboy.mp3</File>
-    <File>C:/Users/Felix/Source/Repos/debyxlosa/Blob/Content/dictator.png</File>
-    <File>C:/Users/Felix/Source/Repos/debyxlosa/Blob/Content/player.png</File>
-    <File>C:/Users/Felix/Source/Repos/debyxlosa/Blob/Content/circle.png</File>
-    <File>C:/Users/Felix/Source/Repos/debyxlosa/Blob/Content/rectangle.png</File>
-    <File>C:/Users/Felix/Source/Repos/debyxlosa/Blob/Content/football.png</File>
-    <File>C:/Users/Felix/Source/Repos/debyxlosa/Blob/Content/puff.png</File>
-    <File>C:/Users/Felix/Source/Repos/debyxlosa/Blob/Content/Alliance.png</File>
-    <File>C:/Users/Felix/Source/Repos/debyxlosa/Blob/Content/Explosion.png</File>
+    <File>C:/Users/Johan/Desktop/Systemarkitekturutbildningen/Termin 4/Speldesign/de byxlosa/projekt/Blob/Content/Music/Cloud.mp3</File>
+    <File>C:/Users/Johan/Desktop/Systemarkitekturutbildningen/Termin 4/Speldesign/de byxlosa/projekt/Blob/Content/Music/Disco.mp3</File>
+    <File>C:/Users/Johan/Desktop/Systemarkitekturutbildningen/Termin 4/Speldesign/de byxlosa/projekt/Blob/Content/Music/Game.mp3</File>
+    <File>C:/Users/Johan/Desktop/Systemarkitekturutbildningen/Termin 4/Speldesign/de byxlosa/projekt/Blob/Content/Music/Gameboy.mp3</File>
+    <File>C:/Users/Johan/Desktop/Systemarkitekturutbildningen/Termin 4/Speldesign/de byxlosa/projekt/Blob/Content/dictator.png</File>
+    <File>C:/Users/Johan/Desktop/Systemarkitekturutbildningen/Termin 4/Speldesign/de byxlosa/projekt/Blob/Content/player.png</File>
+    <File>C:/Users/Johan/Desktop/Systemarkitekturutbildningen/Termin 4/Speldesign/de byxlosa/projekt/Blob/Content/circle.png</File>
+    <File>C:/Users/Johan/Desktop/Systemarkitekturutbildningen/Termin 4/Speldesign/de byxlosa/projekt/Blob/Content/rectangle.png</File>
+    <File>C:/Users/Johan/Desktop/Systemarkitekturutbildningen/Termin 4/Speldesign/de byxlosa/projekt/Blob/Content/football.png</File>
+    <File>C:/Users/Johan/Desktop/Systemarkitekturutbildningen/Termin 4/Speldesign/de byxlosa/projekt/Blob/Content/puff.png</File>
+    <File>C:/Users/Johan/Desktop/Systemarkitekturutbildningen/Termin 4/Speldesign/de byxlosa/projekt/Blob/Content/Alliance.png</File>
+    <File>C:/Users/Johan/Desktop/Systemarkitekturutbildningen/Termin 4/Speldesign/de byxlosa/projekt/Blob/Content/Explosion.png</File>
   </SourceFiles>
 </SourceFileCollection>

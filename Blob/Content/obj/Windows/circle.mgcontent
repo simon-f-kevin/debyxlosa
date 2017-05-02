@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Felix/Source/Repos/debyxlosa/Blob/Content/circle.png</SourceFile>
-  <SourceTime>2017-04-29T20:24:16.0995109+02:00</SourceTime>
-  <DestFile>C:/Users/Felix/Source/Repos/debyxlosa/Blob/Content/bin/Windows/circle.xnb</DestFile>
-  <DestTime>2017-05-02T13:16:12.9470818+02:00</DestTime>
+  <SourceFile>C:/Users/Johan/Desktop/Systemarkitekturutbildningen/Termin 4/Speldesign/de byxlosa/projekt/Blob/Content/circle.png</SourceFile>
+  <SourceTime>2017-04-28T15:29:13.470116+02:00</SourceTime>
+  <DestFile>C:/Users/Johan/Desktop/Systemarkitekturutbildningen/Termin 4/Speldesign/de byxlosa/projekt/Blob/Content/bin/Windows/circle.xnb</DestFile>
+  <DestTime>2017-05-02T17:01:38.1421343+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
