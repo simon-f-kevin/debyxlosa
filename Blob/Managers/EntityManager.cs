@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Blob.Models;
 using Blob.ResourcesProviders;
 using GameEngine;
@@ -242,8 +243,14 @@ namespace Blob.Managers
 
             return id;
         }
+
+        public static void removeEntity(int entityId)
+        {
+            ComponentManager.Instance.removeEntity(entityId);
+        }
     }
 }
+
 /*
  timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
             if (timeSinceLastFrame > millisecondsPerFrame)

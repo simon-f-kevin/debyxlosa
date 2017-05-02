@@ -49,7 +49,12 @@ namespace Blob.Models.CollisionHandler
                         Point animationCenter = getCollisionCenter(collisionComponent1.EntityId, collisionComponent2.EntityId);
 
                         EntityManager.createAnimation(new Vector2(animationCenter.X, animationCenter.Y), "puff",
-                            new Point(128, 128), new Point(0, 10), 75);
+                            new Point(128, 128), new Point(0, 10), 25);
+
+                        EntityManager.removeEntity(collisionComponent1.EntityId);
+                        EntityManager.removeEntity(collisionComponent2.EntityId);
+                        // createalliance
+                        // removeanimation
                         //EntityManager.removeEntity()
                         //Add Alliance entity
                         /*

@@ -32,12 +32,8 @@ namespace Blob
         private Texture2D rectangle;
         private Texture2D terrorist;
         private Texture2D smileyWalk;
+        private FrameCounter _frameCounter;
 
-        //debugging attributes
-        float frameCount = 0;
-        float timeSinceLastUpdate = 0;
-        float updateInterval = 1;
-        float fps = 0;
 
         public Game1()
         {
@@ -68,7 +64,7 @@ namespace Blob
 
             _SystemManager = new SystemManager(this, GameCollisionHandler.CollisionHandler);
             //Borde ta bort Component.Add(). Systemet anropas manuellt i Update
-
+            _frameCounter = new FrameCounter(this);
             //Create a singleton holding the Game-instance instead of sending
             //it as a parameter to appropriate managers.
             GameProvider.getInstance().Game = this;
@@ -95,7 +91,8 @@ namespace Blob
             EntityManager.addTexture("dictator", Content.Load<Texture2D>("dictator"));
             EntityManager.addTexture("terrorist", Content.Load<Texture2D>("terrorist"));
             EntityManager.addTexture("smileyWalk", Content.Load<Texture2D>(@"Animation\boom"));
-
+            EntityManager.addTexture("rectangle", Content.Load<Texture2D>(@"Animation\boom"));
+            rectangle = Content.Load<Texture2D>("rectangle");
             createEntities();
             //MediaPlayerManager.Instance.Start();
             circle = Content.Load<Texture2D>("circle");
@@ -142,9 +139,15 @@ namespace Blob
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            _frameCounter.Update(gameTime);
             spriteBatch.Begin();
             _SystemManager.Draw(spriteBatch);
+            //List<RectangleComponent> rectangles = ComponentManager.Instance.getComponentsOfType<RectangleComponent>();
+            //foreach (RectangleComponent rect in rectangles)
+            //{
+            //    spriteBatch.Draw(rectangle, rect.BoundingRectangle, null, Color.White);
+            //}
+            
             spriteBatch.End();
 
             base.Draw(gameTime);
