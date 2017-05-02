@@ -24,6 +24,7 @@ namespace GameEngine.Systems
             EntityComponent rectangelComponent;
             EntityComponent rotationComponent;
             EntityComponent posComponent;
+            
             if (_TexturesDictionary != null && _RectangleDictionary != null && _RotationDictionary != null)
             {
                 foreach (TextureComponent texture2D in _TexturesDictionary.Values)
@@ -39,8 +40,8 @@ namespace GameEngine.Systems
                                     texture: texture2D.Sprite, 
                                     destinationRectangle: new Rectangle
                                     (
-                                        rectangle.BoundingRectangle.X-texture2D.Sprite.Width/2,
-                                        rectangle.BoundingRectangle.Y - texture2D.Sprite.Height / 2,
+                                        rectangle.BoundingRectangle.X + texture2D.Sprite.Width/2,
+                                        rectangle.BoundingRectangle.Y + texture2D.Sprite.Height / 2,
                                         rectangle.BoundingRectangle.Width,
                                         rectangle.BoundingRectangle.Height),
                                     color: Color.White,
@@ -57,6 +58,8 @@ namespace GameEngine.Systems
                                     color: Color.White
                                 );
                         }
+                        
+
                     }
                     else
                     {

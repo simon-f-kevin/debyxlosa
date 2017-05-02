@@ -117,31 +117,49 @@ namespace GameEngine.Managers
             return null;
         }
 
-        public void removeComponent<T>(int iD) where T : EntityComponent
+        public List<EntityComponent> getAllComponentsByID(int iD)
         {
-            //private Dictionary<Type, Dictionary<int, Component>> _componentsByType;
-            //private Dictionary<int, List<Component>> _componentsById;
-            EntityComponent component;
-            Dictionary<int, EntityComponent> tempDict;
-            if (_componentsByType.TryGetValue(typeof(T), out tempDict))
+            List<EntityComponent> tempList;
+            if (_componentsById.TryGetValue(iD, out tempList))
             {
-                if (tempDict.TryGetValue(iD, out component))
-                {
-                    List<EntityComponent> tempList;
-                    if (_componentsById.TryGetValue(iD, out tempList))
-                    {
-                        tempList.Remove(component);
-                        tempDict.Remove(iD);
-                        Queue<EntityComponent> reusableTempList;
-                        if (!_reusableComponents.TryGetValue(component.GetType(), out reusableTempList))
-                        {
-                            reusableTempList = new Queue<EntityComponent>();
-                            _reusableComponents[component.GetType()] = reusableTempList;
-                        }
-                        reusableTempList.Enqueue(component);
-                    }
-                }
+                return tempList;
             }
+            return null;
+        }
+
+        public void removeEntity(int entityID)
+        {
+            List<EntityComponent> listwithComponets;
+            if (_componentsById.TryGetValue(entityID, out listwithComponets))
+            {
+                removeEntityFromComponentDictionary(listwithComponets);
+                _componentsById.Remove(entityID);
+                _freeIds.Enqueue(entityID);
+            }
+        }
+
+        private bool removeEntityFromComponentDictionary(List<EntityComponent> listComp)
+        {
+            foreach (EntityComponent comp in listComp)
+            {
+                Dictionary<int, EntityComponent> editlist;
+                Type type = comp.GetType();
+                if (_componentsByType.TryGetValue(type, out editlist))
+                {
+                    editlist.Remove(comp.EntityId);
+                    Queue<EntityComponent> reusableTempList;
+                    if (!_reusableComponents.TryGetValue(type, out reusableTempList))
+                    {
+                        reusableTempList = new Queue<EntityComponent>();
+                        _reusableComponents[type] = reusableTempList;
+                    }
+                    reusableTempList.Enqueue(comp);
+                }
+                else
+                    return false;
+
+            }
+            return true;
         }
 
         public Dictionary<int, EntityComponent> getComponentDictionary<T>() where T : EntityComponent

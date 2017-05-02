@@ -95,7 +95,8 @@ namespace Blob
             EntityManager.addTexture("dictator", Content.Load<Texture2D>("dictator"));
             EntityManager.addTexture("terrorist", Content.Load<Texture2D>("terrorist"));
             EntityManager.addTexture("smileyWalk", Content.Load<Texture2D>(@"Animation\boom"));
-
+            EntityManager.addTexture("rectangle", Content.Load<Texture2D>(@"Animation\boom"));
+            rectangle = Content.Load<Texture2D>("rectangle");
             createEntities();
             //MediaPlayerManager.Instance.Start();
             circle = Content.Load<Texture2D>("circle");
@@ -145,6 +146,12 @@ namespace Blob
 
             spriteBatch.Begin();
             _SystemManager.Draw(spriteBatch);
+            //List<RectangleComponent> rectangles = ComponentManager.Instance.getComponentsOfType<RectangleComponent>();
+            //foreach (RectangleComponent rect in rectangles)
+            //{
+            //    spriteBatch.Draw(rectangle, rect.BoundingRectangle, null, Color.White);
+            //}
+            
             spriteBatch.End();
 
             base.Draw(gameTime);
