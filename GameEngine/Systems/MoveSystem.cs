@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameEngine.Systems
 {
-    public class MoveSystem
+    public class MoveSystem : ISystem
     {
         private int _ScreenWitdh { get; }
         private int _ScreenHight { get; }
@@ -130,5 +130,3 @@ namespace GameEngine.Systems
         }
     }
 }
-
-//Använd med System systemService = new MoveSystem(gameTime);

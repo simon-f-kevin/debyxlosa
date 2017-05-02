@@ -12,79 +12,56 @@ namespace GameEngine.Managers
 {
     public class SystemManager
     {
-        private List<ISystem> _systems;
+        private Queue<ISystem> _systems;
         private ISystem _collisionDetectionSystem;
-        private InputSystem _InputSystem;
-        private MoveSystem _MoveSystem;
-        private FrameCounter _FrameCounter;
-        private AISystem _AISystem;
-        private TextureRenderSystem _TextureRender;
-        private Game game;
-        private AnimationSystem _AnimationSystem;
-        public SystemManager(Game game) 
+        private InputSystem _inputSystem;
+        private MoveSystem _moveSystem;
+        private FrameCounter _frameCounter;
+        private TextureRenderSystem _textureRender;
+
         private AnimationSystem _animationSystem;
-        private CollisionHandlingSystem _CollisionHandler;
+        private CollisionDetectionSystem _collisionDetector;
+        private CollisionHandlingSystem _collisionHandler;
         private Game _game;
-        public SystemManager(Game game, CollisionHandlingDelegate collisionHandler, SpriteBatch spriteBatch)
+
+        public SystemManager(Game game, CollisionHandlingDelegate collisionHandler)
         {
-            this.game = game;
+            _game = game;
+            Initialize(collisionHandler);
         }
-        public void Initialize()
+        public void Initialize(CollisionHandlingDelegate collisionHandler)
         {
             //_TestSystem = new TestSystem(this.Game);
             //Game.Components.Add(_TestSystem);
-            _game = game;
-            _systems = new List<ISystem>();
+            _systems = new Queue<ISystem>();
             ISystemsMediator mediator = new CollisionSystemsMediator();
 
-            _FrameCounter = new FrameCounter(this.game);
-
-
-            _InputSystem = new InputSystem(this.game);
-
-
-            _MoveSystem = new MoveSystem();
-            //_FrameCounter = new FrameCounter(game);
-           
-
-            _InputSystem = new InputSystem(game);
-           
-
-            _CollisionSystem = new CollisionSystem();
-
-            _TextureRender = new TextureRenderSystem(this.game);
-            
-            _AISystem = new AISystem(this.game);
-            _AnimationSystem = new AnimationSystem(this.game);
-            //Game.Components.Add(_TextureRender);
-            _MoveSystem = new MoveSystem(game);
-            
+            _frameCounter = new FrameCounter(_game);
+            _inputSystem = new InputSystem(_game);
+            _moveSystem = new MoveSystem();
+            _inputSystem = new InputSystem(_game);
+            _textureRender = new TextureRenderSystem();
             _animationSystem = new AnimationSystem();
-
-            _CollisionHandler = new CollisionHandlingSystem(collisionHandler);
-            _collisionDetectionSystem = new CollisionDetectionSystem(mediator);
-            ((CollisionSystemsMediator)mediator).CollisionHandler = _CollisionHandler;
+            _collisionHandler = new CollisionHandlingSystem(collisionHandler);
+            ((CollisionSystemsMediator)mediator).CollisionHandler = _collisionHandler;
+            _collisionDetector = new CollisionDetectionSystem(mediator);
         }
         public void Update(GameTime gameTime)
         {
             //_FrameCounter.Update(gameTime);
             //_TestSystem.Update(gameTime);
-            _InputSystem.Update(gameTime);
-            _MoveSystem.Update(gameTime);
-            _CollisionSystem.Update(gameTime);
-            _AISystem.Update(gameTime);
-            _AnimationSystem.Update(gameTime);
+            _inputSystem.Update(gameTime);
+            _moveSystem.Update(gameTime);
+            _collisionDetector.Update(gameTime);
+            _collisionHandler.Update(gameTime);
+            _animationSystem.Update(gameTime);
             //_SoundSystem.Update(gameTime);            
-            //base.Update(gameTime);
+
         }
-        public void Draw(GameTime gameTime)
+        public void Draw(SpriteBatch spriteBatch)
         {
             _animationSystem.Draw(spriteBatch);
-            //GraphicsDevice.Clear(Color.CornflowerBlue);
-            _FrameCounter.Update(gameTime);
-            _TextureRender.Draw(gameTime);
-            _AnimationSystem.Draw(gameTime);
-            //base.Draw(gameTime);
+            _textureRender.Draw(spriteBatch);
         }
     }
 }

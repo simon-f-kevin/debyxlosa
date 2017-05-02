@@ -7,11 +7,8 @@ using System.Collections.Generic;
 
 namespace GameEngine.Systems
 {
-    interface IInputHandler
-    {
-    KeyBoardHandler KeyboardState { get; }
-    }
-    public class InputSystem : IInputHandler
+
+    public class InputSystem : IInputHandler, ISystem
     {   
         private bool allowsExiting;
         private KeyBoardHandler keyboard;

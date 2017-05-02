@@ -66,7 +66,7 @@ namespace Blob
             //_moveSystem = new MoveSystem(this,graphics.GraphicsDevice.Viewport.Width, graphics.GraphicsDevice.Viewport.Height);
             //Components.Add(_moveSystem);
 
-            _SystemManager = new SystemManager(this, GameCollisionHandler.CollisionHandler, spriteBatch);
+            _SystemManager = new SystemManager(this, GameCollisionHandler.CollisionHandler);
             //Borde ta bort Component.Add(). Systemet anropas manuellt i Update
 
             //Create a singleton holding the Game-instance instead of sending
@@ -142,7 +142,11 @@ namespace Blob
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            _SystemManager.Draw(gameTime);
+
+            spriteBatch.Begin();
+            _SystemManager.Draw(spriteBatch);
+            spriteBatch.End();
+
             base.Draw(gameTime);
             
         }
@@ -155,8 +159,10 @@ namespace Blob
             EntityManager.createDictator(new Vector2(600, 20), new Vector2(200, -200));
             EntityManager.createDictator(new Vector2(800, 200), new Vector2(200, 200));
 
-            EntityManager.createTerrorist(new Vector2(500, 500), new Vector2(300, 300));
-            EntityManager.createAnimatedDictator(new Vector2(100, 200), new Vector2(300, 300));
+            //EntityManager.createTerrorist(new Vector2(500, 500), new Vector2(300, 300));
+            //EntityManager.createAnimatedDictator(new Vector2(100, 200), new Vector2(300, 300));
         }
+
+
     }
 }

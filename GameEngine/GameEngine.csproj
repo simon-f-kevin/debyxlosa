@@ -68,9 +68,9 @@
     <Compile Include="Systems\AnimationSystem.cs" />
     <Compile Include="Systems\CollisionDetectionSystem.cs" />
     <Compile Include="Systems\CollisionHandlingSystem.cs" />
-    <Compile Include="Systems\ControllerSystem.cs" />
     <Compile Include="Systems\FrameCounter.cs" />
     <Compile Include="Systems\IDrawableSystem.cs" />
+    <Compile Include="Systems\IInputHandler.cs" />
     <Compile Include="Systems\InputSystem.cs" />
     <Compile Include="Systems\ISystem.cs" />
     <Compile Include="Systems\MoveSystem.cs" />

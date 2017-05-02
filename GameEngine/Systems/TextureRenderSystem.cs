@@ -10,17 +10,12 @@ using System.Threading.Tasks;
 
 namespace GameEngine.Systems
 {
-    public class TextureRenderSystem
+    public class TextureRenderSystem : IDrawableSystem
     {
-        SpriteBatch spriteBatch;
-        private Game game;
-        public TextureRenderSystem(Game game)
-        {
-            this.game = game;
-            spriteBatch = new SpriteBatch(game.GraphicsDevice);
-        }
 
-        public void Draw(GameTime gameTime)
+        public TextureRenderSystem(){}
+
+        public void Draw(SpriteBatch spriteBatch)
         {
             Dictionary<int, EntityComponent> _RectangleDictionary = ComponentManager.Instance.getComponentDictionary<RectangleComponent>();
             Dictionary<int, EntityComponent> _TexturesDictionary = ComponentManager.Instance.getComponentDictionary<TextureComponent>();
@@ -31,7 +26,6 @@ namespace GameEngine.Systems
             EntityComponent posComponent;
             if (_TexturesDictionary != null && _RectangleDictionary != null && _RotationDictionary != null)
             {
-                spriteBatch.Begin();
                 foreach (TextureComponent texture2D in _TexturesDictionary.Values)
                 {
                     if (_RectangleDictionary.TryGetValue(texture2D.EntityId, out rectangelComponent))
@@ -42,8 +36,13 @@ namespace GameEngine.Systems
                             RotationComponent rotation = (RotationComponent)rotationComponent;
                             spriteBatch.Draw
                                 (
-                                    texture: texture2D.Sprite,
-                                    destinationRectangle: rectangle.BoundingRectangle,
+                                    texture: texture2D.Sprite, 
+                                    destinationRectangle: new Rectangle
+                                    (
+                                        rectangle.BoundingRectangle.X-texture2D.Sprite.Width/2,
+                                        rectangle.BoundingRectangle.Y - texture2D.Sprite.Height / 2,
+                                        rectangle.BoundingRectangle.Width,
+                                        rectangle.BoundingRectangle.Height),
                                     color: Color.White,
                                     rotation: rotation.Rotation,
                                     origin: rotation.Orgin                               
@@ -75,18 +74,7 @@ namespace GameEngine.Systems
                     }
                 }
 
-                spriteBatch.End();
             }
         }
-        //List<TextureComponent> textures = ComponentManager.Instance.getComponentsOfType<TextureComponent>();
-        //spriteBatch.Begin();
-        //    foreach (TextureComponent texture in textures)
-        //    {
-        //        RotationComponent entityRotation =
-        //            ComponentManager.Instance.getComponentByID<RotationComponent>(texture.EntityId);
-        //RectangleComponent rc = ComponentManager.Instance.getComponentByID<RectangleComponent>(texture.EntityId);
-        //spriteBatch.Draw(texture.Sprite, new Vector2(rc.BoundingRectangle.X, rc.BoundingRectangle.Y), null, Color.White, entityRotation.Rotation, entityRotation.Orgin, 1f, SpriteEffects.None, 0f);
-        //        spriteBatch.Draw(rectangle, rc.BoundingRectangle, Color.White);
-        //    }
-}
+    }
 }
