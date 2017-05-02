@@ -39,7 +39,6 @@ C:\Users\Hameo\Source\Repos\debyxlosa\GameEngine\bin\Debug\SharpDX.XInput.xml
 C:\Users\Hameo\Source\Repos\debyxlosa\GameEngine\bin\Debug\SharpDX.MediaFoundation.xml
 C:\Users\Hameo\Source\Repos\debyxlosa\GameEngine\obj\Debug\GameEngine.dll
 C:\Users\Hameo\Source\Repos\debyxlosa\GameEngine\obj\Debug\GameEngine.pdb
-C:\Users\Simon\Source\Repos\debyxlosa\GameEngine\obj\Debug\GameEngine.csprojResolveAssemblyReference.cache
 C:\Users\Simon\Source\Repos\debyxlosa\GameEngine\obj\Debug\GameEngine.dll
 C:\Users\Simon\Source\Repos\debyxlosa\GameEngine\obj\Debug\GameEngine.pdb
 C:\Users\Simon\Source\Repos\debyxlosa\GameEngine\bin\Debug\GameEngine.dll

@@ -49,8 +49,11 @@
     <Compile Include="Game1.cs" />
     <Compile Include="Managers\EntityManager.cs" />
     <Compile Include="Models\CollisionHandler\GameCollisionHandler.cs" />
+    <Compile Include="Models\GameOverScreen.cs" />
     <Compile Include="Models\KeyMappings.cs" />
     <Compile Include="Models\MainMenu.cs" />
+    <Compile Include="Models\PauseScreen.cs" />
+    <Compile Include="Models\SplashScreen.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourcesProviders\GameProvider.cs" />

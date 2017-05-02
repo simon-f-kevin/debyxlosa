@@ -34,6 +34,13 @@ namespace Blob
         private Texture2D smileyWalk;
         private FrameCounter _frameCounter;
 
+        public static GameState _gameState;
+        private MainMenu mainMenu;
+        private PauseScreen pauseScreen;
+        private SplashScreen splashScreen;
+        private GameOverScreen gameOverScreen;
+        private SpriteFont font;
+
 
         public Game1()
         {
@@ -45,6 +52,7 @@ namespace Blob
             graphics.PreferredBackBufferWidth = 1200;
             Content.RootDirectory = "Content";
 
+            _gameState = GameState.SplashScreen;
             
         }
 
@@ -68,6 +76,11 @@ namespace Blob
             //Create a singleton holding the Game-instance instead of sending
             //it as a parameter to appropriate managers.
             GameProvider.getInstance().Game = this;
+
+            mainMenu = new MainMenu();
+            splashScreen = new SplashScreen();
+            pauseScreen = new PauseScreen();
+            gameOverScreen = new GameOverScreen();
 
             //_InputSystem = new InputSystem(this, true);
             //Components.Add(_InputSystem);
@@ -97,7 +110,8 @@ namespace Blob
             //MediaPlayerManager.Instance.Start();
             circle = Content.Load<Texture2D>("circle");
             rectangle = Content.Load<Texture2D>("rectangle");
-            
+
+            font = Content.Load<SpriteFont>("font");
 
             // TODO: use this.Content to load your game content here
 
@@ -128,8 +142,26 @@ namespace Blob
             //}
 
             // TODO: Add your update logic here
-            _SystemManager.Update(gameTime);
+            
             base.Update(gameTime);
+            switch (_gameState)
+            {
+                    case GameState.Gameplay:
+                        _SystemManager.Update(gameTime);
+                        break;
+                    case GameState.MainMenu:
+                        mainMenu.Update(gameTime);
+                        break;
+                    case GameState.SplashScreen:
+                        splashScreen.UpdateSplashScreen(gameTime);
+                        break;
+                    case GameState.Paused:
+                        pauseScreen.UpdatePauseScreen(gameTime);
+                        break;
+                    case GameState.GameOver:
+                        gameOverScreen.UpdateGameOverScreen(gameTime);
+                        break;
+            }
         }
 
         /// <summary>
@@ -139,19 +171,38 @@ namespace Blob
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            _frameCounter.Update(gameTime);
+            
             spriteBatch.Begin();
-            _SystemManager.Draw(spriteBatch);
             //List<RectangleComponent> rectangles = ComponentManager.Instance.getComponentsOfType<RectangleComponent>();
             //foreach (RectangleComponent rect in rectangles)
             //{
             //    spriteBatch.Draw(rectangle, rect.BoundingRectangle, null, Color.White);
             //}
             
-            spriteBatch.End();
+           
 
             base.Draw(gameTime);
-            
+            switch (_gameState)
+            {
+                case GameState.Gameplay:
+                    _frameCounter.Update(gameTime);
+                    _SystemManager.Draw(spriteBatch);
+                    break;
+                case GameState.MainMenu:
+                    mainMenu.Draw(gameTime,font);
+                    break;
+                case GameState.SplashScreen:
+                    splashScreen.Draw(gameTime);
+                    break;
+                case GameState.Paused:
+                    //pauseScreen.Draw();
+                    break;
+                case GameState.GameOver:
+                    //gameOverScreen.Draw(gameTime);
+                    break;
+            }
+            spriteBatch.End();
+
         }
 
         void createEntities()

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Johan/Desktop/Systemarkitekturutbildningen/Termin 4/Speldesign/de byxlosa/projekt/Blob/Content/Music/Game.mp3</SourceFile>
-  <SourceTime>2017-04-27T17:22:38.0183831+02:00</SourceTime>
-  <DestFile>C:/Users/Johan/Desktop/Systemarkitekturutbildningen/Termin 4/Speldesign/de byxlosa/projekt/Blob/Content/bin/Windows/Music/Game.xnb</DestFile>
-  <DestTime>2017-05-02T17:01:34.3970424+02:00</DestTime>
+  <SourceFile>C:/Users/Simon/Source/Repos/debyxlosa/Blob/Content/Music/Game.mp3</SourceFile>
+  <SourceTime>2017-04-27T09:38:49.5838782+02:00</SourceTime>
+  <DestFile>C:/Users/Simon/Source/Repos/debyxlosa/Blob/Content/bin/Windows/Music/Game.xnb</DestFile>
+  <DestTime>2017-05-02T22:09:48.7376993+02:00</DestTime>
   <Importer>Mp3Importer</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>SongProcessor</Processor>
@@ -15,6 +15,6 @@
   <Dependencies />
   <BuildAsset />
   <BuildOutput>
-    <string>C:/Users/Johan/Desktop/Systemarkitekturutbildningen/Termin 4/Speldesign/de byxlosa/projekt/Blob/Content/bin/Windows/Music/Game.wma</string>
+    <string>C:/Users/Simon/Source/Repos/debyxlosa/Blob/Content/bin/Windows/Music/Game.wma</string>
   </BuildOutput>
 </PipelineBuildEvent>
