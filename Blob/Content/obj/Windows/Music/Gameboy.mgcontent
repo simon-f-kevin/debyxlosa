@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Hameo/Source/Repos/debyxlosa/Blob/Content/Music/Gameboy.mp3</SourceFile>
-  <SourceTime>2017-05-02T11:37:10.2397907+02:00</SourceTime>
-  <DestFile>C:/Users/Hameo/Source/Repos/debyxlosa/Blob/Content/bin/Windows/Music/Gameboy.xnb</DestFile>
-  <DestTime>2017-05-02T12:05:32.915463+02:00</DestTime>
+  <SourceFile>C:/Users/Felix/Source/Repos/debyxlosa/Blob/Content/Music/Gameboy.mp3</SourceFile>
+  <SourceTime>2017-04-28T10:46:46.548403+02:00</SourceTime>
+  <DestFile>C:/Users/Felix/Source/Repos/debyxlosa/Blob/Content/bin/Windows/Music/Gameboy.xnb</DestFile>
+  <DestTime>2017-05-02T13:16:12.5642722+02:00</DestTime>
   <Importer>Mp3Importer</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>SongProcessor</Processor>
@@ -15,6 +15,6 @@
   <Dependencies />
   <BuildAsset />
   <BuildOutput>
-    <string>C:/Users/Hameo/Source/Repos/debyxlosa/Blob/Content/bin/Windows/Music/Gameboy.wma</string>
+    <string>C:/Users/Felix/Source/Repos/debyxlosa/Blob/Content/bin/Windows/Music/Gameboy.wma</string>
   </BuildOutput>
 </PipelineBuildEvent>

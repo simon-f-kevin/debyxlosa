@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GameEngine.Util;
+using GameEngine.Util.Mediator;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace GameEngine.Managers
@@ -59,9 +59,10 @@ namespace GameEngine.Managers
 
         }
         public void Draw(SpriteBatch spriteBatch)
-        {            
-            _animationSystem.Draw(spriteBatch);
+        {
             _textureRender.Draw(spriteBatch);
+            _animationSystem.Draw(spriteBatch);
+            
         }
     }
 }

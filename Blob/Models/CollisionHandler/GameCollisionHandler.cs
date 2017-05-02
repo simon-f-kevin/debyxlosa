@@ -3,7 +3,7 @@ using Blob.Managers;
 using Blob.ResourcesProviders;
 using GameEngine.Components;
 using GameEngine.Managers;
-using GameEngine.Util;
+using GameEngine.Util.Mediator;
 using Microsoft.Xna.Framework;
 
 namespace Blob.Models.CollisionHandler
@@ -44,29 +44,23 @@ namespace Blob.Models.CollisionHandler
                 }
                 else if (collisionComponent1.CollisionType == collisionComponent2.CollisionType)
                 {
+                    Point animationCenter = getCollisionCenter(collisionComponent1.EntityId, collisionComponent2.EntityId);
+                    
                     if ((CollisionTypes) collisionComponent1.CollisionType == CollisionTypes.Merge)
-                    {
-                        Point animationCenter = getCollisionCenter(collisionComponent1.EntityId, collisionComponent2.EntityId);
-
-                        EntityManager.createAnimation(new Vector2(animationCenter.X, animationCenter.Y), "puff",
-                            new Point(128, 128), new Point(0, 10), 25);
-
-                        EntityManager.removeEntity(collisionComponent1.EntityId);
-                        EntityManager.removeEntity(collisionComponent2.EntityId);
-                        // createalliance
-                        // removeanimation
-                        //EntityManager.removeEntity()
-                        //Add Alliance entity
-                        /*
-
-
-
-                         * 4. The End
-                         */
+                    {                                        
+                        EntityManager.getInstance().createAnimation(new Vector2(animationCenter.X, animationCenter.Y), "puff",
+                            new Point(128, 128), new Point(10, 0), 25, 0, 2f);
+                        Vector2 velocity = getAllianceVelocity(collisionComponent1.EntityId, collisionComponent2.EntityId);
+                        EntityManager.getInstance().removeEntity(collisionComponent1.EntityId);
+                        EntityManager.getInstance().removeEntity(collisionComponent2.EntityId);                    
+                        EntityManager.getInstance().createAlliance(new Vector2(animationCenter.X, animationCenter.Y), velocity);
+                       
                     }
                     else if ((CollisionTypes) collisionComponent1.CollisionType == CollisionTypes.War)
                     {
-                        //Two alliance collide. Animation and then missiles
+                        EntityManager.getInstance().createAnimation(new Vector2(animationCenter.X, animationCenter.Y),"explosion", new Point(50, 50), new Point(6, 6), 75, 1, 6f);
+                        EntityManager.getInstance().removeEntity(collisionComponent1.EntityId);
+                        EntityManager.getInstance().removeEntity(collisionComponent2.EntityId);
                     }
                 }
                 else if ((CollisionTypes) collisionComponent1.CollisionType == CollisionTypes.Explosion ||
@@ -139,6 +133,19 @@ namespace Blob.Models.CollisionHandler
             p1.Y += (float)(v1.VelY * gameTime.ElapsedGameTime.TotalSeconds);
             p2.X += (float)(v2.VelX * gameTime.ElapsedGameTime.TotalSeconds);
             p2.Y += (float)(v2.VelY * gameTime.ElapsedGameTime.TotalSeconds);
+
+        }
+
+        public static Vector2 getAllianceVelocity(int entityId1, int entityId2)
+        {
+            Dictionary<int, EntityComponent> velocities = ComponentManager.Instance.getComponentDictionary<VelocityComponent>();
+            VelocityComponent vel1 = (VelocityComponent)velocities[entityId1];
+            VelocityComponent vel2 = (VelocityComponent)velocities[entityId2];
+
+                    
+            float velXResult = vel1.VelX - vel2.VelX;
+            float velYResult = vel1.VelY - vel2.VelY;
+            return (new Vector2(velXResult, velYResult));
 
         }
     }

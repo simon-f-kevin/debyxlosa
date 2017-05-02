@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Remoting.Messaging;
 
-namespace GameEngine.Util
+namespace GameEngine.Util.Mediator
 {
     public interface ISystemsMediator
     {
