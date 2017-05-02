@@ -11,21 +11,23 @@ namespace GameEngine.Systems
     {
     KeyBoardHandler KeyboardState { get; }
     }
-    public class InputSystem : GameComponent, IInputHandler
+    public class InputSystem : IInputHandler
     {   
         private bool allowsExiting;
         private KeyBoardHandler keyboard;
         private double counter;
+        private Game game;
 
         public InputSystem(Game game) : this(game, false)
         {
         }
-        public InputSystem(Game game, bool allowsExiting) : base(game)
+        public InputSystem(Game game, bool allowsExiting)
         {
+            this.game = game;
             this.allowsExiting = allowsExiting;
-            game.Services.AddService(typeof(IInputHandler), this);
+            //game.Services.AddService(typeof(IInputHandler), this);
             keyboard = new KeyBoardHandler();
-            Game.IsMouseVisible = true;
+            game.IsMouseVisible = true;
         }
 
         public KeyBoardHandler KeyboardState
@@ -35,7 +37,7 @@ namespace GameEngine.Systems
                 throw new NotImplementedException();
             }
         }
-        public override void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
             counter += gameTime.ElapsedGameTime.TotalSeconds;
             keyboard.Update();

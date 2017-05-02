@@ -8,11 +8,14 @@ namespace GameEngine.Components
 {
     public class BarComponent : EntityComponent
     {
-        public int id { get; set; }
         public float seconds;
         public float bar;
         public float span { get; set; }
         public BarComponent()
+        {
+
+        }
+        public BarComponent(int id):base(id)
         {
 
         }

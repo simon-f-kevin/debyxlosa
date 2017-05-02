@@ -30,6 +30,8 @@ namespace Blob
         private Texture2D blob;
         private Texture2D circle;
         private Texture2D rectangle;
+        private Texture2D terrorist;
+        private Texture2D smileyWalk;
 
         //debugging attributes
         float frameCount = 0;
@@ -46,6 +48,7 @@ namespace Blob
             graphics.PreferredBackBufferHeight = 800;
             graphics.PreferredBackBufferWidth = 1200;
             Content.RootDirectory = "Content";
+
             
         }
 
@@ -58,8 +61,6 @@ namespace Blob
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            hero = Content.Load<Texture2D>("player");
-            blob = Content.Load<Texture2D>("dictator");
             
             GamePropertyManager.Instance.setGraphics(this.GraphicsDevice);
             //_moveSystem = new MoveSystem(this,graphics.GraphicsDevice.Viewport.Width, graphics.GraphicsDevice.Viewport.Height);
@@ -75,7 +76,6 @@ namespace Blob
             //_InputSystem = new InputSystem(this, true);
             //Components.Add(_InputSystem);
             _entityManager = new EntityManager();
-            createEntities();
             base.Initialize();
         }
 
@@ -91,9 +91,16 @@ namespace Blob
             //MediaPlayerManager.Instance.addSong(Content.Load<Song>(@"Music\game"));
             //MediaPlayerManager.Instance.addSong(Content.Load<Song>(@"Music\gameboy"));
             //MediaPlayerManager.Instance.addSong(Content.Load<Song>(@"Music\cloud"));
+            EntityManager.addTexture("player", Content.Load<Texture2D>("player"));
+            EntityManager.addTexture("dictator", Content.Load<Texture2D>("dictator"));
+            EntityManager.addTexture("terrorist", Content.Load<Texture2D>("terrorist"));
+            EntityManager.addTexture("smileyWalk", Content.Load<Texture2D>(@"Animation\boom"));
+
+            createEntities();
             //MediaPlayerManager.Instance.Start();
             circle = Content.Load<Texture2D>("circle");
             rectangle = Content.Load<Texture2D>("rectangle");
+            
 
             // TODO: use this.Content to load your game content here
 
@@ -125,7 +132,7 @@ namespace Blob
 
             // TODO: Add your update logic here
             _SystemManager.Update(gameTime);
-            //base.Update(gameTime);
+            base.Update(gameTime);
         }
 
         /// <summary>
@@ -135,41 +142,9 @@ namespace Blob
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            frameCount++;
-
-            float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            timeSinceLastUpdate += elapsed;
-            if (timeSinceLastUpdate > updateInterval)
-            {
-                fps = frameCount / timeSinceLastUpdate;
-                this.Window.Title = "FPS: " + fps.ToString();
-                frameCount = 0;
-                timeSinceLastUpdate -= updateInterval;
-            }
-            // TODO: Add your drawing code here
-            List<TextureComponent> textures = ComponentManager.Instance.getComponentsOfType<TextureComponent>();
-            
-            
-            spriteBatch.Begin();
-            foreach (TextureComponent texture in textures)
-            {
-                PositionComponent entityPosition =
-                    ComponentManager.Instance.getComponentByID<PositionComponent>(texture.EntityId);
-                RotationComponent entityRotation =
-                    ComponentManager.Instance.getComponentByID<RotationComponent>(texture.EntityId);
-                RectangleComponent rc = ComponentManager.Instance.getComponentByID<RectangleComponent>(texture.EntityId);
-                spriteBatch.Draw(texture.Sprite, new Vector2(rc.BoundingRectangle.X + texture.Sprite.Width / 2, rc.BoundingRectangle.Y + texture.Sprite.Height / 2), null, Color.White, entityRotation.Rotation, entityRotation.Orgin, 1f, SpriteEffects.None, 0f);
-                //spriteBatch.Draw(texture.Sprite, new Vector2(entityPosition.X, entityPosition.Y), null, Color.White, entityRotation.Rotation, entityRotation.Orgin, 1f, SpriteEffects.None, 0f);
-
-                //spriteBatch.Draw(rectangle, rc.BoundingRectangle, null, Color.White);
-                //spriteBatch.Draw(circle, rc.BoundingRectangle, null, Color.White);
-            }
-            _SystemManager.Draw(gameTime,spriteBatch);
-
-            spriteBatch.End();
-
+            _SystemManager.Draw(gameTime);
             base.Draw(gameTime);
+            
         }
 
         void createEntities()
@@ -177,11 +152,11 @@ namespace Blob
             EntityManager.createPlayer(new Vector2(200, 200), new Vector2(0, 0),
                 new KeyMappings(Keys.Up, Keys.Down, Keys.Left, Keys.Right, Keys.Space));
 
-            EntityManager.createDictator(new Vector2(50, 50), new Vector2(50, 50));
-            EntityManager.createDictator(new Vector2(750, 50), new Vector2(-50, 50));
-            EntityManager.createDictator(new Vector2(50, 550), new Vector2(50, -50));
-            EntityManager.createDictator(new Vector2(750, 550), new Vector2(-50, -50));
+            EntityManager.createDictator(new Vector2(600, 20), new Vector2(200, -200));
+            EntityManager.createDictator(new Vector2(800, 200), new Vector2(200, 200));
 
+            EntityManager.createTerrorist(new Vector2(500, 500), new Vector2(300, 300));
+            EntityManager.createAnimatedDictator(new Vector2(100, 200), new Vector2(300, 300));
         }
     }
 }

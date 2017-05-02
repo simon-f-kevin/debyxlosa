@@ -18,7 +18,7 @@ namespace GameEngine.Systems
         {
             _game = game;
         }
-        public void Draw(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
             frameCount++;
 
