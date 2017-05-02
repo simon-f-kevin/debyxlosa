@@ -59,7 +59,7 @@ namespace GameEngine.Managers
 
         }
         public void Draw(SpriteBatch spriteBatch)
-        {
+        {            
             _animationSystem.Draw(spriteBatch);
             _textureRender.Draw(spriteBatch);
         }
