@@ -215,6 +215,8 @@ namespace Blob
             EntityManager.getInstance().createDictator(new Vector2(50, 750), new Vector2(200, -200));
             EntityManager.getInstance().createDictator(new Vector2(750, 750), new Vector2(-200, -200));
 
+            EntityManager.getInstance().createTerrorist(new Vector2(500, 500), new Vector2(0, 0));
+            
             //EntityManager.createTerrorist(new Vector2(500, 500), new Vector2(300, 300));
             //EntityManager.createAnimatedDictator(new Vector2(100, 200), new Vector2(300, 300));
         }

@@ -25,15 +25,17 @@ namespace GameEngine.Systems
         {
             terrorists = ComponentManager.Instance.getComponentsOfType<AIComponent>();
             players = ComponentManager.Instance.getComponentsOfType<KeyboardControlComponent>();
-            if (terrorists != null && players != null)
+
+            if (terrorists.Count > 0)
             {
                 AICalc(players, terrorists);
             }
             
+            
         }
-        private void AICalc(List<KeyboardControlComponent> player, List<AIComponent> terrorists)
+        private void AICalc(List<KeyboardControlComponent> players, List<AIComponent> terrorists)
         {
-            var playerPos = ComponentManager.Instance.getComponentByID<PositionComponent>(player[0].EntityId);
+            var playerPos = ComponentManager.Instance.getComponentByID<PositionComponent>(players[0].EntityId);
             var terroristPos = ComponentManager.Instance.getComponentByID<PositionComponent>(terrorists[0].EntityId);
 
             var dist = Vector2.Distance(new Vector2(playerPos.X, playerPos.Y), new Vector2(terroristPos.X, terroristPos.Y));
@@ -46,7 +48,7 @@ namespace GameEngine.Systems
                 vCompTerror.VelY += MathHelper.Clamp(-dir.Y , -1, 1);
                 vCompTerror.VelX += MathHelper.Clamp(-dir.X, -1, 1);
             }
-            //System.Diagnostics.Debug.WriteLine(vCompTerror.VelX);
+            System.Diagnostics.Debug.WriteLine(vCompTerror.VelX);
         }
     }
 }

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Simon/Source/Repos/debyxlosa/Blob/Content/dictator.png</SourceFile>
-  <SourceTime>2017-05-02T08:15:58.8339291+02:00</SourceTime>
-  <DestFile>C:/Users/Simon/Source/Repos/debyxlosa/Blob/Content/bin/Windows/dictator.xnb</DestFile>
-  <DestTime>2017-05-02T22:09:50.3289408+02:00</DestTime>
+  <SourceFile>C:/Users/tratt/Source/Repos/debyxlosa3/Blob/Content/dictator.png</SourceFile>
+  <SourceTime>2017-05-03T21:11:17.4585841+02:00</SourceTime>
+  <DestFile>C:/Users/tratt/Source/Repos/debyxlosa3/Blob/Content/bin/Windows/dictator.xnb</DestFile>
+  <DestTime>2017-05-03T21:15:40.7796452+02:00</DestTime>
   <Importer>TextureImporter</Importer>
-  <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
+  <ImporterTime>2017-04-10T08:23:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
-  <ProcessorTime>2017-03-01T16:05:36+01:00</ProcessorTime>
+  <ProcessorTime>2017-04-10T08:23:56+02:00</ProcessorTime>
   <Parameters>
     <Key>ColorKeyColor</Key>
     <Value>255,0,255,255</Value>

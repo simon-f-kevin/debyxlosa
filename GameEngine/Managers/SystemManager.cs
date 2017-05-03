@@ -18,6 +18,7 @@ namespace GameEngine.Managers
         private MoveSystem _moveSystem;
         private FrameCounter _frameCounter;
         private TextureRenderSystem _textureRender;
+        private AISystem _AISystem;
 
         private AnimationSystem _animationSystem;
         private CollisionDetectionSystem _collisionDetector;
@@ -45,6 +46,7 @@ namespace GameEngine.Managers
             _collisionHandler = new CollisionHandlingSystem(collisionHandler);
             ((CollisionSystemsMediator)mediator).CollisionHandler = _collisionHandler;
             _collisionDetector = new CollisionDetectionSystem(mediator);
+            _AISystem = new AISystem(_game);
         }
         public void Update(GameTime gameTime)
         {
@@ -55,6 +57,7 @@ namespace GameEngine.Managers
             _collisionDetector.Update(gameTime);
             _collisionHandler.Update(gameTime);
             _animationSystem.Update(gameTime);
+            _AISystem.Update(gameTime);
             //_SoundSystem.Update(gameTime);            
 
         }
